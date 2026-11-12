@@ -117,8 +117,14 @@ app.post('/api/session/:code/next-round', async (req, res) => {
     const session = await db.getSessionByCode(req.params.code);
     if (!session) return res.status(404).json({ error: 'Session not found' });
     if (session.status !== 'active') return res.status(400).json({ error: 'Session not active' });
-    const result = await db.nextRound(session.id);
+    const expectedRound = req.body.round || session.current_round;
+    const result = await db.nextRound(session.id, expectedRound);
     if (!result) return res.status(404).json({ error: 'Session not found' });
+    if (result.already_advanced) {
+      const loc = await db.getSessionLocation(session.id, result.round);
+      res.json({ done: result.done, round: result.round, lat: loc?.lat, lng: loc?.lng, label: loc?.label, timer: session.timer, already_advanced: true });
+      return;
+    }
     if (result.done) return res.json({ done: true });
     const { lat, lng, label } = await randomCoords();
     const locationId = await db.insertLocation(lat, lng, label);

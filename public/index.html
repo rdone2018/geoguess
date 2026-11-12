@@ -275,13 +275,15 @@
 
     async function nextRound() {
       try {
-        const res = await fetch(`/api/session/${sessionCode}/next-round`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{}' });
+        const res = await fetch(`/api/session/${sessionCode}/next-round`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ round: currentRound }) });
         const data = await res.json();
         if (data.done) {
           await showFinalScores();
           return;
         }
-        await showScores();
+        if (!data.already_advanced) {
+          await showScores();
+        }
         document.getElementById('score-overlay').classList.add('hidden');
         document.getElementById('score-overlay').style.display = 'none';
         currentRound = data.round;

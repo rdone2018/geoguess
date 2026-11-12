@@ -255,11 +255,15 @@ async function updateSessionSettings(sessionId, rounds, timer) {
   conn.release();
 }
 
-async function nextRound(sessionId) {
+async function nextRound(sessionId, expectedRound) {
   const conn = await getPool().getConnection();
   const [rows] = await conn.execute('SELECT current_round, rounds FROM sessions WHERE id = ?', [sessionId]);
   if (rows.length === 0) { conn.release(); return null; }
   const session = rows[0];
+  if (session.current_round !== expectedRound) {
+    conn.release();
+    return { done: session.current_round >= session.rounds, round: session.current_round, already_advanced: true };
+  }
   if (session.current_round >= session.rounds) {
     await conn.execute("UPDATE sessions SET status = 'finished' WHERE id = ?", [sessionId]);
     conn.release();
