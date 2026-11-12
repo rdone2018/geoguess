@@ -1,0 +1,59 @@
+id,region,min_lat,max_lat,min_lon,max_lon
+1,Canada - West/Prairies,50,60,-120,-100
+2,Canada - Manitoba/N Ontario,50,56,-100,-90
+3,Canada - North (NWT/Nunavut),60,67,-125,-100
+4,Canada - Ontario/Quebec,46,50,-83,-68
+5,USA - West,33,48,-122,-105
+6,USA - Central Plains,31,47,-104,-91
+7,USA - East,32,41,-90,-78
+8,USA - Alaska Interior,61,68,-160,-145
+9,Mexico - North/Central,22,29,-105,-100
+10,Central America - Guatemala/Honduras,14,15.5,-90,-85
+11,Greenland - Ice Sheet,65,78,-45,-35
+12,Iceland - Interior,64.5,65,-19.5,-16
+13,South America - Amazon,-10,0,-70,-52
+14,South America - Brazil East/Cerrado,-22,-10,-52,-44
+15,South America - Pampas,-38,-28,-66,-59
+16,South America - Patagonia,-48,-39,-70,-66
+17,South America - Andes/Altiplano,-18,-8,-75,-65
+18,South America - Colombia/Venezuela,3,8,-74,-63
+19,Europe - Iberia,38,43,-7,-2
+20,Europe - France,44,49,0,5
+21,Europe - Germany/Poland,48,53,8,22
+22,Europe - Balkans/Romania,43,47,18,27
+23,Europe - Sweden/Norway,59,66,12,16
+24,Europe - Finland,62,68,25,30
+25,Europe - UK,51.5,54,-3,-0.5
+26,Europe - Ukraine/Belarus/W Russia,47,57,27,45
+27,Russia - Volga/Urals,55,62,45,60
+28,Russia - West Siberia,55,65,60,90
+29,Russia - Central Siberia,58,68,90,125
+30,Russia - NE Siberia,62,68,125,145
+31,Russia - Far East/Amur,50,60,125,140
+32,Central Asia - Kazakhstan,42,52,62,73
+33,Mongolia,43,50,90,112
+34,China - Tibet/Xinjiang,30,42,78,100
+35,China - East/Central,25,38,105,115
+36,China - Northeast,42,48,122,130
+37,India - Deccan/Central,15,26,74,85
+38,Pakistan/Iran,27,35,52,65
+39,Turkey - Anatolia,37,40,30,40
+40,Arabian Peninsula,19,27,42,48
+41,Southeast Asia - Thailand/Laos/Vietnam,14,20,100,105
+42,Indonesia - Borneo Interior,-1,2,112,116
+43,Indonesia - Sumatra,-2,1,101,102.5
+44,Japan - Honshu,36,38,139,140.5
+45,Australia - Western/Central,-30,-22,118,140
+46,Australia - Southeast Interior,-34,-28,143,150
+47,Australia - Queensland Interior,-26,-18,140,148
+48,Australia - Northern Territory,-20,-14,130,137
+49,New Zealand - North Island,-39,-37.5,175,176.5
+50,Africa - Sahara,18,30,-8,30
+51,Africa - Sahel,10,15,-10,25
+52,Africa - Congo Basin,-5,5,15,28
+53,Africa - East Africa (Kenya/Tanzania),-5,3,36,39
+54,Africa - Ethiopia Highlands,6,13,36,42
+55,Africa - Southern (Namibia/Botswana/Zimbabwe),-26,-16,17,30
+56,Africa - South Africa Interior,-33,-26,20,29
+57,Madagascar - Central,-22,-17,45,47.5
+58,Antarctica - Ice Sheet,-85,-75,-180,180

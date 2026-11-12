@@ -111,7 +111,47 @@ async function initSchema() {
       FOREIGN KEY (user_id) REFERENCES users(id)
     )
   `);
+  await conn.execute(`
+    CREATE TABLE IF NOT EXISTS land_bounds (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      region VARCHAR(100) NOT NULL,
+      min_lat DOUBLE NOT NULL,
+      max_lat DOUBLE NOT NULL,
+      min_lon DOUBLE NOT NULL,
+      max_lon DOUBLE NOT NULL
+    )
+  `);
   conn.release();
+}
+
+async function importLandBounds() {
+  const conn = await getPool().getConnection();
+  const [count] = await conn.execute('SELECT COUNT(*) AS c FROM land_bounds');
+  if (count[0].c > 0) { conn.release(); return; }
+  const csvPath = path.join(__dirname, 'world_land_bounds.csv');
+  const content = fs.readFileSync(csvPath, 'utf-8');
+  const lines = content.trim().split('\n').slice(1);
+  for (const line of lines) {
+    const parts = line.split(',');
+    if (parts.length < 6) continue;
+    const region = parts[1].trim();
+    const minLat = parseFloat(parts[2]);
+    const maxLat = parseFloat(parts[3]);
+    const minLon = parseFloat(parts[4]);
+    const maxLon = parseFloat(parts[5]);
+    await conn.execute(
+      'INSERT INTO land_bounds (region, min_lat, max_lat, min_lon, max_lon) VALUES (?, ?, ?, ?, ?)',
+      [region, minLat, maxLat, minLon, maxLon]
+    );
+  }
+  conn.release();
+}
+
+async function getRandomLandBound() {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute('SELECT * FROM land_bounds ORDER BY RAND() LIMIT 1');
+  conn.release();
+  return rows[0] || null;
 }
 
 async function createUser(username, role) {
@@ -275,7 +315,7 @@ async function getSessionScores(sessionId) {
 }
 
 module.exports = {
-  getPool, initSchema,
+  getPool, initSchema, importLandBounds, getRandomLandBound,
   createUser, getUserByUsername,
   createSession, getSessionByCode, joinSession, getSessionPlayers, startSession,
   updateSessionSettings, nextRound,
