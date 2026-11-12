@@ -75,12 +75,12 @@
   </div>
 
   <div id="game-screen" class="hidden">
+    <div id="countdown-bar" style="padding:8px 20px;background:#0f3460;text-align:center;font-size:1.5rem;font-weight:bold;color:#ffab40;">5:00</div>
     <div id="main">
       <div id="sv-container"></div>
       <div id="osm-container"></div>
     </div>
     <div id="coords">
-      <span id="coords-text"></span>
       <span id="distance"></span>
     </div>
   </div>
@@ -192,11 +192,33 @@
       }
     }
 
+    let countdownInterval = null;
+    const GAME_DURATION = 300;
+
+    function startCountdown() {
+      let remaining = GAME_DURATION;
+      const el = document.getElementById('countdown-bar');
+      function update() {
+        const m = Math.floor(remaining / 60);
+        const s = remaining % 60;
+        el.textContent = m + ':' + String(s).padStart(2, '0');
+        if (remaining <= 60) el.style.color = '#ff5252';
+        if (remaining <= 0) {
+          clearInterval(countdownInterval);
+          el.textContent = "Time's up!";
+          return;
+        }
+        remaining--;
+      }
+      update();
+      countdownInterval = setInterval(update, 1000);
+    }
+
     function startGameView(loc) {
       document.getElementById('lobby-screen').classList.add('hidden');
       document.getElementById('game-screen').classList.remove('hidden');
       currentPos = { lat: loc.lat, lng: loc.lng };
-      document.getElementById('coords-text').textContent = `Location: ${loc.lat}, ${loc.lng}`;
+      startCountdown();
       initMaps(loc);
     }
 
