@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 async function randomCoords() {
-  const bound = await db.getRandomLandBound();
+  const bound = await db.getRandomCityBound();
   if (!bound) {
     return { lat: 0, lng: 0 };
   }
@@ -211,7 +211,7 @@ app.get('/api/coords', async (req, res) => {
 async function start() {
   try {
     await db.initSchema();
-    await db.importLandBounds();
+    await db.importCityBounds();
     console.log('Database schema initialized, land bounds imported');
   } catch (err) {
     console.warn('DB init failed:', err.message);
