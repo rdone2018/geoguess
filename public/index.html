@@ -263,7 +263,7 @@
             endRound();
           } else {
             const el = document.getElementById('distance');
-            el.textContent += ` | Waiting for: ${data.pending.join(', ')}`;
+            el.textContent = el.textContent.split(' | Waiting for:')[0] + ` | Waiting for: ${data.pending.join(', ')}`;
           }
         } catch (e) {}
       }, 2000);
