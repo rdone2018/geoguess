@@ -155,7 +155,7 @@
         if (!res.ok) throw new Error(data.error);
         sessionCode = code;
         if (data.active) {
-          startGameView({ lat: data.lat, lng: data.lng }, data.rounds, data.timer, data.round);
+          startGameView({ lat: data.lat, lng: data.lng, label: data.label }, data.rounds, data.timer, data.round);
         } else {
           enterLobby();
         }
