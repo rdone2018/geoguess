@@ -67,6 +67,9 @@ async function initSchema() {
       code VARCHAR(8) NOT NULL UNIQUE,
       admin_id INT NOT NULL,
       status ENUM('lobby','active','finished') NOT NULL DEFAULT 'lobby',
+      rounds INT NOT NULL DEFAULT 5,
+      timer INT NOT NULL DEFAULT 60,
+      current_round INT NOT NULL DEFAULT 1,
       location_id INT DEFAULT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       started_at TIMESTAMP NULL,
@@ -169,6 +172,30 @@ async function startSession(sessionId) {
   conn.release();
 }
 
+async function updateSessionSettings(sessionId, rounds, timer) {
+  const conn = await getPool().getConnection();
+  await conn.execute(
+    'UPDATE sessions SET rounds = ?, timer = ? WHERE id = ?',
+    [rounds, timer, sessionId]
+  );
+  conn.release();
+}
+
+async function nextRound(sessionId) {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute('SELECT current_round, rounds FROM sessions WHERE id = ?', [sessionId]);
+  if (rows.length === 0) { conn.release(); return null; }
+  const session = rows[0];
+  if (session.current_round >= session.rounds) {
+    await conn.execute("UPDATE sessions SET status = 'finished' WHERE id = ?", [sessionId]);
+    conn.release();
+    return { done: true };
+  }
+  await conn.execute('UPDATE sessions SET current_round = current_round + 1 WHERE id = ?', [sessionId]);
+  conn.release();
+  return { done: false, round: session.current_round + 1 };
+}
+
 async function insertLocation(lat, lng) {
   const conn = await getPool().getConnection();
   const [result] = await conn.execute(
@@ -211,5 +238,6 @@ module.exports = {
   getPool, initSchema,
   createUser, getUserByUsername,
   createSession, getSessionByCode, joinSession, getSessionPlayers, startSession,
+  updateSessionSettings, nextRound,
   insertLocation, getLatestLocation, setSessionLocation, getSessionLocation
 };

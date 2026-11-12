@@ -69,13 +69,21 @@
       <div class="code" id="lobby-code"></div>
       <p style="color:#aaa;font-size:0.85rem;text-align:center;">Share this code with players</p>
       <ul class="lobby-list" id="lobby-players"></ul>
+      <div id="settings" style="display:none; margin:12px 0;">
+        <div style="display:flex;gap:12px;justify-content:center;">
+          <label style="color:#aaa;font-size:0.85rem;">Rounds: <input id="input-rounds" type="number" value="5" min="1" max="10" style="width:50px;padding:4px;background:#1a1a2e;color:#fff;border:1px solid #333;border-radius:4px;"></label>
+          <label style="color:#aaa;font-size:0.85rem;">Timer (s): <input id="input-timer" type="number" value="60" min="10" max="120" style="width:55px;padding:4px;background:#1a1a2e;color:#fff;border:1px solid #333;border-radius:4px;"></label>
+        </div>
+      </div>
       <button id="start-btn" onclick="startGame()" style="display:none;">Start Game</button>
       <div class="info" id="lobby-info">Waiting for players...</div>
     </div>
   </div>
 
   <div id="game-screen" class="hidden">
-    <div id="countdown-bar" style="padding:8px 20px;background:#0f3460;text-align:center;font-size:1.5rem;font-weight:bold;color:#ffab40;">5:00</div>
+    <div id="countdown-bar" style="padding:8px 20px;background:#0f3460;text-align:center;font-size:1.5rem;font-weight:bold;color:#ffab40;">
+      <span id="round-info">Round 1/5</span> &nbsp;|&nbsp; <span id="timer-display">1:00</span>
+    </div>
     <div id="main">
       <div id="sv-container"></div>
       <div id="osm-container"></div>
@@ -157,6 +165,7 @@
       if (isAdmin) {
         document.getElementById('lobby-title').textContent = 'Your Game Lobby';
         document.getElementById('start-btn').style.display = 'block';
+        document.getElementById('settings').style.display = 'block';
         document.getElementById('lobby-info').textContent = 'Waiting for players to join...';
       } else {
         document.getElementById('lobby-title').textContent = 'Waiting Room';
@@ -175,7 +184,7 @@
           list.innerHTML = data.players.map(p => `<li>${p === myName ? p + ' (you)' : p}</li>`).join('');
           if (data.status === 'active' && data.location) {
             clearInterval(pollInterval);
-            startGameView(data.location);
+            startGameView(data.location, data.rounds, data.timer, data.current_round);
           }
         } catch (e) {}
       }, 2000);
@@ -183,29 +192,34 @@
 
     async function startGame() {
       try {
-        const res = await fetch(`/api/session/${sessionCode}/start`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username: myName}) });
+        const rounds = parseInt(document.getElementById('input-rounds').value) || 5;
+        const timer = parseInt(document.getElementById('input-timer').value) || 60;
+        const res = await fetch(`/api/session/${sessionCode}/start`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username: myName, rounds, timer}) });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
-        startGameView({ lat: data.lat, lng: data.lng });
+        startGameView({ lat: data.lat, lng: data.lng }, data.rounds, data.timer, data.round);
       } catch (e) {
         document.getElementById('lobby-info').textContent = e.message;
       }
     }
 
     let countdownInterval = null;
-    const GAME_DURATION = 300;
+    let totalRounds = 5;
+    let currentRound = 1;
 
-    function startCountdown() {
-      let remaining = GAME_DURATION;
-      const el = document.getElementById('countdown-bar');
+    function startCountdown(timerSecs, onExpire) {
+      if (countdownInterval) clearInterval(countdownInterval);
+      let remaining = timerSecs;
+      const timerEl = document.getElementById('timer-display');
+      const bar = document.getElementById('countdown-bar');
       function update() {
         const m = Math.floor(remaining / 60);
         const s = remaining % 60;
-        el.textContent = m + ':' + String(s).padStart(2, '0');
-        if (remaining <= 60) el.style.color = '#ff5252';
+        timerEl.textContent = m + ':' + String(s).padStart(2, '0');
+        bar.style.color = remaining <= 10 ? '#ff5252' : '#ffab40';
         if (remaining <= 0) {
           clearInterval(countdownInterval);
-          el.textContent = "Time's up!";
+          if (onExpire) onExpire();
           return;
         }
         remaining--;
@@ -214,12 +228,44 @@
       countdownInterval = setInterval(update, 1000);
     }
 
-    function startGameView(loc) {
+    function updateRoundInfo() {
+      document.getElementById('round-info').textContent = `Round ${currentRound}/${totalRounds}`;
+    }
+
+    async function nextRound() {
+      try {
+        const res = await fetch(`/api/session/${sessionCode}/next-round`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{}' });
+        const data = await res.json();
+        if (data.done) {
+          document.getElementById('timer-display').textContent = "Game Over!";
+          return;
+        }
+        currentRound = data.round;
+        updateRoundInfo();
+        currentPos = { lat: data.lat, lng: data.lng };
+        if (sv) sv.setPosition({ lat: data.lat, lng: data.lng });
+        if (map) map.setView([20, 0], 2);
+        clearMarkers();
+        if (svMarker) { map.removeLayer(svMarker); svMarker = null; }
+        if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
+        if (polyline) { map.removeLayer(polyline); polyline = null; }
+        if (distanceLabel) { map.removeLayer(distanceLabel); distanceLabel = null; }
+        document.getElementById('distance').textContent = '';
+        startCountdown(data.timer, nextRound);
+      } catch (e) {
+        document.getElementById('timer-display').textContent = 'Error';
+      }
+    }
+
+    function startGameView(loc, rounds, timer, round) {
       document.getElementById('lobby-screen').classList.add('hidden');
       document.getElementById('game-screen').classList.remove('hidden');
+      totalRounds = rounds || 5;
+      currentRound = round || 1;
+      updateRoundInfo();
       currentPos = { lat: loc.lat, lng: loc.lng };
-      startCountdown();
       initMaps(loc);
+      startCountdown(timer || 60, nextRound);
     }
 
     function initMaps(loc) {

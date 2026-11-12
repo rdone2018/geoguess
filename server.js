@@ -234,7 +234,7 @@ app.post('/api/join', async (req, res) => {
 
 app.post('/api/session/:code/start', async (req, res) => {
   try {
-    const { username } = req.body;
+    const { username, rounds, timer } = req.body;
     const session = await db.getSessionByCode(req.params.code);
     if (!session) return res.status(404).json({ error: 'Session not found' });
     const admin = await db.getUserByUsername(username);
@@ -242,11 +242,31 @@ app.post('/api/session/:code/start', async (req, res) => {
       return res.status(403).json({ error: 'Not the session admin' });
     }
     if (session.status !== 'lobby') return res.status(400).json({ error: 'Session not in lobby' });
+    const r = Math.min(Math.max(parseInt(rounds) || 5, 1), 10);
+    const t = Math.min(Math.max(parseInt(timer) || 60, 10), 120);
+    await db.updateSessionSettings(session.id, r, t);
     const { lat, lng } = randomCoords();
     const locationId = await db.insertLocation(lat, lng);
     await db.setSessionLocation(session.id, locationId);
     await db.startSession(session.id);
-    res.json({ started: true, lat, lng });
+    res.json({ started: true, lat, lng, rounds: r, timer: t, round: 1 });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/session/:code/next-round', async (req, res) => {
+  try {
+    const session = await db.getSessionByCode(req.params.code);
+    if (!session) return res.status(404).json({ error: 'Session not found' });
+    if (session.status !== 'active') return res.status(400).json({ error: 'Session not active' });
+    const result = await db.nextRound(session.id);
+    if (!result) return res.status(404).json({ error: 'Session not found' });
+    if (result.done) return res.json({ done: true });
+    const { lat, lng } = randomCoords();
+    const locationId = await db.insertLocation(lat, lng);
+    await db.setSessionLocation(session.id, locationId);
+    res.json({ done: false, round: result.round, lat, lng, timer: session.timer });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -263,6 +283,9 @@ app.get('/api/session/:code', async (req, res) => {
       status: session.status,
       admin: session.admin_name,
       players: players.map(p => p.username),
+      rounds: session.rounds,
+      timer: session.timer,
+      current_round: session.current_round,
       location: loc ? { lat: loc.latitude, lng: loc.longitude } : null
     });
   } catch (err) {
