@@ -255,9 +255,10 @@
 
     function pollRoundStatus() {
       if (pollStatusInterval) clearInterval(pollStatusInterval);
+      const round = currentRound;
       pollStatusInterval = setInterval(async () => {
         try {
-          const res = await fetch(`/api/session/${sessionCode}/round-status`);
+          const res = await fetch(`/api/session/${sessionCode}/round-status?round=${round}`);
           const data = await res.json();
           if (data.all_done) {
             endRound();

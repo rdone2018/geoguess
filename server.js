@@ -203,8 +203,9 @@ app.get('/api/session/:code/round-status', async (req, res) => {
   try {
     const session = await db.getSessionByCode(req.params.code);
     if (!session) return res.status(404).json({ error: 'Session not found' });
-    if (session.status !== 'active') return res.json({ pending: [], all_done: true });
-    const pending = await db.getPendingPlayers(session.id, session.current_round);
+    if (session.status !== 'active' && session.status !== 'finished') return res.json({ pending: [], all_done: true });
+    const round = req.query.round ? parseInt(req.query.round) : session.current_round;
+    const pending = await db.getPendingPlayers(session.id, round);
     res.json({ pending, all_done: pending.length === 0 });
   } catch (err) {
     res.status(500).json({ error: err.message });
