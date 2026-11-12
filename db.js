@@ -76,6 +76,9 @@ async function initSchema() {
       FOREIGN KEY (admin_id) REFERENCES users(id)
     )
   `);
+  await conn.execute(`ALTER TABLE sessions ADD COLUMN IF NOT EXISTS rounds INT NOT NULL DEFAULT 5`);
+  await conn.execute(`ALTER TABLE sessions ADD COLUMN IF NOT EXISTS timer INT NOT NULL DEFAULT 60`);
+  await conn.execute(`ALTER TABLE sessions ADD COLUMN IF NOT EXISTS current_round INT NOT NULL DEFAULT 1`);
   await conn.execute(`
     CREATE TABLE IF NOT EXISTS session_players (
       id INT AUTO_INCREMENT PRIMARY KEY,
