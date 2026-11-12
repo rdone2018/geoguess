@@ -141,7 +141,7 @@ async function getUserByUsername(username) {
 }
 
 async function createSession(adminId) {
-  const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+  const code = Math.random().toString(36).substring(2, 6).toUpperCase();
   const conn = await getPool().getConnection();
   const [result] = await conn.execute(
     'INSERT INTO sessions (code, admin_id) VALUES (?, ?)',
