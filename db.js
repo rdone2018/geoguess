@@ -94,6 +94,7 @@ async function initSchema() {
       id INT AUTO_INCREMENT PRIMARY KEY,
       latitude DOUBLE NOT NULL,
       longitude DOUBLE NOT NULL,
+      label VARCHAR(200) DEFAULT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
@@ -263,11 +264,11 @@ async function nextRound(sessionId) {
   return { done: false, round: session.current_round + 1 };
 }
 
-async function insertLocation(lat, lng) {
+async function insertLocation(lat, lng, label) {
   const conn = await getPool().getConnection();
   const [result] = await conn.execute(
-    'INSERT INTO location (latitude, longitude) VALUES (?, ?)',
-    [lat, lng]
+    'INSERT INTO location (latitude, longitude, label) VALUES (?, ?, ?)',
+    [lat, lng, label || null]
   );
   conn.release();
   return result.insertId;

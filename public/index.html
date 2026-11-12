@@ -118,7 +118,7 @@
       el.textContent = 'DB: Unreachable';
       el.style.color = '#ff5252';
     });
-    let sv, map, currentPos = null, svMarker = null, clickMarker = null, polyline = null, distanceLabel = null;
+    let sv, map, currentPos = null, currentLabel = '', svMarker = null, clickMarker = null, polyline = null, distanceLabel = null;
     let pollInterval = null;
 
     if (window.location.search.includes('admin')) {
@@ -287,6 +287,7 @@
         currentRound = data.round;
         updateRoundInfo();
         currentPos = { lat: data.lat, lng: data.lng };
+        currentLabel = data.label || '';
         if (sv) sv.setPosition({ lat: data.lat, lng: data.lng });
         if (map) map.setView([20, 0], 2);
         clearMarkers();
@@ -352,6 +353,7 @@
       currentRound = round || 1;
       updateRoundInfo();
       currentPos = { lat: loc.lat, lng: loc.lng };
+      currentLabel = loc.label || '';
       initMaps(loc);
       startCountdown(timer || 60);
     }
@@ -370,8 +372,8 @@
         const clicked = { lat: e.latlng.lat, lng: e.latlng.lng };
         clickMarker = L.marker(e.latlng, { title: 'Your guess' }).addTo(map);
         if (currentPos) {
-          svMarker = L.marker([currentPos.lat, currentPos.lng], { title: 'Street View' }).addTo(map);
-          svMarker.bindTooltip('Street View', { permanent: true, direction: 'top', offset: [0, -10] });
+          svMarker = L.marker([currentPos.lat, currentPos.lng], { title: currentLabel || 'Street View' }).addTo(map);
+          svMarker.bindTooltip(currentLabel || 'Street View', { permanent: true, direction: 'top', offset: [0, -10] });
           const d = haversine(currentPos.lat, currentPos.lng, clicked.lat, clicked.lng);
           document.getElementById('distance').textContent = `Distance: ${formatDistance(d)}`;
           polyline = L.polyline([[currentPos.lat, currentPos.lng], [clicked.lat, clicked.lng]], { color: '#ff5252', weight: 3, dashArray: '8 8' }).addTo(map);

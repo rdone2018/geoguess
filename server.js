@@ -11,13 +11,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 async function randomCoords() {
   const bound = await db.getRandomCityBound();
   if (!bound) {
-    return { lat: 0, lng: 0 };
+    return { lat: 0, lng: 0, label: '' };
   }
   const lat = bound.min_lat + Math.random() * (bound.max_lat - bound.min_lat);
   const lng = bound.min_lon + Math.random() * (bound.max_lon - bound.min_lon);
   return {
     lat: parseFloat(lat.toFixed(6)),
-    lng: parseFloat(lng.toFixed(6))
+    lng: parseFloat(lng.toFixed(6)),
+    label: bound.city
   };
 }
 
@@ -79,7 +80,7 @@ app.post('/api/join', async (req, res) => {
       resp.rounds = session.rounds;
       resp.timer = session.timer;
       const loc = await db.getSessionLocation(session.id, session.current_round);
-      if (loc) { resp.lat = loc.lat; resp.lng = loc.lng; }
+      if (loc) { resp.lat = loc.lat; resp.lng = loc.lng; resp.label = loc.label; }
     }
     res.json(resp);
   } catch (err) {
@@ -100,11 +101,11 @@ app.post('/api/session/:code/start', async (req, res) => {
     const r = Math.min(Math.max(parseInt(rounds) || 5, 1), 10);
     const t = Math.min(Math.max(parseInt(timer) || 60, 10), 120);
     await db.updateSessionSettings(session.id, r, t);
-    const { lat, lng } = await randomCoords();
-    const locationId = await db.insertLocation(lat, lng);
+    const { lat, lng, label } = await randomCoords();
+    const locationId = await db.insertLocation(lat, lng, label);
     await db.setSessionLocation(session.id, locationId);
     await db.startSession(session.id);
-    res.json({ started: true, lat, lng, rounds: r, timer: t, round: 1 });
+    res.json({ started: true, lat, lng, label, rounds: r, timer: t, round: 1 });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -118,10 +119,10 @@ app.post('/api/session/:code/next-round', async (req, res) => {
     const result = await db.nextRound(session.id);
     if (!result) return res.status(404).json({ error: 'Session not found' });
     if (result.done) return res.json({ done: true });
-    const { lat, lng } = await randomCoords();
-    const locationId = await db.insertLocation(lat, lng);
+    const { lat, lng, label } = await randomCoords();
+    const locationId = await db.insertLocation(lat, lng, label);
     await db.setSessionLocation(session.id, locationId);
-    res.json({ done: false, round: result.round, lat, lng, timer: session.timer });
+    res.json({ done: false, round: result.round, lat, lng, label, timer: session.timer });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
