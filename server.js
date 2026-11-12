@@ -81,8 +81,8 @@ app.post('/api/join', async (req, res) => {
       resp.round = session.current_round;
       resp.rounds = session.rounds;
       resp.timer = session.timer;
-      const loc = await db.getSessionLocation(session.id, session.current_round);
-      if (loc) { resp.lat = loc.lat; resp.lng = loc.lng; resp.label = loc.label; }
+      const loc = await db.getSessionLocation(session.id);
+      if (loc) { resp.lat = loc.latitude; resp.lng = loc.longitude; resp.label = loc.label; }
     }
     res.json(resp);
   } catch (err) {
@@ -122,8 +122,8 @@ app.post('/api/session/:code/next-round', async (req, res) => {
     const result = await db.nextRound(session.id, expectedRound);
     if (!result) return res.status(404).json({ error: 'Session not found' });
     if (result.already_advanced) {
-      const loc = await db.getSessionLocation(session.id, result.round);
-      res.json({ done: result.done, round: result.round, lat: loc?.lat, lng: loc?.lng, label: loc?.label, timer: session.timer, already_advanced: true });
+      const loc = await db.getSessionLocation(session.id);
+      res.json({ done: result.done, round: result.round, lat: loc?.latitude, lng: loc?.longitude, label: loc?.label, timer: session.timer, already_advanced: true });
       return;
     }
     if (result.done) return res.json({ done: true });
