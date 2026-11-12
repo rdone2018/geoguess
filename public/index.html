@@ -45,20 +45,19 @@
   <div id="login-screen" class="screen">
     <div class="card">
       <h2>Join GeoGuess</h2>
-      <div class="role-btns">
-        <button onclick="showAdminForm()">Admin</button>
-        <button onclick="showPlayerForm()">Player</button>
+      <div id="player-form" style="margin-top:16px;">
+        <input id="session-code" placeholder="Session code">
+        <input id="player-name" placeholder="Your name">
+        <button onclick="joinSession()">Join Session</button>
+        <div class="error" id="player-error"></div>
+      </div>
+      <div style="margin-top:12px;text-align:center;">
+        <a href="#" onclick="toggleAdminForm();return false;" style="color:#666;font-size:0.8rem;">Admin: Create Session</a>
       </div>
       <div id="admin-form" style="display:none; margin-top:16px;">
         <input id="admin-name" placeholder="Your name">
         <button onclick="createSession()">Create Game Session</button>
         <div class="error" id="admin-error"></div>
-      </div>
-      <div id="player-form" style="display:none; margin-top:16px;">
-        <input id="session-code" placeholder="Session code">
-        <input id="player-name" placeholder="Your name">
-        <button onclick="joinSession()">Join Session</button>
-        <div class="error" id="player-error"></div>
       </div>
     </div>
   </div>
@@ -125,13 +124,16 @@
     let sv, map, currentPos = null, svMarker = null, clickMarker = null, polyline = null, distanceLabel = null;
     let pollInterval = null;
 
-    function showAdminForm() {
-      document.getElementById('admin-form').style.display = 'block';
-      document.getElementById('player-form').style.display = 'none';
-    }
-    function showPlayerForm() {
-      document.getElementById('player-form').style.display = 'block';
-      document.getElementById('admin-form').style.display = 'none';
+    function toggleAdminForm() {
+      const adminForm = document.getElementById('admin-form');
+      const playerForm = document.getElementById('player-form');
+      if (adminForm.style.display === 'none') {
+        adminForm.style.display = 'block';
+        playerForm.style.display = 'none';
+      } else {
+        adminForm.style.display = 'none';
+        playerForm.style.display = 'block';
+      }
     }
 
     async function createSession() {
