@@ -179,6 +179,17 @@ app.get('/api/config', (req, res) => {
   res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
 });
 
+app.get('/api/db-status', async (req, res) => {
+  try {
+    const conn = await db.getPool().getConnection();
+    await conn.ping();
+    conn.release();
+    res.json({ connected: true });
+  } catch (err) {
+    res.json({ connected: false, error: err.message });
+  }
+});
+
 app.post('/api/admin/create', async (req, res) => {
   try {
     const { username } = req.body;

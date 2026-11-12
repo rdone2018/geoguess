@@ -35,7 +35,12 @@
   </style>
 </head>
 <body>
-  <header><h1>GeoGuess</h1></header>
+  <header>
+    <div>
+      <h1>GeoGuess</h1>
+      <div id="db-status" style="font-size:0.75rem;margin-top:2px;">Checking DB...</div>
+    </div>
+  </header>
 
   <div id="login-screen" class="screen">
     <div class="card">
@@ -84,6 +89,21 @@
     let myName = '';
     let sessionCode = '';
     let isAdmin = false;
+
+    fetch('/api/db-status').then(r => r.json()).then(data => {
+      const el = document.getElementById('db-status');
+      if (data.connected) {
+        el.textContent = 'DB: Connected';
+        el.style.color = '#69f0ae';
+      } else {
+        el.textContent = 'DB: Error - ' + data.error;
+        el.style.color = '#ff5252';
+      }
+    }).catch(() => {
+      const el = document.getElementById('db-status');
+      el.textContent = 'DB: Unreachable';
+      el.style.color = '#ff5252';
+    });
     let sv, map, currentPos = null, svMarker = null, clickMarker = null, polyline = null, distanceLabel = null;
     let pollInterval = null;
 
