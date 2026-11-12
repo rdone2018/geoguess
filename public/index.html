@@ -44,6 +44,10 @@
     const debugEl = document.getElementById('sv-debug');
     let sv;
     let currentPos = null;
+    let svMarker = null;
+    let clickMarker = null;
+    let polyline = null;
+    let distanceLabel = null;
 
     const map = L.map('osm-container').setView([20, 0], 2);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -51,12 +55,31 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    function clearMarkers() {
+      if (clickMarker) map.removeLayer(clickMarker);
+      if (polyline) map.removeLayer(polyline);
+      if (distanceLabel) map.removeLayer(distanceLabel);
+      clickMarker = null;
+      polyline = null;
+      distanceLabel = null;
+    }
+
     map.on('click', function(e) {
+      clearMarkers();
       const clicked = { lat: e.latlng.lat, lng: e.latlng.lng };
-      L.marker(e.latlng).addTo(map);
-      if (currentPos) {
+      clickMarker = L.marker(e.latlng, { title: 'Your guess' }).addTo(map);
+      if (currentPos && svMarker) {
         const d = haversine(currentPos.lat, currentPos.lng, clicked.lat, clicked.lng);
         distanceEl.textContent = `Distance: ${formatDistance(d)}`;
+        polyline = L.polyline([svMarker.getLatLng(), e.latlng], { color: '#ff5252', weight: 3, dashArray: '8 8' }).addTo(map);
+        const mid = map.latLngToContainerPoint(e.latlng);
+        distanceLabel = L.marker(e.latlng, {
+          icon: L.divIcon({
+            className: '',
+            html: `<div style="background:#1a1a2e;color:#4fc3f7;padding:4px 8px;border-radius:4px;font-size:12px;white-space:nowrap;border:1px solid #4fc3f7;">${formatDistance(d)}</div>`,
+            iconSize: [0, 0]
+          })
+        }).addTo(map);
       }
     });
 
@@ -81,6 +104,10 @@
       sv.setPosition({ lat, lng });
       coordsText.textContent = `Street View: ${lat}, ${lng}`;
       distanceEl.textContent = '';
+      clearMarkers();
+      if (svMarker) map.removeLayer(svMarker);
+      svMarker = L.marker([lat, lng], { title: 'Street View location' }).addTo(map);
+      svMarker.bindTooltip('Street View', { permanent: true, direction: 'top', offset: [0, -10] });
     }
 
     async function loadCoords() {
