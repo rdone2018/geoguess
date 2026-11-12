@@ -295,6 +295,20 @@
       const overlay = document.getElementById('score-overlay');
       overlay.classList.remove('hidden');
       overlay.style.display = 'flex';
+      let btn = document.getElementById('new-game-btn');
+      if (!btn) {
+        btn = document.createElement('button');
+        btn.id = 'new-game-btn';
+        btn.textContent = 'Create New Session';
+        btn.style.cssText = 'margin-top:16px;padding:8px 20px;background:#ffab40;color:#000;border:none;border-radius:6px;font-size:1rem;cursor:pointer;font-weight:bold;';
+        btn.onclick = () => window.location.href = '/?admin';
+        overlay.querySelector('div').appendChild(btn);
+      }
+      if (isAdmin) {
+        btn.style.display = 'inline-block';
+      } else {
+        btn.style.display = 'none';
+      }
     }
 
     async function showScores() {
