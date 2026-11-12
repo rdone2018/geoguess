@@ -262,7 +262,7 @@ async function nextRound(sessionId, expectedRound) {
   const session = rows[0];
   if (session.current_round !== expectedRound) {
     conn.release();
-    return { done: session.current_round >= session.rounds, round: session.current_round, already_advanced: true };
+    return { done: session.current_round > session.rounds, round: session.current_round, already_advanced: true };
   }
   if (session.current_round >= session.rounds) {
     await conn.execute("UPDATE sessions SET status = 'finished' WHERE id = ?", [sessionId]);
