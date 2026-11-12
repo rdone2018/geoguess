@@ -314,11 +314,25 @@ async function getSessionScores(sessionId) {
   return rows;
 }
 
+async function getPendingPlayers(sessionId, round) {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute(
+    `SELECT u.username FROM session_players sp
+     JOIN users u ON sp.user_id = u.id
+     WHERE sp.session_id = ? AND u.id NOT IN (
+       SELECT user_id FROM scores WHERE session_id = ? AND round = ?
+     )`,
+    [sessionId, sessionId, round]
+  );
+  conn.release();
+  return rows.map(r => r.username);
+}
+
 module.exports = {
   getPool, initSchema, importLandBounds, getRandomLandBound,
   createUser, getUserByUsername,
   createSession, getSessionByCode, joinSession, getSessionPlayers, startSession,
   updateSessionSettings, nextRound,
   insertLocation, getLatestLocation, setSessionLocation, getSessionLocation,
-  insertScore, getSessionScores
+  insertScore, getSessionScores, getPendingPlayers
 };

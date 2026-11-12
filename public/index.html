@@ -211,13 +211,13 @@
     let remainingTime = 0;
     let guessSubmitted = false;
     let roundEnded = false;
-    let clickTimer = null;
+    let pollStatusInterval = null;
 
     function endRound() {
       if (roundEnded) return;
       roundEnded = true;
       if (countdownInterval) clearInterval(countdownInterval);
-      if (clickTimer) clearTimeout(clickTimer);
+      if (pollStatusInterval) clearInterval(pollStatusInterval);
       nextRound();
     }
 
@@ -246,7 +246,23 @@
     function onGuessClick() {
       if (guessSubmitted || roundEnded) return;
       guessSubmitted = true;
-      clickTimer = setTimeout(endRound, 5000);
+      pollRoundStatus();
+    }
+
+    function pollRoundStatus() {
+      if (pollStatusInterval) clearInterval(pollStatusInterval);
+      pollStatusInterval = setInterval(async () => {
+        try {
+          const res = await fetch(`/api/session/${sessionCode}/round-status`);
+          const data = await res.json();
+          if (data.all_done) {
+            endRound();
+          } else {
+            const el = document.getElementById('distance');
+            el.textContent += ` | Waiting for: ${data.pending.join(', ')}`;
+          }
+        } catch (e) {}
+      }, 2000);
     }
 
     function updateRoundInfo() {
