@@ -313,8 +313,8 @@ app.post('/api/session/:code/guess', async (req, res) => {
     const distanceKm = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const basePoints = Math.max(0, Math.round(5000 - distanceKm));
-    const timeBonus = (session.timer - (remaining_time || 0)) * 10;
-    const points = basePoints + Math.max(0, timeBonus);
+    const timeBonus = basePoints > 0 ? Math.max(0, (session.timer - (remaining_time || 0)) * 10) : 0;
+    const points = basePoints + timeBonus;
 
     await db.insertScore(session.id, user.id, session.current_round, distanceKm, Math.max(0, timeBonus), points);
     res.json({ points, distance_km: Math.round(distanceKm * 100) / 100, time_bonus: Math.max(0, timeBonus) });
