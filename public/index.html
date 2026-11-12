@@ -298,9 +298,7 @@
           await showFinalScores();
           return;
         }
-        if (!data.already_advanced) {
-          await showScores();
-        }
+        await showScores();
         document.getElementById('score-overlay').classList.add('hidden');
         document.getElementById('score-overlay').style.display = 'none';
         currentRound = data.round;
