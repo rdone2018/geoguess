@@ -181,7 +181,8 @@ app.post('/api/session/:code/guess', async (req, res) => {
     const points = basePoints + timeBonus;
 
     await db.insertScore(session.id, user.id, session.current_round, distanceKm, Math.max(0, timeBonus), points);
-    res.json({ points, distance_km: Math.round(distanceKm * 100) / 100, time_bonus: Math.max(0, timeBonus) });
+    const pending = await db.getPendingPlayers(session.id, session.current_round);
+    res.json({ points, distance_km: Math.round(distanceKm * 100) / 100, time_bonus: Math.max(0, timeBonus), pending, all_done: pending.length === 0 });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

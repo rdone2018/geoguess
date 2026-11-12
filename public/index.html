@@ -398,6 +398,9 @@
             if (data.points !== undefined) {
               document.getElementById('distance').textContent += ` | Points: ${data.points}`;
             }
+            if (data.all_done) {
+              endRound();
+            }
           }).catch(() => {});
         }
       });
