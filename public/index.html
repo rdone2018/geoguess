@@ -14,8 +14,9 @@
     header button { background: #0f3460; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
     header button:hover { background: #1a5085; }
     #main { flex: 1; display: flex; }
-    #sv-container { width: 50%; height: 100%; }
-    #sv-container iframe { width: 100%; height: 100%; border: 0; }
+    #sv-container { width: 50%; height: 100%; position: relative; }
+    #sv-debug { position: absolute; top: 10px; left: 10px; z-index: 9999; background: rgba(0,0,0,0.8); color: #ff5252; padding: 8px 12px; border-radius: 4px; font-size: 0.8rem; max-width: 90%; }
+    #sv-debug.ok { color: #69f0ae; }
     #osm-container { width: 50%; height: 100%; }
     #coords { padding: 8px 20px; background: #16213e; font-size: 0.85rem; color: #aaa; display: flex; justify-content: space-between; }
     #distance { color: #4fc3f7; font-weight: bold; }
@@ -28,7 +29,7 @@
   </header>
   <div id="main">
     <div id="sv-container">
-      <iframe id="sv-frame" src="" allowfullscreen loading="eager"></iframe>
+      <div id="sv-debug">Loading Google Maps API...</div>
     </div>
     <div id="osm-container"></div>
   </div>
@@ -40,7 +41,8 @@
   <script>
     const coordsText = document.getElementById('coords-text');
     const distanceEl = document.getElementById('distance');
-    const svFrame = document.getElementById('sv-frame');
+    const debugEl = document.getElementById('sv-debug');
+    let sv;
     let currentPos = null;
 
     const map = L.map('osm-container').setView([20, 0], 2);
@@ -74,13 +76,9 @@
       return Math.round(km) + ' km';
     }
 
-    function streetViewUrl(lat, lng) {
-      return `https://www.google.com/maps/embed?pb=!1m14!1m12!1m1!1d0.00004595!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1!6m8!1m7!1s!2m2!1d${lat}!2d${lng}!3f2!4f13.1!5e1`;
-    }
-
     function showCoords(lat, lng) {
       currentPos = { lat, lng };
-      svFrame.src = streetViewUrl(lat, lng);
+      sv.setPosition({ lat, lng });
       coordsText.textContent = `Street View: ${lat}, ${lng}`;
       distanceEl.textContent = '';
     }
@@ -91,7 +89,7 @@
         const data = await res.json();
         showCoords(data.lat, data.lng);
       } catch (e) {
-        coordsText.textContent = 'Error loading coordinates';
+        coordsText.textContent = 'Error: ' + e.message;
       }
     }
 
@@ -101,11 +99,43 @@
         const data = await res.json();
         showCoords(data.lat, data.lng);
       } catch (e) {
-        coordsText.textContent = 'Error creating new game';
+        coordsText.textContent = 'Error: ' + e.message;
       }
     });
 
-    loadCoords();
+    fetch('/api/config')
+      .then(r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(({ apiKey }) => {
+        if (!apiKey) throw new Error('No API key in config');
+        debugEl.textContent = 'Loading Maps JS...';
+        const s = document.createElement('script');
+        s.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&v=weekly';
+        s.onload = () => {
+          try {
+            sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
+              position: { lat: 51.5074, lng: -0.1278 },
+              pov: { heading: 0, pitch: 0 },
+              zoom: 1
+            });
+            debugEl.textContent = 'OK - Street View ready';
+            debugEl.className = 'ok';
+            setTimeout(() => debugEl.remove(), 3000);
+            loadCoords();
+          } catch (e) {
+            debugEl.textContent = 'Init error: ' + e.message;
+          }
+        };
+        s.onerror = () => {
+          debugEl.textContent = 'Failed to load Maps JS script. Check API key restrictions.';
+        };
+        document.head.appendChild(s);
+      })
+      .catch(e => {
+        debugEl.textContent = 'Config error: ' + e.message;
+      });
   </script>
 </body>
 </html>
