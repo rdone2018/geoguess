@@ -15,6 +15,7 @@
     header button:hover { background: #1a5085; }
     #main { flex: 1; display: flex; }
     #sv-container { width: 50%; height: 100%; }
+    #sv-container iframe { width: 100%; height: 100%; border: 0; }
     #osm-container { width: 50%; height: 100%; }
     #coords { padding: 8px 20px; background: #16213e; font-size: 0.85rem; color: #aaa; display: flex; justify-content: space-between; }
     #distance { color: #4fc3f7; font-weight: bold; }
@@ -26,7 +27,9 @@
     <button id="new-game">New Game</button>
   </header>
   <div id="main">
-    <div id="sv-container"></div>
+    <div id="sv-container">
+      <iframe id="sv-frame" src="" allowfullscreen loading="eager"></iframe>
+    </div>
     <div id="osm-container"></div>
   </div>
   <div id="coords">
@@ -37,7 +40,7 @@
   <script>
     const coordsText = document.getElementById('coords-text');
     const distanceEl = document.getElementById('distance');
-    let sv;
+    const svFrame = document.getElementById('sv-frame');
     let currentPos = null;
 
     const map = L.map('osm-container').setView([20, 0], 2);
@@ -71,39 +74,13 @@
       return Math.round(km) + ' km';
     }
 
-    function init() {
-      fetch('/api/config')
-        .then(r => r.json())
-        .then(({ apiKey }) => {
-          const script = document.createElement('script');
-          script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
-          script.onload = initStreetView;
-          script.onerror = () => {
-            coordsText.textContent = 'Failed to load Google Maps API';
-          };
-          document.head.appendChild(script);
-        })
-        .catch(e => {
-          coordsText.textContent = 'Error: ' + e.message;
-        });
-    }
-
-    function initStreetView() {
-      const container = document.getElementById('sv-container');
-      sv = new google.maps.StreetViewPanorama(container, {
-        position: { lat: 51.5074, lng: -0.1278 },
-        pov: { heading: 0, pitch: 0 },
-        zoom: 1,
-        addressControl: false,
-        fullscreenControl: true,
-        streetSideControls: true
-      });
-      loadCoords();
+    function streetViewUrl(lat, lng) {
+      return `https://www.google.com/maps/embed?pb=!1m14!1m12!1m1!1d0.00004595!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1!6m8!1m7!1s!2m2!1d${lat}!2d${lng}!3f2!4f13.1!5e1`;
     }
 
     function showCoords(lat, lng) {
       currentPos = { lat, lng };
-      sv.setPosition({ lat, lng });
+      svFrame.src = streetViewUrl(lat, lng);
       coordsText.textContent = `Street View: ${lat}, ${lng}`;
       distanceEl.textContent = '';
     }
@@ -128,7 +105,7 @@
       }
     });
 
-    init();
+    loadCoords();
   </script>
 </body>
 </html>
