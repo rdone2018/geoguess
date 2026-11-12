@@ -57,6 +57,7 @@ app.post('/api/admin/session', async (req, res) => {
     }
     await db.finishAllSessions();
     const session = await db.createSession(admin.id);
+    await db.joinSession(session.id, admin.id);
     res.json({ code: session.code, status: 'lobby' });
   } catch (err) {
     res.status(500).json({ error: err.message });
