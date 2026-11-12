@@ -214,12 +214,12 @@ app.get('/api/config', (req, res) => {
 
 app.get('/api/coords', async (req, res) => {
   try {
-    const game = await db.getLatestGame();
-    if (game) {
-      return res.json({ lat: game.latitude, lng: game.longitude });
+    const loc = await db.getLatestLocation();
+    if (loc) {
+      return res.json({ lat: loc.latitude, lng: loc.longitude });
     }
     const { lat, lng } = randomCoords();
-    await db.insertGame(lat, lng);
+    await db.insertLocation(lat, lng);
     res.json({ lat, lng });
   } catch (err) {
     console.error('Failed to get coords:', err.message);
@@ -231,7 +231,7 @@ app.get('/api/coords', async (req, res) => {
 app.get('/api/new-game', async (req, res) => {
   try {
     const { lat, lng } = randomCoords();
-    await db.insertGame(lat, lng);
+    await db.insertLocation(lat, lng);
     res.json({ lat, lng });
   } catch (err) {
     console.error('Failed to create new game:', err.message);
@@ -250,7 +250,7 @@ async function start() {
 
   const { lat, lng } = randomCoords();
   try {
-    await db.insertGame(lat, lng);
+    await db.insertLocation(lat, lng);
     console.log(`Generated random coordinates: ${lat}, ${lng}`);
   } catch (err) {
     console.warn(`DB insert failed, coords in memory only: ${lat}, ${lng}`);

@@ -51,7 +51,7 @@ function getPool() {
 async function initSchema() {
   const conn = await getPool().getConnection();
   await conn.execute(`
-    CREATE TABLE IF NOT EXISTS games (
+    CREATE TABLE IF NOT EXISTS location (
       id INT AUTO_INCREMENT PRIMARY KEY,
       latitude DOUBLE NOT NULL,
       longitude DOUBLE NOT NULL,
@@ -61,23 +61,23 @@ async function initSchema() {
   conn.release();
 }
 
-async function insertGame(lat, lng) {
+async function insertLocation(lat, lng) {
   const conn = await getPool().getConnection();
   const [result] = await conn.execute(
-    'INSERT INTO games (latitude, longitude) VALUES (?, ?)',
+    'INSERT INTO location (latitude, longitude) VALUES (?, ?)',
     [lat, lng]
   );
   conn.release();
   return result.insertId;
 }
 
-async function getLatestGame() {
+async function getLatestLocation() {
   const conn = await getPool().getConnection();
   const [rows] = await conn.execute(
-    'SELECT * FROM games ORDER BY id DESC LIMIT 1'
+    'SELECT * FROM location ORDER BY id DESC LIMIT 1'
   );
   conn.release();
   return rows[0] || null;
 }
 
-module.exports = { getPool, initSchema, insertGame, getLatestGame };
+module.exports = { getPool, initSchema, insertLocation, getLatestLocation };
