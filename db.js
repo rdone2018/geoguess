@@ -9,7 +9,8 @@ const ENV_PATHS = [
 
 function loadEnv() {
   for (const p of ENV_PATHS) {
-    if (fs.existsSync(p)) {
+    try {
+      if (!fs.existsSync(p)) continue;
       const content = fs.readFileSync(p, 'utf-8');
       for (const line of content.split('\n')) {
         const trimmed = line.trim();
@@ -23,6 +24,8 @@ function loadEnv() {
         }
       }
       return p;
+    } catch (e) {
+      continue;
     }
   }
   throw new Error(`No env file found. Looked in: ${ENV_PATHS.join(', ')}`);
