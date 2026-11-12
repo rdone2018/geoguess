@@ -11,8 +11,7 @@
     header h1 { font-size: 1.3rem; }
     header button { background: #0f3460; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
     header button:hover { background: #1a5085; }
-    #map-container { flex: 1; }
-    #map-container iframe { width: 100%; height: 100%; border: 0; }
+    #sv-container { flex: 1; }
     #coords { padding: 8px 20px; background: #16213e; font-size: 0.85rem; color: #aaa; }
   </style>
 </head>
@@ -21,21 +20,38 @@
     <h1>GeoGuess</h1>
     <button id="new-game">New Game</button>
   </header>
-  <div id="map-container">
-    <iframe id="sv-frame" src="" allowfullscreen loading="lazy"></iframe>
-  </div>
+  <div id="sv-container"></div>
   <div id="coords">Loading...</div>
 
   <script>
-    const frame = document.getElementById('sv-frame');
     const coordsEl = document.getElementById('coords');
+    let sv;
 
-    function streetViewUrl(lat, lng) {
-      return `https://www.google.com/maps/embed?pb=!1m14!1m12!1m1!1d0.00004595!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1!6m8!1m7!1s!2m2!1d${lat}!2d${lng}!3f2!4f13.1!5e1`;
+    async function init() {
+      const res = await fetch('/api/config');
+      const { apiKey } = await res.json();
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initStreetView`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    function initStreetView() {
+      const map = new google.maps.Map(document.getElementById('sv-container'), {
+        visible: false
+      });
+      sv = new google.maps.StreetViewPanorama(
+        document.getElementById('sv-container'),
+        { visible: false }
+      );
+      map.setStreetView(sv);
+      loadCoords();
     }
 
     function showCoords(lat, lng) {
-      frame.src = streetViewUrl(lat, lng);
+      sv.setPosition({ lat, lng });
+      sv.setVisible(true);
       coordsEl.textContent = `Coordinates: ${lat}, ${lng}`;
     }
 
@@ -59,7 +75,7 @@
       }
     });
 
-    loadCoords();
+    init();
   </script>
 </body>
 </html>

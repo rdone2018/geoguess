@@ -208,6 +208,10 @@ function randomCoords() {
   };
 }
 
+app.get('/api/config', (req, res) => {
+  res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
+});
+
 app.get('/api/coords', async (req, res) => {
   try {
     const game = await db.getLatestGame();
