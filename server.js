@@ -55,6 +55,7 @@ app.post('/api/admin/session', async (req, res) => {
     if (!admin || admin.role !== 'admin') {
       return res.status(403).json({ error: 'Not an admin' });
     }
+    await db.finishAllSessions();
     const session = await db.createSession(admin.id);
     res.json({ code: session.code, status: 'lobby' });
   } catch (err) {

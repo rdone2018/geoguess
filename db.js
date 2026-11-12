@@ -202,6 +202,12 @@ async function createSession(adminId) {
   return { id: result.insertId, code };
 }
 
+async function finishAllSessions() {
+  const conn = await getPool().getConnection();
+  await conn.execute("UPDATE sessions SET status = 'finished' WHERE status != 'finished'");
+  conn.release();
+}
+
 async function getSessionByCode(code) {
   const conn = await getPool().getConnection();
   const [rows] = await conn.execute(
@@ -342,7 +348,7 @@ async function getPendingPlayers(sessionId, round) {
 module.exports = {
   getPool, initSchema, importCityBounds, getRandomCityBound,
   createUser, getUserByUsername,
-  createSession, getSessionByCode, joinSession, getSessionPlayers, startSession,
+  createSession, getSessionByCode, joinSession, getSessionPlayers, startSession, finishAllSessions,
   updateSessionSettings, nextRound,
   insertLocation, getLatestLocation, setSessionLocation, getSessionLocation,
   insertScore, getSessionScores, getPendingPlayers
