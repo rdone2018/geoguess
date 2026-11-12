@@ -67,12 +67,21 @@ app.post('/api/join', async (req, res) => {
     if (!code || !username) return res.status(400).json({ error: 'code and username required' });
     const session = await db.getSessionByCode(code);
     if (!session) return res.status(404).json({ error: 'Session not found' });
-    if (session.status !== 'lobby') return res.status(400).json({ error: 'Session already started' });
+    if (session.status === 'finished') return res.status(400).json({ error: 'Session already finished' });
     const user = await db.createUser(username, 'player');
     const userId = typeof user === 'object' ? user.id : user;
     await db.joinSession(session.id, userId);
     const players = await db.getSessionPlayers(session.id);
-    res.json({ joined: true, players: players.map(p => p.username) });
+    const resp = { joined: true, players: players.map(p => p.username) };
+    if (session.status === 'active') {
+      resp.active = true;
+      resp.round = session.current_round;
+      resp.rounds = session.rounds;
+      resp.timer = session.timer;
+      const loc = await db.getSessionLocation(session.id, session.current_round);
+      if (loc) { resp.lat = loc.lat; resp.lng = loc.lng; }
+    }
+    res.json(resp);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
