@@ -117,6 +117,7 @@ app.post('/api/session/:code/next-round', async (req, res) => {
   try {
     const session = await db.getSessionByCode(req.params.code);
     if (!session) return res.status(404).json({ error: 'Session not found' });
+    if (session.status === 'finished') return res.json({ done: true });
     if (session.status !== 'active') return res.status(400).json({ error: 'Session not active' });
     const expectedRound = req.body.round || session.current_round;
     const result = await db.nextRound(session.id, expectedRound);
