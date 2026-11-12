@@ -51,6 +51,36 @@ function getPool() {
 async function initSchema() {
   const conn = await getPool().getConnection();
   await conn.execute(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      username VARCHAR(100) NOT NULL UNIQUE,
+      role ENUM('admin','player') NOT NULL DEFAULT 'player',
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  await conn.execute(`
+    CREATE TABLE IF NOT EXISTS sessions (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      code VARCHAR(8) NOT NULL UNIQUE,
+      admin_id INT NOT NULL,
+      status ENUM('lobby','active','finished') NOT NULL DEFAULT 'lobby',
+      location_id INT DEFAULT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      started_at TIMESTAMP NULL,
+      FOREIGN KEY (admin_id) REFERENCES users(id)
+    )
+  `);
+  await conn.execute(`
+    CREATE TABLE IF NOT EXISTS session_players (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      session_id INT NOT NULL,
+      user_id INT NOT NULL,
+      joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (session_id) REFERENCES sessions(id),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    )
+  `);
+  await conn.execute(`
     CREATE TABLE IF NOT EXISTS location (
       id INT AUTO_INCREMENT PRIMARY KEY,
       latitude DOUBLE NOT NULL,
@@ -58,6 +88,81 @@ async function initSchema() {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
+  conn.release();
+}
+
+async function createUser(username, role) {
+  const conn = await getPool().getConnection();
+  try {
+    const [result] = await conn.execute(
+      'INSERT INTO users (username, role) VALUES (?, ?)',
+      [username, role]
+    );
+    return result.insertId;
+  } catch (err) {
+    if (err.code === 'ER_DUP_ENTRY') {
+      const [rows] = await conn.execute('SELECT id, role FROM users WHERE username = ?', [username]);
+      return rows[0];
+    }
+    throw err;
+  } finally {
+    conn.release();
+  }
+}
+
+async function getUserByUsername(username) {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute('SELECT * FROM users WHERE username = ?', [username]);
+  conn.release();
+  return rows[0] || null;
+}
+
+async function createSession(adminId) {
+  const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+  const conn = await getPool().getConnection();
+  const [result] = await conn.execute(
+    'INSERT INTO sessions (code, admin_id) VALUES (?, ?)',
+    [code, adminId]
+  );
+  conn.release();
+  return { id: result.insertId, code };
+}
+
+async function getSessionByCode(code) {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute(
+    'SELECT s.*, u.username as admin_name FROM sessions s JOIN users u ON s.admin_id = u.id WHERE s.code = ?',
+    [code]
+  );
+  conn.release();
+  return rows[0] || null;
+}
+
+async function joinSession(sessionId, userId) {
+  const conn = await getPool().getConnection();
+  await conn.execute(
+    'INSERT INTO session_players (session_id, user_id) VALUES (?, ?)',
+    [sessionId, userId]
+  );
+  conn.release();
+}
+
+async function getSessionPlayers(sessionId) {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute(
+    'SELECT u.username, sp.joined_at FROM session_players sp JOIN users u ON sp.user_id = u.id WHERE sp.session_id = ?',
+    [sessionId]
+  );
+  conn.release();
+  return rows;
+}
+
+async function startSession(sessionId) {
+  const conn = await getPool().getConnection();
+  await conn.execute(
+    "UPDATE sessions SET status = 'active', started_at = NOW() WHERE id = ?",
+    [sessionId]
+  );
   conn.release();
 }
 
@@ -80,4 +185,28 @@ async function getLatestLocation() {
   return rows[0] || null;
 }
 
-module.exports = { getPool, initSchema, insertLocation, getLatestLocation };
+async function setSessionLocation(sessionId, locationId) {
+  const conn = await getPool().getConnection();
+  await conn.execute(
+    'UPDATE sessions SET location_id = ? WHERE id = ?',
+    [locationId, sessionId]
+  );
+  conn.release();
+}
+
+async function getSessionLocation(sessionId) {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute(
+    'SELECT l.latitude, l.longitude FROM sessions s JOIN location l ON s.location_id = l.id WHERE s.id = ?',
+    [sessionId]
+  );
+  conn.release();
+  return rows[0] || null;
+}
+
+module.exports = {
+  getPool, initSchema,
+  createUser, getUserByUsername,
+  createSession, getSessionByCode, joinSession, getSessionPlayers, startSession,
+  insertLocation, getLatestLocation, setSessionLocation, getSessionLocation
+};

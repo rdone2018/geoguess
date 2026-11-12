@@ -5,6 +5,7 @@ const db = require('./db');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const CITIES = [
@@ -47,7 +48,6 @@ const CITIES = [
   { lat: 27.7172, lng: 85.3240 },
   { lat: 30.0444, lng: 31.2357 },
   { lat: 33.8938, lng: 35.5018 },
-  { lat: 41.0082, lng: 28.9784 },
   { lat: 39.9334, lng: 32.8597 },
   { lat: 47.1419, lng: 8.2275 },
   { lat: 45.8150, lng: 15.9819 },
@@ -60,9 +60,7 @@ const CITIES = [
   { lat: 44.4322, lng: 26.1052 },
   { lat: 42.6977, lng: 23.3219 },
   { lat: 37.9838, lng: 23.7275 },
-  { lat: 41.0153, lng: 28.9795 },
   { lat: -1.2921, lng: 36.8219 },
-  { lat: -1.2864, lng: 36.8172 },
   { lat: -26.2041, lng: 28.0473 },
   { lat: -33.9249, lng: 18.4241 },
   { lat: 4.7106, lng: -74.0721 },
@@ -76,7 +74,6 @@ const CITIES = [
   { lat: 47.6062, lng: -122.3321 },
   { lat: 29.7604, lng: -95.3698 },
   { lat: 42.3601, lng: -71.0589 },
-  { lat: 47.6062, lng: -122.3321 },
   { lat: 36.1627, lng: -86.7816 },
   { lat: 33.4484, lng: -112.0740 },
   { lat: 39.7392, lng: -104.9903 },
@@ -89,27 +86,18 @@ const CITIES = [
   { lat: 38.6270, lng: -90.1994 },
   { lat: 35.1495, lng: -90.0490 },
   { lat: 27.9506, lng: -82.4572 },
-  { lat: 36.1627, lng: -86.7816 },
   { lat: 39.9526, lng: -75.1652 },
   { lat: 40.4406, lng: -79.9959 },
   { lat: 41.8240, lng: -87.7509 },
   { lat: 38.2975, lng: -85.9098 },
-  { lat: 36.1974, lng: -86.7917 },
   { lat: 34.8697, lng: -111.6978 },
   { lat: 35.5951, lng: -105.9378 },
   { lat: 39.1031, lng: -84.5120 },
   { lat: 37.2089, lng: -89.6167 },
   { lat: 36.7378, lng: -119.7871 },
-  { lat: 34.0530, lng: -118.2437 },
-  { lat: 32.7157, lng: -117.1611 },
-  { lat: 35.0844, lng: -106.6504 },
-  { lat: 33.4484, lng: -112.0740 },
-  { lat: 39.7392, lng: -104.9903 },
   { lat: 47.6588, lng: -122.3122 },
   { lat: 45.5152, lng: -122.6784 },
   { lat: 44.0521, lng: -123.0868 },
-  { lat: 41.8781, lng: -87.6298 },
-  { lat: 38.6270, lng: -90.1994 },
   { lat: 39.0997, lng: -94.5786 },
   { lat: 32.7767, lng: -96.7970 },
   { lat: 29.4241, lng: -98.4936 },
@@ -127,14 +115,10 @@ const CITIES = [
   { lat: 38.8339, lng: -104.8214 },
   { lat: 40.7608, lng: -111.8910 },
   { lat: 41.5904, lng: -93.6202 },
-  { lat: 41.8781, lng: -87.6298 },
-  { lat: 42.3314, lng: -83.0458 },
   { lat: 43.0389, lng: -87.9065 },
   { lat: 43.6150, lng: -79.3733 },
-  { lat: 43.6532, lng: -79.3832 },
   { lat: 45.4215, lng: -75.6972 },
   { lat: 46.8139, lng: -71.2080 },
-  { lat: 47.6062, lng: -122.3321 },
   { lat: 48.4284, lng: -104.6153 },
   { lat: 49.2827, lng: -123.1207 },
   { lat: 50.4501, lng: -104.6179 },
@@ -155,13 +139,11 @@ const CITIES = [
   { lat: 53.2308, lng: -0.5331 },
   { lat: 53.4808, lng: -2.2426 },
   { lat: 53.7266, lng: -1.4175 },
-  { lat: 54.9783, lng: -1.6174 },
   { lat: 55.3800, lng: -3.1424 },
   { lat: 55.9533, lng: -3.1883 },
   { lat: 56.8609, lng: -4.2500 },
   { lat: 57.4778, lng: -4.2247 },
   { lat: 58.6212, lng: -3.6346 },
-  { lat: 59.1533, lng: -2.0932 },
   { lat: 59.4924, lng: -1.7658 },
   { lat: 60.0864, lng: -1.4734 },
   { lat: 60.8398, lng: -1.1069 },
@@ -175,27 +157,12 @@ const CITIES = [
   { lat: 63.5327, lng: -19.5116 },
   { lat: 64.1466, lng: -21.9426 },
   { lat: 65.0064, lng: -18.6333 },
-  { lat: 68.3500, lng: -13.5988 },
   { lat: 64.9167, lng: -23.5119 },
   { lat: 63.3781, lng: -18.8774 },
   { lat: 64.2549, lng: -21.8580 },
   { lat: 64.9812, lng: -17.8808 },
   { lat: 65.6851, lng: -18.0777 },
-  { lat: 66.0188, lng: -17.7938 },
-  { lat: 68.3500, lng: -13.5988 },
-  { lat: 64.9631, lng: -19.0208 },
-  { lat: 66.5193, lng: -18.6333 },
-  { lat: 68.3415, lng: -13.6588 },
-  { lat: 63.5327, lng: -19.5116 },
-  { lat: 64.1466, lng: -21.9426 },
-  { lat: 65.0064, lng: -18.6333 },
-  { lat: 68.3500, lng: -13.5988 },
-  { lat: 64.9167, lng: -23.5119 },
-  { lat: 63.3781, lng: -18.8774 },
-  { lat: 64.2549, lng: -21.8580 },
-  { lat: 64.9812, lng: -17.8808 },
-  { lat: 65.6851, lng: -18.0777 },
-  { lat: 66.0188, lng: -17.7938 },
+  { lat: 66.0188, lng: -17.7938 }
 ];
 
 function randomCoords() {
@@ -210,6 +177,86 @@ function randomCoords() {
 
 app.get('/api/config', (req, res) => {
   res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
+});
+
+app.post('/api/admin/create', async (req, res) => {
+  try {
+    const { username } = req.body;
+    if (!username) return res.status(400).json({ error: 'username required' });
+    const user = await db.createUser(username, 'admin');
+    res.json({ id: user.id, username, role: 'admin' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/session', async (req, res) => {
+  try {
+    const { username } = req.body;
+    const admin = await db.getUserByUsername(username);
+    if (!admin || admin.role !== 'admin') {
+      return res.status(403).json({ error: 'Not an admin' });
+    }
+    const session = await db.createSession(admin.id);
+    res.json({ code: session.code, status: 'lobby' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/join', async (req, res) => {
+  try {
+    const { code, username } = req.body;
+    if (!code || !username) return res.status(400).json({ error: 'code and username required' });
+    const session = await db.getSessionByCode(code);
+    if (!session) return res.status(404).json({ error: 'Session not found' });
+    if (session.status !== 'lobby') return res.status(400).json({ error: 'Session already started' });
+    const user = await db.createUser(username, 'player');
+    const userId = typeof user === 'object' ? user.id : user;
+    await db.joinSession(session.id, userId);
+    const players = await db.getSessionPlayers(session.id);
+    res.json({ joined: true, players: players.map(p => p.username) });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/session/:code/start', async (req, res) => {
+  try {
+    const { username } = req.body;
+    const session = await db.getSessionByCode(req.params.code);
+    if (!session) return res.status(404).json({ error: 'Session not found' });
+    const admin = await db.getUserByUsername(username);
+    if (!admin || admin.id !== session.admin_id) {
+      return res.status(403).json({ error: 'Not the session admin' });
+    }
+    if (session.status !== 'lobby') return res.status(400).json({ error: 'Session not in lobby' });
+    const { lat, lng } = randomCoords();
+    const locationId = await db.insertLocation(lat, lng);
+    await db.setSessionLocation(session.id, locationId);
+    await db.startSession(session.id);
+    res.json({ started: true, lat, lng });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/session/:code', async (req, res) => {
+  try {
+    const session = await db.getSessionByCode(req.params.code);
+    if (!session) return res.status(404).json({ error: 'Session not found' });
+    const players = await db.getSessionPlayers(session.id);
+    const loc = session.location_id ? await db.getSessionLocation(session.id) : null;
+    res.json({
+      code: session.code,
+      status: session.status,
+      admin: session.admin_name,
+      players: players.map(p => p.username),
+      location: loc ? { lat: loc.latitude, lng: loc.longitude } : null
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.get('/api/coords', async (req, res) => {
@@ -228,32 +275,12 @@ app.get('/api/coords', async (req, res) => {
   }
 });
 
-app.get('/api/new-game', async (req, res) => {
-  try {
-    const { lat, lng } = randomCoords();
-    await db.insertLocation(lat, lng);
-    res.json({ lat, lng });
-  } catch (err) {
-    console.error('Failed to create new game:', err.message);
-    const { lat, lng } = randomCoords();
-    res.json({ lat, lng });
-  }
-});
-
 async function start() {
   try {
     await db.initSchema();
     console.log('Database schema initialized');
   } catch (err) {
-    console.warn('DB init failed (will retry on request):', err.message);
-  }
-
-  const { lat, lng } = randomCoords();
-  try {
-    await db.insertLocation(lat, lng);
-    console.log(`Generated random coordinates: ${lat}, ${lng}`);
-  } catch (err) {
-    console.warn(`DB insert failed, coords in memory only: ${lat}, ${lng}`);
+    console.warn('DB init failed:', err.message);
   }
 
   app.listen(PORT, () => {
