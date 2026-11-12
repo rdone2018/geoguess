@@ -364,6 +364,7 @@
       }).addTo(map);
 
       map.on('click', function(e) {
+        if (guessSubmitted || roundEnded) return;
         clearMarkers();
         if (svMarker) { map.removeLayer(svMarker); svMarker = null; }
         const clicked = { lat: e.latlng.lat, lng: e.latlng.lng };
