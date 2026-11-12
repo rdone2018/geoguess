@@ -218,11 +218,22 @@
     let currentRound = 1;
     let remainingTime = 0;
     let guessSubmitted = false;
+    let roundEnded = false;
+    let clickTimer = null;
 
-    function startCountdown(timerSecs, onExpire) {
+    function endRound() {
+      if (roundEnded) return;
+      roundEnded = true;
+      if (countdownInterval) clearInterval(countdownInterval);
+      if (clickTimer) clearTimeout(clickTimer);
+      nextRound();
+    }
+
+    function startCountdown(timerSecs) {
       if (countdownInterval) clearInterval(countdownInterval);
       remainingTime = timerSecs;
       guessSubmitted = false;
+      roundEnded = false;
       const timerEl = document.getElementById('timer-display');
       const bar = document.getElementById('countdown-bar');
       function update() {
@@ -231,14 +242,19 @@
         timerEl.textContent = m + ':' + String(s).padStart(2, '0');
         bar.style.color = remainingTime <= 10 ? '#ff5252' : '#ffab40';
         if (remainingTime <= 0) {
-          clearInterval(countdownInterval);
-          if (onExpire) onExpire();
+          endRound();
           return;
         }
         remainingTime--;
       }
       update();
       countdownInterval = setInterval(update, 1000);
+    }
+
+    function onGuessClick() {
+      if (guessSubmitted || roundEnded) return;
+      guessSubmitted = true;
+      clickTimer = setTimeout(endRound, 5000);
     }
 
     function updateRoundInfo() {
@@ -268,7 +284,7 @@
         if (polyline) { map.removeLayer(polyline); polyline = null; }
         if (distanceLabel) { map.removeLayer(distanceLabel); distanceLabel = null; }
         document.getElementById('distance').textContent = '';
-        startCountdown(data.timer, nextRound);
+        startCountdown(data.timer);
       } catch (e) {
         document.getElementById('timer-display').textContent = 'Error';
       }
@@ -294,7 +310,7 @@
       updateRoundInfo();
       currentPos = { lat: loc.lat, lng: loc.lng };
       initMaps(loc);
-      startCountdown(timer || 60, nextRound);
+      startCountdown(timer || 60);
     }
 
     function initMaps(loc) {
@@ -324,7 +340,7 @@
           }).addTo(map);
         }
         if (!guessSubmitted && myName) {
-          guessSubmitted = true;
+          onGuessClick();
           fetch(`/api/session/${sessionCode}/guess`, {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
