@@ -392,24 +392,42 @@
         }
       });
 
+      initStreetView(loc);
+    }
+
+    let svScriptLoaded = false;
+    function initStreetView(loc) {
+      function createPanorama() {
+        if (sv) {
+          sv.setPosition({ lat: loc.lat, lng: loc.lng });
+          sv.setPov({ heading: 0, pitch: 0 });
+          return;
+        }
+        sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
+          position: { lat: loc.lat, lng: loc.lng },
+          pov: { heading: 0, pitch: 0 },
+          zoom: 1,
+          addressControl: false,
+          zoomControl: false,
+          fullscreenControl: false,
+          streetSideControls: false,
+          showRoadLabels: false,
+          showBuildingLabels: false,
+          enableCloseButton: false
+        });
+      }
+      if (svScriptLoaded) {
+        createPanorama();
+        return;
+      }
       fetch('/api/config')
         .then(r => r.json())
         .then(({ apiKey }) => {
           const s = document.createElement('script');
           s.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&v=weekly';
-          s.onload = () => {
-            sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
-              position: { lat: loc.lat, lng: loc.lng },
-              pov: { heading: 0, pitch: 0 },
-              zoom: 1,
-              addressControl: false,
-              zoomControl: false,
-              fullscreenControl: false,
-              streetSideControls: false,
-              showRoadLabels: false,
-              showBuildingLabels: false,
-              enableCloseButton: false
-            });
+          s.onload = () => { svScriptLoaded = true; createPanorama(); };
+          s.onerror = () => {
+            document.getElementById('sv-container').innerHTML = '<p style="color:#ff5252;padding:20px;">Failed to load Street View</p>';
           };
           document.head.appendChild(s);
         });
