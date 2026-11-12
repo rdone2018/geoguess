@@ -293,6 +293,47 @@ app.get('/api/session/:code', async (req, res) => {
   }
 });
 
+app.post('/api/session/:code/guess', async (req, res) => {
+  try {
+    const { username, lat, lng, remaining_time } = req.body;
+    const session = await db.getSessionByCode(req.params.code);
+    if (!session) return res.status(404).json({ error: 'Session not found' });
+    if (session.status !== 'active') return res.status(400).json({ error: 'Session not active' });
+    const user = await db.getUserByUsername(username);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    const loc = await db.getSessionLocation(session.id);
+    if (!loc) return res.status(400).json({ error: 'No location set' });
+
+    const R = 6371;
+    const dLat = (loc.latitude - lat) * Math.PI / 180;
+    const dLng = (loc.longitude - lng) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(lat * Math.PI / 180) * Math.cos(loc.latitude * Math.PI / 180) *
+      Math.sin(dLng/2) * Math.sin(dLng/2);
+    const distanceKm = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const basePoints = Math.max(0, Math.round(5000 - distanceKm));
+    const timeBonus = (session.timer - (remaining_time || 0)) * 10;
+    const points = basePoints + Math.max(0, timeBonus);
+
+    await db.insertScore(session.id, user.id, session.current_round, distanceKm, Math.max(0, timeBonus), points);
+    res.json({ points, distance_km: Math.round(distanceKm * 100) / 100, time_bonus: Math.max(0, timeBonus) });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/session/:code/scores', async (req, res) => {
+  try {
+    const session = await db.getSessionByCode(req.params.code);
+    if (!session) return res.status(404).json({ error: 'Session not found' });
+    const scores = await db.getSessionScores(session.id);
+    res.json({ scores });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get('/api/coords', async (req, res) => {
   try {
     const loc = await db.getLatestLocation();

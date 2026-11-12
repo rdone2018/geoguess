@@ -97,6 +97,20 @@ async function initSchema() {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
+  await conn.execute(`
+    CREATE TABLE IF NOT EXISTS scores (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      session_id INT NOT NULL,
+      user_id INT NOT NULL,
+      round INT NOT NULL,
+      distance_km DOUBLE NOT NULL,
+      time_bonus INT NOT NULL DEFAULT 0,
+      points INT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (session_id) REFERENCES sessions(id),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    )
+  `);
   conn.release();
 }
 
@@ -237,10 +251,34 @@ async function getSessionLocation(sessionId) {
   return rows[0] || null;
 }
 
+async function insertScore(sessionId, userId, round, distanceKm, timeBonus, points) {
+  const conn = await getPool().getConnection();
+  await conn.execute(
+    'INSERT INTO scores (session_id, user_id, round, distance_km, time_bonus, points) VALUES (?, ?, ?, ?, ?, ?)',
+    [sessionId, userId, round, distanceKm, timeBonus, points]
+  );
+  conn.release();
+}
+
+async function getSessionScores(sessionId) {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute(
+    `SELECT u.username, SUM(s.points) AS total, MAX(s.round) AS last_round
+     FROM scores s JOIN users u ON s.user_id = u.id
+     WHERE s.session_id = ?
+     GROUP BY s.user_id, u.username
+     ORDER BY total DESC`,
+    [sessionId]
+  );
+  conn.release();
+  return rows;
+}
+
 module.exports = {
   getPool, initSchema,
   createUser, getUserByUsername,
   createSession, getSessionByCode, joinSession, getSessionPlayers, startSession,
   updateSessionSettings, nextRound,
-  insertLocation, getLatestLocation, setSessionLocation, getSessionLocation
+  insertLocation, getLatestLocation, setSessionLocation, getSessionLocation,
+  insertScore, getSessionScores
 };
