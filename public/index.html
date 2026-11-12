@@ -238,13 +238,29 @@
         timerEl.textContent = m + ':' + String(s).padStart(2, '0');
         bar.style.color = remainingTime <= 10 ? '#ff5252' : '#ffab40';
         if (remainingTime <= 0) {
-          endRound();
+          onTimeout();
           return;
         }
         remainingTime--;
       }
       update();
       countdownInterval = setInterval(update, 1000);
+    }
+
+    function onTimeout() {
+      if (guessSubmitted || roundEnded) return;
+      guessSubmitted = true;
+      document.getElementById('distance').textContent = 'Time up! | Points: 0 | Waiting for others...';
+      if (myName) {
+        fetch(`/api/session/${sessionCode}/guess`, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ username: myName, lat: 0, lng: 0, remaining_time: 0 })
+        }).then(r => r.json()).then(data => {
+          if (data.all_done) endRound();
+        }).catch(() => {});
+      }
+      pollRoundStatus();
     }
 
     function onGuessClick() {
