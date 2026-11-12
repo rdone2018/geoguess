@@ -145,7 +145,14 @@
             sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
               position: { lat: 51.5074, lng: -0.1278 },
               pov: { heading: 0, pitch: 0 },
-              zoom: 1
+              zoom: 1,
+              addressControl: false,
+              zoomControl: false,
+              fullscreenControl: false,
+              streetSideControls: false,
+              showRoadLabels: false,
+              showBuildingLabels: false,
+              enableCloseButton: false
             });
             debugEl.textContent = 'OK - Street View ready';
             debugEl.className = 'ok';
