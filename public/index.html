@@ -263,17 +263,15 @@
 
     async function nextRound() {
       try {
-        await showScores();
-      } catch (e) {}
-      try {
         const res = await fetch(`/api/session/${sessionCode}/next-round`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{}' });
         const data = await res.json();
-        document.getElementById('score-overlay').classList.add('hidden');
-        document.getElementById('score-overlay').style.display = 'none';
         if (data.done) {
-          document.getElementById('timer-display').textContent = "Game Over!";
+          await showFinalScores();
           return;
         }
+        await showScores();
+        document.getElementById('score-overlay').classList.add('hidden');
+        document.getElementById('score-overlay').style.display = 'none';
         currentRound = data.round;
         updateRoundInfo();
         currentPos = { lat: data.lat, lng: data.lng };
@@ -289,6 +287,22 @@
       } catch (e) {
         document.getElementById('timer-display').textContent = 'Error';
       }
+    }
+
+    async function showFinalScores() {
+      const res = await fetch(`/api/session/${sessionCode}/scores`);
+      const data = await res.json();
+      const tbody = document.querySelector('#score-table tbody');
+      tbody.innerHTML = data.scores.map((s, i) => {
+        const highlight = i < 3 ? 'background:rgba(255,171,64,0.2);font-weight:bold;' : '';
+        const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '';
+        return `<tr style="${highlight}"><td style="padding:4px;">${medal || i + 1}</td><td style="padding:4px;">${s.username}</td><td style="padding:4px;text-align:right;">${s.total}</td></tr>`;
+      }).join('');
+      document.getElementById('score-next-round').textContent = 'Game Over!';
+      document.getElementById('round-info').textContent = 'Final Results';
+      const overlay = document.getElementById('score-overlay');
+      overlay.classList.remove('hidden');
+      overlay.style.display = 'flex';
     }
 
     async function showScores() {
