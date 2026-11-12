@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GeoGuess</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: sans-serif; background: #1a1a2e; color: #fff; height: 100vh; display: flex; flex-direction: column; }
@@ -11,8 +13,11 @@
     header h1 { font-size: 1.3rem; }
     header button { background: #0f3460; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
     header button:hover { background: #1a5085; }
-    #sv-container { flex: 1; }
-    #coords { padding: 8px 20px; background: #16213e; font-size: 0.85rem; color: #aaa; }
+    #main { flex: 1; display: flex; }
+    #sv-container { width: 50%; height: 100%; }
+    #osm-container { width: 50%; height: 100%; }
+    #coords { padding: 8px 20px; background: #16213e; font-size: 0.85rem; color: #aaa; display: flex; justify-content: space-between; }
+    #distance { color: #4fc3f7; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -20,12 +25,51 @@
     <h1>GeoGuess</h1>
     <button id="new-game">New Game</button>
   </header>
-  <div id="sv-container"></div>
-  <div id="coords">Loading...</div>
+  <div id="main">
+    <div id="sv-container"></div>
+    <div id="osm-container"></div>
+  </div>
+  <div id="coords">
+    <span id="coords-text">Loading...</span>
+    <span id="distance"></span>
+  </div>
 
   <script>
-    const coordsEl = document.getElementById('coords');
+    const coordsText = document.getElementById('coords-text');
+    const distanceEl = document.getElementById('distance');
     let sv;
+    let currentPos = null;
+
+    const map = L.map('osm-container').setView([20, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    map.on('click', function(e) {
+      const clicked = { lat: e.latlng.lat, lng: e.latlng.lng };
+      L.marker(e.latlng).addTo(map);
+      if (currentPos) {
+        const d = haversine(currentPos.lat, currentPos.lng, clicked.lat, clicked.lng);
+        distanceEl.textContent = `Distance: ${formatDistance(d)}`;
+      }
+    });
+
+    function haversine(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function formatDistance(km) {
+      if (km < 1) return Math.round(km * 1000) + ' m';
+      if (km < 100) return km.toFixed(1) + ' km';
+      return Math.round(km) + ' km';
+    }
 
     async function init() {
       const res = await fetch('/api/config');
@@ -38,21 +82,18 @@
     }
 
     function initStreetView() {
-      const map = new google.maps.Map(document.getElementById('sv-container'), {
-        visible: false
-      });
-      sv = new google.maps.StreetViewPanorama(
-        document.getElementById('sv-container'),
-        { visible: false }
-      );
+      const map = new google.maps.Map(document.getElementById('sv-container'), { visible: false });
+      sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), { visible: false });
       map.setStreetView(sv);
       loadCoords();
     }
 
     function showCoords(lat, lng) {
+      currentPos = { lat, lng };
       sv.setPosition({ lat, lng });
       sv.setVisible(true);
-      coordsEl.textContent = `Coordinates: ${lat}, ${lng}`;
+      coordsText.textContent = `Street View: ${lat}, ${lng}`;
+      distanceEl.textContent = '';
     }
 
     async function loadCoords() {
@@ -61,7 +102,7 @@
         const data = await res.json();
         showCoords(data.lat, data.lng);
       } catch (e) {
-        coordsEl.textContent = 'Error loading coordinates';
+        coordsText.textContent = 'Error loading coordinates';
       }
     }
 
@@ -71,7 +112,7 @@
         const data = await res.json();
         showCoords(data.lat, data.lng);
       } catch (e) {
-        coordsEl.textContent = 'Error creating new game';
+        coordsText.textContent = 'Error creating new game';
       }
     });
 
