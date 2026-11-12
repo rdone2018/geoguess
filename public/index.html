@@ -297,9 +297,9 @@
       tbody.innerHTML = data.scores.map((s, i) =>
         `<tr><td style="padding:4px;">${i + 1}</td><td style="padding:4px;">${s.username}</td><td style="padding:4px;text-align:right;">${s.total}</td></tr>`
       ).join('');
-      document.getElementById('score-next-round').textContent = 'Next round in 15s...';
+      document.getElementById('score-next-round').textContent = 'Next round in 5s...';
       document.getElementById('score-overlay').classList.remove('hidden');
-      await new Promise(r => setTimeout(r, 15000));
+      await new Promise(r => setTimeout(r, 5000));
     }
 
     function startGameView(loc, rounds, timer, round) {
