@@ -71,21 +71,32 @@
       return Math.round(km) + ' km';
     }
 
-    async function init() {
-      const res = await fetch('/api/config');
-      const { apiKey } = await res.json();
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initStreetView`;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
+    function init() {
+      fetch('/api/config')
+        .then(r => r.json())
+        .then(({ apiKey }) => {
+          const script = document.createElement('script');
+          script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+          script.onload = initStreetView;
+          script.onerror = () => {
+            coordsText.textContent = 'Failed to load Google Maps API';
+          };
+          document.head.appendChild(script);
+        })
+        .catch(e => {
+          coordsText.textContent = 'Error: ' + e.message;
+        });
     }
 
     function initStreetView() {
-      sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
+      const container = document.getElementById('sv-container');
+      sv = new google.maps.StreetViewPanorama(container, {
         position: { lat: 51.5074, lng: -0.1278 },
         pov: { heading: 0, pitch: 0 },
-        zoom: 1
+        zoom: 1,
+        addressControl: false,
+        fullscreenControl: true,
+        streetSideControls: true
       });
       loadCoords();
     }
