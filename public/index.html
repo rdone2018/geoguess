@@ -31,7 +31,7 @@
     const coordsEl = document.getElementById('coords');
 
     function streetViewUrl(lat, lng) {
-      return `https://www.google.com/maps/embed?pb=!1m14!1m12!1m1!1d0.00022974!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1600000000000!6m8!1m7!1s!2m2!1d${lat}!2d${lng}!3f2!4f13.1!5e1`;
+      return `https://maps.google.com/maps?q=${lat},${lng}&z=18&output=embed`;
     }
 
     function showCoords(lat, lng) {
