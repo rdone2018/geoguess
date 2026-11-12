@@ -347,6 +347,7 @@
     }
 
     function startGameView(loc, rounds, timer, round) {
+      document.getElementById('login-screen').classList.add('hidden');
       document.getElementById('lobby-screen').classList.add('hidden');
       document.getElementById('game-screen').classList.remove('hidden');
       totalRounds = rounds || 5;
