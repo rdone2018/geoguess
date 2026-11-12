@@ -66,13 +66,15 @@
 
     map.on('click', function(e) {
       clearMarkers();
+      if (svMarker) { map.removeLayer(svMarker); svMarker = null; }
       const clicked = { lat: e.latlng.lat, lng: e.latlng.lng };
       clickMarker = L.marker(e.latlng, { title: 'Your guess' }).addTo(map);
-      if (currentPos && svMarker) {
+      if (currentPos) {
+        svMarker = L.marker([currentPos.lat, currentPos.lng], { title: 'Street View' }).addTo(map);
+        svMarker.bindTooltip('Street View', { permanent: true, direction: 'top', offset: [0, -10] });
         const d = haversine(currentPos.lat, currentPos.lng, clicked.lat, clicked.lng);
         distanceEl.textContent = `Distance: ${formatDistance(d)}`;
-        polyline = L.polyline([svMarker.getLatLng(), e.latlng], { color: '#ff5252', weight: 3, dashArray: '8 8' }).addTo(map);
-        const mid = map.latLngToContainerPoint(e.latlng);
+        polyline = L.polyline([[currentPos.lat, currentPos.lng], [clicked.lat, clicked.lng]], { color: '#ff5252', weight: 3, dashArray: '8 8' }).addTo(map);
         distanceLabel = L.marker(e.latlng, {
           icon: L.divIcon({
             className: '',
@@ -105,9 +107,7 @@
       coordsText.textContent = `Street View: ${lat}, ${lng}`;
       distanceEl.textContent = '';
       clearMarkers();
-      if (svMarker) map.removeLayer(svMarker);
-      svMarker = L.marker([lat, lng], { title: 'Street View location' }).addTo(map);
-      svMarker.bindTooltip('Street View', { permanent: true, direction: 'top', offset: [0, -10] });
+      if (svMarker) { map.removeLayer(svMarker); svMarker = null; }
     }
 
     async function loadCoords() {
