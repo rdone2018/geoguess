@@ -82,16 +82,17 @@
     }
 
     function initStreetView() {
-      const map = new google.maps.Map(document.getElementById('sv-container'), { visible: false });
-      sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), { visible: false });
-      map.setStreetView(sv);
+      sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
+        position: { lat: 51.5074, lng: -0.1278 },
+        pov: { heading: 0, pitch: 0 },
+        zoom: 1
+      });
       loadCoords();
     }
 
     function showCoords(lat, lng) {
       currentPos = { lat, lng };
       sv.setPosition({ lat, lng });
-      sv.setVisible(true);
       coordsText.textContent = `Street View: ${lat}, ${lng}`;
       distanceEl.textContent = '';
     }
