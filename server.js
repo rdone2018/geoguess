@@ -8,15 +8,16 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-async function randomCoords() {
-  const street = await db.getRandomStreet();
+async function randomCoords(sessionId) {
+  const street = await db.getRandomStreet(sessionId);
   if (!street) {
-    return { lat: 0, lng: 0, label: '' };
+    return { lat: 0, lng: 0, label: '', streetId: null };
   }
   return {
     lat: street.lat,
     lng: street.lon,
-    label: street.city
+    label: street.city,
+    streetId: street.id
   };
 }
 
@@ -101,8 +102,8 @@ app.post('/api/session/:code/start', async (req, res) => {
     const r = Math.min(Math.max(parseInt(rounds) || 5, 1), 10);
     const t = Math.min(Math.max(parseInt(timer) || 60, 10), 120);
     await db.updateSessionSettings(session.id, r, t);
-    const { lat, lng, label } = await randomCoords();
-    const locationId = await db.insertLocation(lat, lng, label);
+    const { lat, lng, label, streetId } = await randomCoords(session.id);
+    const locationId = await db.insertLocation(lat, lng, label, streetId);
     await db.setSessionLocation(session.id, locationId);
     await db.startSession(session.id);
     res.json({ started: true, lat, lng, label, rounds: r, timer: t, round: 1 });
@@ -126,8 +127,8 @@ app.post('/api/session/:code/next-round', async (req, res) => {
       return;
     }
     if (result.done) return res.json({ done: true });
-    const { lat, lng, label } = await randomCoords();
-    const locationId = await db.insertLocation(lat, lng, label);
+    const { lat, lng, label, streetId } = await randomCoords(session.id);
+    const locationId = await db.insertLocation(lat, lng, label, streetId);
     await db.setSessionLocation(session.id, locationId);
     res.json({ done: false, round: result.round, lat, lng, label, timer: session.timer });
   } catch (err) {

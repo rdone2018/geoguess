@@ -95,6 +95,7 @@ async function initSchema() {
       latitude DOUBLE NOT NULL,
       longitude DOUBLE NOT NULL,
       label VARCHAR(200) DEFAULT NULL,
+      street_id INT DEFAULT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
@@ -200,9 +201,28 @@ async function importRandomStreets() {
   conn.release();
 }
 
-async function getRandomStreet() {
+async function getRandomStreet(sessionId) {
   const conn = await getPool().getConnection();
-  const [rows] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
+  let rows;
+  if (sessionId) {
+    const [r] = await conn.execute(
+      `SELECT ws.* FROM world_random_streets ws
+       WHERE ws.id NOT IN (
+         SELECT l.street_id FROM location l
+         JOIN sessions s ON l.id = s.location_id
+         WHERE s.id = ? AND l.street_id IS NOT NULL
+       ) ORDER BY RAND() LIMIT 1`,
+      [sessionId]
+    );
+    rows = r[0];
+    if (rows.length === 0) {
+      const [fallback] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
+      rows = fallback[0];
+    }
+  } else {
+    const [r] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
+    rows = r[0];
+  }
   conn.release();
   return rows[0] || null;
 }
@@ -316,11 +336,11 @@ async function nextRound(sessionId, expectedRound) {
   return { done: false, round: session.current_round + 1 };
 }
 
-async function insertLocation(lat, lng, label) {
+async function insertLocation(lat, lng, label, streetId) {
   const conn = await getPool().getConnection();
   const [result] = await conn.execute(
-    'INSERT INTO location (latitude, longitude, label) VALUES (?, ?, ?)',
-    [lat, lng, label || null]
+    'INSERT INTO location (latitude, longitude, label, street_id) VALUES (?, ?, ?, ?)',
+    [lat, lng, label || null, streetId || null]
   );
   conn.release();
   return result.insertId;
