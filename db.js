@@ -115,21 +115,6 @@ async function initSchema() {
     )
   `);
   await conn.execute(`
-    CREATE TABLE IF NOT EXISTS city_bounds (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      city VARCHAR(100) NOT NULL,
-      country VARCHAR(100) NOT NULL,
-      population INT NOT NULL,
-      center_lat DOUBLE NOT NULL,
-      center_lon DOUBLE NOT NULL,
-      approx_radius_km DOUBLE NOT NULL,
-      min_lat DOUBLE NOT NULL,
-      max_lat DOUBLE NOT NULL,
-      min_lon DOUBLE NOT NULL,
-      max_lon DOUBLE NOT NULL
-    )
-  `);
-  await conn.execute(`
     CREATE TABLE IF NOT EXISTS world_random_streets (
       id INT AUTO_INCREMENT PRIMARY KEY,
       city VARCHAR(100) NOT NULL,
@@ -143,41 +128,6 @@ async function initSchema() {
   await conn.execute('ALTER TABLE location ADD COLUMN IF NOT EXISTS street_id INT DEFAULT NULL');
   await conn.execute('ALTER TABLE location ADD COLUMN IF NOT EXISTS session_id INT DEFAULT NULL');
   conn.release();
-}
-
-async function importCityBounds() {
-  const conn = await getPool().getConnection();
-  const [count] = await conn.execute('SELECT COUNT(*) AS c FROM city_bounds');
-  if (count[0].c > 0) { conn.release(); return; }
-  const csvPath = path.join(__dirname, 'world_city_bounds.csv');
-  const content = fs.readFileSync(csvPath, 'utf-8');
-  const lines = content.trim().split('\n').slice(1);
-  for (const line of lines) {
-    const parts = line.split(',');
-    if (parts.length < 11) continue;
-    const city = parts[1].trim();
-    const country = parts[2].trim();
-    const population = parseInt(parts[3]);
-    const centerLat = parseFloat(parts[4]);
-    const centerLon = parseFloat(parts[5]);
-    const radiusKm = parseFloat(parts[6]);
-    const minLat = parseFloat(parts[7]);
-    const maxLat = parseFloat(parts[8]);
-    const minLon = parseFloat(parts[9]);
-    const maxLon = parseFloat(parts[10]);
-    await conn.execute(
-      'INSERT INTO city_bounds (city, country, population, center_lat, center_lon, approx_radius_km, min_lat, max_lat, min_lon, max_lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [city, country, population, centerLat, centerLon, radiusKm, minLat, maxLat, minLon, maxLon]
-    );
-  }
-  conn.release();
-}
-
-async function getRandomCityBound() {
-  const conn = await getPool().getConnection();
-  const [rows] = await conn.execute('SELECT * FROM city_bounds ORDER BY RAND() LIMIT 1');
-  conn.release();
-  return rows[0] || null;
 }
 
 async function importRandomStreets() {
@@ -414,7 +364,7 @@ async function getPendingPlayers(sessionId, round) {
 }
 
 module.exports = {
-  getPool, initSchema, importCityBounds, getRandomCityBound, importRandomStreets, getRandomStreet,
+  getPool, initSchema, importRandomStreets, getRandomStreet,
   createUser, getUserByUsername,
   createSession, getSessionByCode, joinSession, getSessionPlayers, startSession, finishAllSessions,
   updateSessionSettings, nextRound,

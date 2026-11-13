@@ -235,11 +235,6 @@ async function start() {
     console.warn('DB schema init failed:', err.message);
   }
   try {
-    await db.importCityBounds();
-  } catch (err) {
-    console.warn('City bounds import failed:', err.message);
-  }
-  try {
     await db.importRandomStreets();
   } catch (err) {
     console.warn('Random streets import failed:', err.message);
