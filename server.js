@@ -231,11 +231,18 @@ app.get('/api/coords', async (req, res) => {
 async function start() {
   try {
     await db.initSchema();
-    await db.importCityBounds();
-    await db.importRandomStreets();
-    console.log('Database schema initialized, data imported');
   } catch (err) {
-    console.warn('DB init failed:', err.message);
+    console.warn('DB schema init failed:', err.message);
+  }
+  try {
+    await db.importCityBounds();
+  } catch (err) {
+    console.warn('City bounds import failed:', err.message);
+  }
+  try {
+    await db.importRandomStreets();
+  } catch (err) {
+    console.warn('Random streets import failed:', err.message);
   }
 
   app.listen(PORT, () => {
