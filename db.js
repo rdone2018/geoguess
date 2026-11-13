@@ -92,6 +92,7 @@ async function initSchema() {
   await conn.execute(`
     CREATE TABLE IF NOT EXISTS location (
       id INT AUTO_INCREMENT PRIMARY KEY,
+      session_id INT DEFAULT NULL,
       latitude DOUBLE NOT NULL,
       longitude DOUBLE NOT NULL,
       label VARCHAR(200) DEFAULT NULL,
@@ -140,6 +141,7 @@ async function initSchema() {
     )
   `);
   await conn.execute('ALTER TABLE location ADD COLUMN IF NOT EXISTS street_id INT DEFAULT NULL');
+  await conn.execute('ALTER TABLE location ADD COLUMN IF NOT EXISTS session_id INT DEFAULT NULL');
   conn.release();
 }
 
@@ -209,9 +211,8 @@ async function getRandomStreet(sessionId) {
     const [r] = await conn.execute(
       `SELECT ws.* FROM world_random_streets ws
        WHERE ws.id NOT IN (
-         SELECT l.street_id FROM location l
-         JOIN sessions s ON l.id = s.location_id
-         WHERE s.id = ? AND l.street_id IS NOT NULL
+         SELECT street_id FROM location
+         WHERE session_id = ? AND street_id IS NOT NULL
        ) ORDER BY RAND() LIMIT 1`,
       [sessionId]
     );
@@ -337,11 +338,11 @@ async function nextRound(sessionId, expectedRound) {
   return { done: false, round: session.current_round + 1 };
 }
 
-async function insertLocation(lat, lng, label, streetId) {
+async function insertLocation(lat, lng, label, streetId, sessionId) {
   const conn = await getPool().getConnection();
   const [result] = await conn.execute(
-    'INSERT INTO location (latitude, longitude, label, street_id) VALUES (?, ?, ?, ?)',
-    [lat, lng, label || null, streetId || null]
+    'INSERT INTO location (latitude, longitude, label, street_id, session_id) VALUES (?, ?, ?, ?, ?)',
+    [lat, lng, label || null, streetId || null, sessionId || null]
   );
   conn.release();
   return result.insertId;

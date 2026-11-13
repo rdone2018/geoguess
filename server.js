@@ -103,7 +103,7 @@ app.post('/api/session/:code/start', async (req, res) => {
     const t = Math.min(Math.max(parseInt(timer) || 60, 10), 120);
     await db.updateSessionSettings(session.id, r, t);
     const { lat, lng, label, streetId } = await randomCoords(session.id);
-    const locationId = await db.insertLocation(lat, lng, label, streetId);
+    const locationId = await db.insertLocation(lat, lng, label, streetId, session.id);
     await db.setSessionLocation(session.id, locationId);
     await db.startSession(session.id);
     res.json({ started: true, lat, lng, label, rounds: r, timer: t, round: 1 });
@@ -128,7 +128,7 @@ app.post('/api/session/:code/next-round', async (req, res) => {
     }
     if (result.done) return res.json({ done: true });
     const { lat, lng, label, streetId } = await randomCoords(session.id);
-    const locationId = await db.insertLocation(lat, lng, label, streetId);
+    const locationId = await db.insertLocation(lat, lng, label, streetId, session.id);
     await db.setSessionLocation(session.id, locationId);
     res.json({ done: false, round: result.round, lat, lng, label, timer: session.timer });
   } catch (err) {
