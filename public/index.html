@@ -305,8 +305,20 @@
         updateRoundInfo();
         currentPos = { lat: data.lat, lng: data.lng };
         currentLabel = data.label || '';
-        updateCoordsDisplay(data.lat, data.lng);
-        if (sv) sv.setPosition({ lat: data.lat, lng: data.lng });
+        if (sv && window.google) {
+          const svc = new google.maps.StreetViewService();
+          svc.getPanoramaByLocation({ lat: data.lat, lng: data.lng }, 50, (d, status) => {
+            if (status === 'OK' && d.location) {
+              const p = d.location.latLng;
+              updateCoordsDisplay(p.lat(), p.lng());
+              sv.setPosition({ lat: p.lat(), lng: p.lng() });
+            } else {
+              updateCoordsDisplay(data.lat, data.lng);
+              sv.setPosition({ lat: data.lat, lng: data.lng });
+            }
+            sv.setPov({ heading: 0, pitch: 0 });
+          });
+        }
         if (map) map.setView([20, 0], 2);
         clearMarkers();
         if (svMarker) { map.removeLayer(svMarker); svMarker = null; }
@@ -426,15 +438,15 @@
 
     let svScriptLoaded = false;
     function initStreetView(loc) {
-      function createPanorama() {
-        updateCoordsDisplay(loc.lat, loc.lng);
+      function createPanorama(pos) {
+        updateCoordsDisplay(pos.lat, pos.lng);
         if (sv) {
-          sv.setPosition({ lat: loc.lat, lng: loc.lng });
+          sv.setPosition(pos);
           sv.setPov({ heading: 0, pitch: 0 });
           return;
         }
         sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
-          position: { lat: loc.lat, lng: loc.lng },
+          position: pos,
           pov: { heading: 0, pitch: 0 },
           zoom: 1,
           addressControl: false,
@@ -446,8 +458,19 @@
           enableCloseButton: false
         });
       }
+      function snapAndShow() {
+        const svc = new google.maps.StreetViewService();
+        svc.getPanoramaByLocation({ lat: loc.lat, lng: loc.lng }, 50, (data, status) => {
+          if (status === 'OK' && data.location) {
+            const p = data.location.latLng;
+            createPanorama({ lat: p.lat(), lng: p.lng() });
+          } else {
+            createPanorama({ lat: loc.lat, lng: loc.lng });
+          }
+        });
+      }
       if (svScriptLoaded) {
-        createPanorama();
+        snapAndShow();
         return;
       }
       fetch('/api/config')
@@ -455,7 +478,7 @@
         .then(({ apiKey }) => {
           const s = document.createElement('script');
           s.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&v=weekly';
-          s.onload = () => { svScriptLoaded = true; createPanorama(); };
+          s.onload = () => { svScriptLoaded = true; snapAndShow(); };
           s.onerror = () => {
             document.getElementById('sv-container').innerHTML = '<p style="color:#ff5252;padding:20px;">Failed to load Street View</p>';
           };
