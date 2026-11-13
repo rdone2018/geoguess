@@ -305,18 +305,30 @@
         updateRoundInfo();
         currentPos = { lat: data.lat, lng: data.lng };
         currentLabel = data.label || '';
-        if (sv && window.google) {
+        if (window.google) {
           const svc = new google.maps.StreetViewService();
           svc.getPanoramaByLocation({ lat: data.lat, lng: data.lng }, 50, (d, status) => {
+            let pos;
             if (status === 'OK' && d.location) {
               const p = d.location.latLng;
-              updateCoordsDisplay(p.lat(), p.lng());
-              sv.setPosition({ lat: p.lat(), lng: p.lng() });
+              pos = { lat: p.lat(), lng: p.lng() };
             } else {
-              updateCoordsDisplay(data.lat, data.lng);
-              sv.setPosition({ lat: data.lat, lng: data.lng });
+              pos = { lat: data.lat, lng: data.lng };
             }
-            sv.setPov({ heading: 0, pitch: 0 });
+            updateCoordsDisplay(pos.lat, pos.lng);
+            if (sv) { sv.dispose(); sv = null; }
+            sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
+              position: pos,
+              pov: { heading: 0, pitch: 0 },
+              zoom: 1,
+              addressControl: false,
+              zoomControl: true,
+              fullscreenControl: true,
+              streetSideControls: true,
+              showRoadLabels: false,
+              showBuildingLabels: false,
+              enableCloseButton: false
+            });
           });
         }
         if (map) map.setView([20, 0], 2);
