@@ -171,21 +171,27 @@ async function importRandomStreets() {
 async function getRandomStreet(sessionId) {
   const conn = await getPool().getConnection();
   let rows;
-  if (sessionId) {
-    const [r] = await conn.execute(
-      `SELECT ws.* FROM world_random_streets ws
-       WHERE ws.id NOT IN (
-         SELECT street_id FROM location
-         WHERE session_id = ? AND street_id IS NOT NULL
-       ) ORDER BY RAND() LIMIT 1`,
-      [sessionId]
-    );
-    rows = r[0];
-    if (rows.length === 0) {
-      const [fallback] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
-      rows = fallback[0];
+  try {
+    if (sessionId) {
+      const [r] = await conn.execute(
+        `SELECT ws.* FROM world_random_streets ws
+         WHERE ws.id NOT IN (
+           SELECT street_id FROM location
+           WHERE session_id = ? AND street_id IS NOT NULL
+         ) ORDER BY RAND() LIMIT 1`,
+        [sessionId]
+      );
+      rows = r[0];
+      if (rows.length === 0) {
+        const [fallback] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
+        rows = fallback[0];
+      }
+    } else {
+      const [r] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
+      rows = r[0];
     }
-  } else {
+  } catch (err) {
+    console.error('getRandomStreet error:', err.message);
     const [r] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
     rows = r[0];
   }
