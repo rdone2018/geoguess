@@ -139,6 +139,7 @@ async function initSchema() {
       lon DOUBLE NOT NULL
     )
   `);
+  await conn.execute('ALTER TABLE location ADD COLUMN IF NOT EXISTS street_id INT DEFAULT NULL');
   conn.release();
 }
 
