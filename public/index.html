@@ -305,7 +305,6 @@
         updateRoundInfo();
         currentPos = { lat: data.lat, lng: data.lng };
         currentLabel = data.label || '';
-        updateCoordsDisplay(data.lat, data.lng);
         if (sv) sv.setPosition({ lat: data.lat, lng: data.lng });
         if (map) map.setView([20, 0], 2);
         clearMarkers();
@@ -427,7 +426,6 @@
     let svScriptLoaded = false;
     function initStreetView(loc) {
       function createPanorama() {
-        updateCoordsDisplay(loc.lat, loc.lng);
         if (sv) {
           sv.setPosition({ lat: loc.lat, lng: loc.lng });
           sv.setPov({ heading: 0, pitch: 0 });
@@ -470,11 +468,6 @@
       clickMarker = null; polyline = null; distanceLabel = null;
     }
 
-    function updateCoordsDisplay(lat, lng) {
-      const el = document.getElementById('sv-coords');
-      if (el) el.textContent = lat.toFixed(6) + ', ' + lng.toFixed(6);
-    }
-
     function haversine(lat1, lon1, lat2, lon2) {
       const R = 6371;
       const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -494,7 +487,6 @@
     <a href="https://github.com/rdone2018/geoguess" style="color:#4fc3f7;">Source code on GitHub</a>
     Free to copy and use. Keep the mention of the original author.
     <a href="https://github.com/rdone2018/geoguess/blob/main/LICENSE.txt" style="color:#4fc3f7;">Conditions of use</a>
-    &nbsp;|&nbsp; <span id="sv-coords" style="color:#999;"></span>
   </footer>
 </body>
 </html>
