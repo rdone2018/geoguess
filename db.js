@@ -182,22 +182,24 @@ async function getRandomStreet(sessionId) {
         [sessionId]
       );
       rows = r[0];
+      console.log('getRandomStreet: sessionId=', sessionId, 'rows found=', rows.length);
       if (rows.length === 0) {
         const [fallback] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
         rows = fallback[0];
+        console.log('getRandomStreet: fallback rows=', rows.length);
       }
     } else {
       const [r] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
       rows = r[0];
     }
   } catch (err) {
-    console.error('getRandomStreet error:', err.message);
+    console.log('getRandomStreet CATCH error:', err.message);
     const [r] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
     rows = r[0];
   }
   conn.release();
-  if (!rows || rows.length === 0) console.warn('getRandomStreet: no rows found, sessionId=', sessionId);
-  return rows[0] || null;
+  console.log('getRandomStreet: returning', rows ? rows.length : 'null', 'rows');
+  return rows && rows.length > 0 ? rows[0] : null;
 }
 
 async function createUser(username, role) {
