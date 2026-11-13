@@ -9,16 +9,14 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 async function randomCoords() {
-  const bound = await db.getRandomCityBound();
-  if (!bound) {
+  const street = await db.getRandomStreet();
+  if (!street) {
     return { lat: 0, lng: 0, label: '' };
   }
-  const lat = bound.min_lat + Math.random() * (bound.max_lat - bound.min_lat);
-  const lng = bound.min_lon + Math.random() * (bound.max_lon - bound.min_lon);
   return {
-    lat: parseFloat(lat.toFixed(6)),
-    lng: parseFloat(lng.toFixed(6)),
-    label: bound.city
+    lat: street.lat,
+    lng: street.lon,
+    label: street.city
   };
 }
 
@@ -233,7 +231,8 @@ async function start() {
   try {
     await db.initSchema();
     await db.importCityBounds();
-    console.log('Database schema initialized, land bounds imported');
+    await db.importRandomStreets();
+    console.log('Database schema initialized, data imported');
   } catch (err) {
     console.warn('DB init failed:', err.message);
   }

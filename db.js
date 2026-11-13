@@ -127,6 +127,17 @@ async function initSchema() {
       max_lon DOUBLE NOT NULL
     )
   `);
+  await conn.execute(`
+    CREATE TABLE IF NOT EXISTS world_random_streets (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      city VARCHAR(100) NOT NULL,
+      country VARCHAR(100) NOT NULL,
+      street VARCHAR(200) NOT NULL,
+      highway_type VARCHAR(50) DEFAULT NULL,
+      lat DOUBLE NOT NULL,
+      lon DOUBLE NOT NULL
+    )
+  `);
   conn.release();
 }
 
@@ -161,6 +172,37 @@ async function importCityBounds() {
 async function getRandomCityBound() {
   const conn = await getPool().getConnection();
   const [rows] = await conn.execute('SELECT * FROM city_bounds ORDER BY RAND() LIMIT 1');
+  conn.release();
+  return rows[0] || null;
+}
+
+async function importRandomStreets() {
+  const conn = await getPool().getConnection();
+  const [count] = await conn.execute('SELECT COUNT(*) AS c FROM world_random_streets');
+  if (count[0].c > 0) { conn.release(); return; }
+  const csvPath = path.join(__dirname, 'world_random_streets.csv');
+  const content = fs.readFileSync(csvPath, 'utf-8');
+  const lines = content.trim().split('\n').slice(1);
+  for (const line of lines) {
+    const parts = line.split(',');
+    if (parts.length < 7) continue;
+    const city = parts[1].trim();
+    const country = parts[2].trim();
+    const street = parts[3].trim();
+    const highwayType = parts[4].trim();
+    const lat = parseFloat(parts[5]);
+    const lon = parseFloat(parts[6]);
+    await conn.execute(
+      'INSERT INTO world_random_streets (city, country, street, highway_type, lat, lon) VALUES (?, ?, ?, ?, ?, ?)',
+      [city, country, street, highwayType, lat, lon]
+    );
+  }
+  conn.release();
+}
+
+async function getRandomStreet() {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
   conn.release();
   return rows[0] || null;
 }
@@ -350,7 +392,7 @@ async function getPendingPlayers(sessionId, round) {
 }
 
 module.exports = {
-  getPool, initSchema, importCityBounds, getRandomCityBound,
+  getPool, initSchema, importCityBounds, getRandomCityBound, importRandomStreets, getRandomStreet,
   createUser, getUserByUsername,
   createSession, getSessionByCode, joinSession, getSessionPlayers, startSession, finishAllSessions,
   updateSessionSettings, nextRound,
