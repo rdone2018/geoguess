@@ -132,11 +132,23 @@ async function initSchema() {
 
 async function importRandomStreets() {
   const conn = await getPool().getConnection();
+  await conn.execute(`
+    CREATE TABLE IF NOT EXISTS world_random_streets (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      city VARCHAR(100) NOT NULL,
+      country VARCHAR(100) NOT NULL,
+      street VARCHAR(200) NOT NULL,
+      highway_type VARCHAR(50) DEFAULT NULL,
+      lat DOUBLE NOT NULL,
+      lon DOUBLE NOT NULL
+    )
+  `);
   const [count] = await conn.execute('SELECT COUNT(*) AS c FROM world_random_streets');
-  if (count[0].c > 0) { conn.release(); return; }
+  if (count[0].c > 0) { conn.release(); console.log('world_random_streets already populated:', count[0].c); return; }
   const csvPath = path.join(__dirname, 'world_random_streets.csv');
   const content = fs.readFileSync(csvPath, 'utf-8');
   const lines = content.trim().split('\n').slice(1);
+  let imported = 0;
   for (const line of lines) {
     const parts = line.split(',');
     if (parts.length < 7) continue;
@@ -150,8 +162,10 @@ async function importRandomStreets() {
       'INSERT INTO world_random_streets (city, country, street, highway_type, lat, lon) VALUES (?, ?, ?, ?, ?, ?)',
       [city, country, street, highwayType, lat, lon]
     );
+    imported++;
   }
   conn.release();
+  console.log('Imported', imported, 'random streets');
 }
 
 async function getRandomStreet(sessionId) {
@@ -176,6 +190,7 @@ async function getRandomStreet(sessionId) {
     rows = r[0];
   }
   conn.release();
+  if (!rows || rows.length === 0) console.warn('getRandomStreet: no rows found, sessionId=', sessionId);
   return rows[0] || null;
 }
 
