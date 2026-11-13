@@ -317,6 +317,7 @@
             }
             updateCoordsDisplay(pos.lat, pos.lng);
             if (sv) { sv.dispose(); sv = null; }
+            document.getElementById('sv-container').innerHTML = '';
             sv = new google.maps.StreetViewPanorama(document.getElementById('sv-container'), {
               position: pos,
               pov: { heading: 0, pitch: 0 },
