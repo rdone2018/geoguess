@@ -106,6 +106,7 @@
   <script>
     let myName = '';
     let sessionCode = '';
+    let sessionRegion = 'world';
     let isAdmin = false;
 
     fetch('/api/db-status').then(r => r.json()).then(data => {
@@ -142,6 +143,7 @@
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
         sessionCode = data.code;
+        sessionRegion = data.region || 'world';
         enterLobby();
       } catch (e) {
         document.getElementById('admin-error').textContent = e.message;
@@ -325,7 +327,10 @@
             }
           });
         }
-        if (map) map.setView([20, 0], 2);
+        if (map) {
+          if (sessionRegion === 'europe') map.setView([50, 15], 4);
+          else map.setView([20, 0], 2);
+        }
         clearMarkers();
         if (svMarker) { map.removeLayer(svMarker); svMarker = null; }
         if (clickMarker) { map.removeLayer(clickMarker); clickMarker = null; }
