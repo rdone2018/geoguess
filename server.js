@@ -77,7 +77,7 @@ app.post('/api/join', async (req, res) => {
     const userId = typeof user === 'object' ? user.id : user;
     await db.joinSession(session.id, userId);
     const players = await db.getSessionPlayers(session.id);
-    const resp = { joined: true, players: players.map(p => p.username) };
+    const resp = { joined: true, players: players.map(p => p.username), region: session.region };
     if (session.status === 'active') {
       resp.active = true;
       resp.round = session.current_round;
@@ -157,6 +157,7 @@ app.get('/api/session/:code', async (req, res) => {
       rounds: session.rounds,
       timer: session.timer,
       current_round: session.current_round,
+      region: session.region,
       location: loc ? { lat: loc.latitude, lng: loc.longitude } : null
     });
   } catch (err) {

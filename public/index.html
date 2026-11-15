@@ -174,6 +174,7 @@
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
         sessionCode = code;
+        sessionRegion = data.region || 'world';
         if (data.active) {
           startGameView({ lat: data.lat, lng: data.lng, label: data.label }, data.rounds, data.timer, data.round);
         } else {
@@ -210,6 +211,7 @@
           list.innerHTML = data.players.map(p => `<li>${p === myName ? p + ' (you)' : p}</li>`).join('');
           if (data.status === 'active' && data.location) {
             clearInterval(pollInterval);
+            sessionRegion = data.region || 'world';
             startGameView(data.location, data.rounds, data.timer, data.current_round);
           }
         } catch (e) {}
