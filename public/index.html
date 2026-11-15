@@ -178,8 +178,8 @@
       myName = username;
       isAdmin = true;
       try {
-        await fetch('/api/admin/create', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username}) });
-        const res = await fetch('/api/admin/session', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username, region: selectedRegion}) });
+        await fetch('/api/admin/create', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username, honeypot: document.getElementById('admin-honeypot').value}) });
+        const res = await fetch('/api/admin/session', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username, region: selectedRegion, honeypot: document.getElementById('admin-honeypot').value}) });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
         sessionCode = data.code;
@@ -199,7 +199,7 @@
       myName = username;
       isAdmin = false;
       try {
-        const res = await fetch('/api/join', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({code, username}) });
+        const res = await fetch('/api/join', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({code, username, honeypot: document.getElementById('player-honeypot').value}) });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
         sessionCode = code;
