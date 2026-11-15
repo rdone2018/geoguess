@@ -117,7 +117,7 @@ app.post('/api/admin/session', async (req, res) => {
     console.log('Admin session request:', { username, region });
     if (!username) return res.status(400).json({ error: 'Request failed' });
     const admin = await db.getUserByUsername(username);
-    console.log('Found admin:', admin ? admin.username : 'null');
+    console.log('Found admin:', admin ? admin.username : 'null', 'ID:', admin?.id, 'Type:', typeof admin?.id);
     if (!admin || admin.role !== 'admin') {
       return res.status(403).json({ error: 'Request failed' });
     }
@@ -125,7 +125,9 @@ app.post('/api/admin/session', async (req, res) => {
     console.log('Finished all sessions');
     const session = await db.createSession(admin.id);
     console.log('Created session:', session);
-    await db.joinSession(session.id, admin.id);
+    const adminId = parseInt(admin.id);
+    console.log('Joining with adminId:', adminId);
+    await db.joinSession(session.id, adminId);
     console.log('Joined session');
     const r = region === 'europe' ? 'europe' : 'world';
     console.log('Setting region to:', r);
