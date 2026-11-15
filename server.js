@@ -127,6 +127,11 @@ app.post('/api/admin/session', async (req, res) => {
     console.log('Created session:', session);
     const adminId = parseInt(admin.id);
     console.log('Joining with adminId:', adminId);
+    
+    // Check if session exists right before join
+    const sessionCheck = await db.getSessionById(session.id);
+    console.log('Session check before join:', sessionCheck);
+    
     await db.joinSession(session.id, adminId);
     console.log('Joined session');
     const r = region === 'europe' ? 'europe' : 'world';

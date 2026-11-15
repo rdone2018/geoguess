@@ -283,6 +283,14 @@ async function finishAllSessions() {
   conn.release();
 }
 
+async function getSessionById(id) {
+  const conn = await getPool().getConnection();
+  const [rows] = await conn.execute('SELECT * FROM sessions WHERE id = ?', [id]);
+  conn.release();
+  console.log('getSessionById:', { id, result: rows[0] });
+  return rows[0] || null;
+}
+
 async function getSessionByCode(code) {
   const conn = await getPool().getConnection();
   const [rows] = await conn.execute(
@@ -295,6 +303,21 @@ async function getSessionByCode(code) {
 
 async function joinSession(sessionId, userId) {
   const conn = await getPool().getConnection();
+  
+  // Check foreign keys
+  const [fks] = await conn.query(`
+    SELECT 
+      CONSTRAINT_NAME,
+      COLUMN_NAME,
+      REFERENCED_TABLE_NAME,
+      REFERENCED_COLUMN_NAME
+    FROM information_schema.KEY_COLUMN_USAGE
+    WHERE TABLE_SCHEMA = DATABASE()
+    AND TABLE_NAME = 'session_players'
+    AND REFERENCED_TABLE_NAME IS NOT NULL
+  `);
+  console.log('Foreign keys on session_players:', fks);
+  
   await conn.execute(
     'INSERT INTO session_players (session_id, user_id) VALUES (?, ?)',
     [sessionId, userId]
@@ -427,7 +450,7 @@ async function getPendingPlayers(sessionId, round) {
 module.exports = {
   getPool, initSchema, importRandomStreets, importEuropeRandomStreets, getRandomStreet,
   createUser, getUserByUsername,
-  createSession, getSessionByCode, joinSession, getSessionPlayers, startSession, finishAllSessions,
+  createSession, getSessionByCode, getSessionById, joinSession, getSessionPlayers, startSession, finishAllSessions,
   updateSessionSettings, nextRound,
   insertLocation, getLatestLocation, setSessionLocation, getSessionLocation,
   insertScore, getSessionScores, getPendingPlayers
