@@ -23,6 +23,7 @@
     .card .code { font-size: 2rem; letter-spacing: 4px; color: #69f0ae; text-align: center; margin: 12px 0; font-family: monospace; }
     .lobby-list { list-style: none; margin: 12px 0; }
     .lobby-list li { padding: 6px 0; border-bottom: 1px solid #0f3460; }
+    .honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden; }
     #game-screen { flex: 1; display: flex; flex-direction: column; }
     #game-screen.hidden { display: none; }
     #main { flex: 1; display: flex; }
@@ -48,11 +49,13 @@
       <div id="player-form" style="margin-top:16px;">
         <input id="session-code" placeholder="Session code">
         <input id="player-name" placeholder="Your name">
+        <input type="text" class="honeypot" id="player-honeypot" tabindex="-1" autocomplete="off">
         <button onclick="joinSession()">Join Session</button>
         <div class="error" id="player-error"></div>
       </div>
       <div id="admin-form" style="display:none; margin-top:16px;">
         <input id="admin-name" placeholder="Your name">
+        <input type="text" class="honeypot" id="admin-honeypot" tabindex="-1" autocomplete="off">
         <div style="display:flex;gap:8px;">
           <button id="btn-world" onclick="selectRegion('world')" style="padding:8px 16px;border:2px solid #4fc3f7;background:#4fc3f7;color:#000;border-radius:6px;cursor:pointer;font-size:14px;">🌍 World</button>
           <button id="btn-europe" onclick="selectRegion('europe')" style="padding:8px 16px;border:2px solid #ccc;background:#fff;color:#333;border-radius:6px;cursor:pointer;font-size:14px;">🏰 Europe</button>
@@ -132,6 +135,26 @@
     }
 
     let selectedRegion = 'world';
+    let lastSubmitTime = 0;
+    const MIN_SUBMIT_INTERVAL = 2000;
+
+    function checkHoneypot(fieldId) {
+      const val = document.getElementById(fieldId).value;
+      if (val && val.trim() !== '') {
+        return true;
+      }
+      return false;
+    }
+
+    function checkTiming() {
+      const now = Date.now();
+      if (now - lastSubmitTime < MIN_SUBMIT_INTERVAL) {
+        return false;
+      }
+      lastSubmitTime = now;
+      return true;
+    }
+
     function selectRegion(r) {
       selectedRegion = r;
       const bw = document.getElementById('btn-world');
@@ -146,6 +169,8 @@
     }
 
     async function createSession() {
+      if (checkHoneypot('admin-honeypot')) return;
+      if (!checkTiming()) return;
       const username = document.getElementById('admin-name').value.trim();
       if (!username) return;
       myName = username;
@@ -164,6 +189,8 @@
     }
 
     async function joinSession() {
+      if (checkHoneypot('player-honeypot')) return;
+      if (!checkTiming()) return;
       const code = document.getElementById('session-code').value.trim().toUpperCase();
       const username = document.getElementById('player-name').value.trim();
       if (!code || !username) return;

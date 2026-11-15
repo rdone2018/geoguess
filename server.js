@@ -8,6 +8,53 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const rateLimits = new Map();
+const RATE_LIMIT_WINDOW = 60000;
+const RATE_LIMIT_MAX_ATTEMPTS = 10;
+const MIN_REQUEST_INTERVAL = 2000;
+const lastRequestTime = new Map();
+
+function getClientIp(req) {
+  return req.headers['x-forwarded-for'] || req.connection.remoteAddress || '127.0.0.1';
+}
+
+function checkRateLimit(ip, key) {
+  const now = Date.now();
+  const cacheKey = `${ip}:${key}`;
+  
+  if (lastRequestTime.has(cacheKey)) {
+    const timeSinceLast = now - lastRequestTime.get(cacheKey);
+    if (timeSinceLast < MIN_REQUEST_INTERVAL) {
+      return { allowed: false, reason: 'too_fast' };
+    }
+  }
+  lastRequestTime.set(cacheKey, now);
+  
+  if (!rateLimits.has(cacheKey)) {
+    rateLimits.set(cacheKey, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+  }
+  
+  const limit = rateLimits.get(cacheKey);
+  if (now > limit.resetAt) {
+    rateLimits.set(cacheKey, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+    return { allowed: true };
+  }
+  
+  limit.count++;
+  if (limit.count > RATE_LIMIT_MAX_ATTEMPTS) {
+    return { allowed: false, reason: 'rate_limited' };
+  }
+  
+  return { allowed: true };
+}
+
+function validateHoneypot(body) {
+  if (body.honeypot && body.honeypot.trim() !== '') {
+    return false;
+  }
+  return true;
+}
+
 async function randomCoords(region) {
   const street = await db.getRandomStreet(region);
   if (!street) {
@@ -39,21 +86,38 @@ app.get('/api/db-status', async (req, res) => {
 
 app.post('/api/admin/create', async (req, res) => {
   try {
+    const ip = getClientIp(req);
+    const rateCheck = checkRateLimit(ip, 'admin_create');
+    if (!rateCheck.allowed) {
+      return res.status(429).json({ error: 'Too many attempts. Please wait before trying again.' });
+    }
+    if (!validateHoneypot(req.body)) {
+      return res.status(400).json({ error: 'Request rejected' });
+    }
     const { username } = req.body;
-    if (!username) return res.status(400).json({ error: 'username required' });
+    if (!username) return res.status(400).json({ error: 'Request failed' });
     const user = await db.createUser(username, 'admin');
     res.json({ id: user.id, username, role: 'admin' });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Request failed' });
   }
 });
 
 app.post('/api/admin/session', async (req, res) => {
   try {
+    const ip = getClientIp(req);
+    const rateCheck = checkRateLimit(ip, 'admin_session');
+    if (!rateCheck.allowed) {
+      return res.status(429).json({ error: 'Too many attempts. Please wait before trying again.' });
+    }
+    if (!validateHoneypot(req.body)) {
+      return res.status(400).json({ error: 'Request rejected' });
+    }
     const { username, region } = req.body;
+    if (!username) return res.status(400).json({ error: 'Request failed' });
     const admin = await db.getUserByUsername(username);
     if (!admin || admin.role !== 'admin') {
-      return res.status(403).json({ error: 'Not an admin' });
+      return res.status(403).json({ error: 'Request failed' });
     }
     await db.finishAllSessions();
     const session = await db.createSession(admin.id);
@@ -62,17 +126,26 @@ app.post('/api/admin/session', async (req, res) => {
     await db.getPool().execute('UPDATE sessions SET region = ? WHERE id = ?', [r, session.id]);
     res.json({ code: session.code, status: 'lobby', region: r });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Request failed' });
   }
 });
 
 app.post('/api/join', async (req, res) => {
   try {
+    const ip = getClientIp(req);
+    const rateCheck = checkRateLimit(ip, 'join');
+    if (!rateCheck.allowed) {
+      return res.status(429).json({ error: 'Too many attempts. Please wait before trying again.' });
+    }
+    if (!validateHoneypot(req.body)) {
+      return res.status(400).json({ error: 'Request rejected' });
+    }
     const { code, username } = req.body;
-    if (!code || !username) return res.status(400).json({ error: 'code and username required' });
+    if (!code || !username) return res.status(400).json({ error: 'Request failed' });
     const session = await db.getSessionByCode(code);
-    if (!session) return res.status(404).json({ error: 'Session not found' });
-    if (session.status === 'finished') return res.status(400).json({ error: 'Session already finished' });
+    if (!session || session.status === 'finished') {
+      return res.status(404).json({ error: 'Invalid session code' });
+    }
     const user = await db.createUser(username, 'player');
     const userId = typeof user === 'object' ? user.id : user;
     await db.joinSession(session.id, userId);
@@ -88,7 +161,7 @@ app.post('/api/join', async (req, res) => {
     }
     res.json(resp);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Request failed' });
   }
 });
 
