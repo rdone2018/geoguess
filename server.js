@@ -126,6 +126,7 @@ app.post('/api/admin/session', async (req, res) => {
     await db.getPool().execute('UPDATE sessions SET region = ? WHERE id = ?', [r, session.id]);
     res.json({ code: session.code, status: 'lobby', region: r });
   } catch (err) {
+    console.error('Admin session error:', err);
     res.status(500).json({ error: 'Request failed' });
   }
 });
