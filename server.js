@@ -272,7 +272,8 @@ app.post('/api/session/:code/guess', async (req, res) => {
       Math.sin(dLng/2) * Math.sin(dLng/2);
     const distanceKm = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const basePoints = Math.max(0, Math.round(5000 - distanceKm));
+    const maxPoints = session.region === 'europe' ? 1000 : 5000;
+    const basePoints = Math.max(0, Math.round(maxPoints - distanceKm));
     const timeBonus = basePoints > 0 ? Math.max(0, (session.timer - (remaining_time || 0)) * 10) : 0;
     const points = basePoints + timeBonus;
 
