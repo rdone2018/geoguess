@@ -134,7 +134,7 @@
       document.getElementById('admin-form').style.display = 'block';
     }
 
-    let selectedRegion = 'world';
+    let selectedRegion = 'europe';
     let lastSubmitTime = 0;
     const MIN_SUBMIT_INTERVAL = 2000;
 
@@ -154,6 +154,8 @@
       lastSubmitTime = now;
       return true;
     }
+
+    selectRegion('europe');
 
     function selectRegion(r) {
       selectedRegion = r;
