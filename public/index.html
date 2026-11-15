@@ -414,7 +414,11 @@
     }
 
     function initMaps(loc) {
-      map = L.map('osm-container').setView([20, 0], 2);
+      if (sessionRegion === 'europe') {
+        map = L.map('osm-container').setView([50, 15], 4);
+      } else {
+        map = L.map('osm-container').setView([20, 0], 2);
+      }
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; OpenStreetMap contributors'
