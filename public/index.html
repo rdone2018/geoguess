@@ -7,103 +7,231 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: sans-serif; background: #1a1a2e; color: #fff; height: 100vh; display: flex; flex-direction: column; }
-    header { padding: 12px 20px; background: #16213e; display: flex; align-items: center; justify-content: space-between; }
-    header h1 { font-size: 1.3rem; }
-    .screen { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
-    .screen.hidden { display: none; }
-    .card { background: #16213e; padding: 32px; border-radius: 8px; width: 360px; }
-    .card h2 { margin-bottom: 16px; font-size: 1.2rem; }
-    .card input { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #0f3460; border-radius: 4px; background: #1a1a2e; color: #fff; font-size: 0.95rem; }
-    .card button { width: 100%; padding: 10px; background: #0f3460; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 0.95rem; }
-    .card button:hover { background: #1a5085; }
-    .card .error { color: #ff5252; font-size: 0.85rem; margin-top: 8px; }
-    .card .info { color: #4fc3f7; font-size: 0.9rem; margin-top: 12px; text-align: center; }
-    .card .code { font-size: 2rem; letter-spacing: 4px; color: #69f0ae; text-align: center; margin: 12px 0; font-family: monospace; }
-    .lobby-list { list-style: none; margin: 12px 0; }
-    .lobby-list li { padding: 6px 0; border-bottom: 1px solid #0f3460; }
-    .honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden; }
-    #game-screen { flex: 1; display: flex; flex-direction: column; }
-    #game-screen.hidden { display: none; }
-    #main { flex: 1; display: flex; }
-    #sv-container { width: 50%; height: 100%; position: relative; }
-    #osm-container { width: 50%; height: 100%; }
-    #coords { padding: 8px 20px; background: #16213e; font-size: 0.85rem; color: #aaa; display: flex; justify-content: space-between; }
-    #distance { color: #4fc3f7; font-weight: bold; }
-    .role-btns { display: flex; gap: 12px; }
-    .role-btns button { flex: 1; padding: 14px; font-size: 1rem; }
+    :root{font-family:'Open Sans',Arial,sans-serif;color:#202b24;background:#f5f5ef;font-synthesis:none;text-rendering:optimizeLegitimacy;--ink:#202b24;--muted:#737d73;--line:#e1e5dc;--paper:#fff;--canvas:#f5f5ef;--green:#2d5745;--green-soft:#e5eee6;--lime:#d8ed83;--coral:#e98569;--coral-soft:#fff0e9;--shadow:0 18px 50px #26382b12}
+    *{box-sizing:border-box;margin:0;padding:0}body{min-width:320px;height:100vh;display:flex;flex-direction:column}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #a5bf65;outline-offset:2px}a{color:inherit}
+    .app-shell{min-height:100vh;display:grid;grid-template-columns:236px minmax(0,1fr)}
+    .sidebar{padding:27px 18px 20px 24px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:34px;background:#f8f8f3}
+    .brand{display:flex;gap:11px;align-items:center;padding:0 8px}
+    .brand-mark{width:38px;height:38px;border-radius:13px;background:var(--green);color:var(--lime);display:grid;place-items:center;font-size:20px;font-weight:700}
+    .brand-name{font:600 20px Georgia,serif;letter-spacing:0}
+    .brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+    .nav-label{padding:0 11px 10px;font-size:10px;letter-spacing:1.3px;font-weight:700;color:#9aa297;text-transform:uppercase}
+    .nav{display:grid;gap:5px}
+    .nav button{border:0;background:transparent;color:#69736a;padding:12px 12px;border-radius:8px;text-align:left;display:flex;align-items:center;gap:12px;font-weight:600;font-size:13px;transition:background .18s,color .18s}
+    .nav button:hover{background:#edf0e9;color:var(--ink)}
+    .nav button.active{background:var(--green);color:#fff}
+    .nav-symbol{width:19px;text-align:center;font-size:16px}
+    .sidebar-note{margin-top:auto;border-top:1px solid var(--line);padding:18px 8px 0;color:var(--muted);font-size:11px;line-height:1.65}
+    .main{min-width:0;zoom:var(--content-zoom,1)}
+    .topbar{height:76px;padding:0 clamp(22px,5vw,68px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:#f8f8f3}
+    .top-context{font-size:12px;color:var(--muted)}
+    .top-context strong{color:var(--ink);font-weight:600}
+    .top-actions{display:flex;align-items:center;gap:10px}
+    .page{max-width:1240px;margin:0 auto;padding:36px clamp(22px,5vw,68px) 70px}
+    .page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:25px}
+    .eyebrow{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#78905a;font-weight:700;margin:0 0 8px}
+    .page h1{font:500 clamp(30px,3.2vw,42px)/1.08 Georgia,serif;letter-spacing:0;margin:0;color:#26372d}
+    .page-subtitle{font-size:13px;color:var(--muted);margin:9px 0 0}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:7px;padding:11px 15px;background:var(--green);color:#fff;font-size:12px;font-weight:700;transition:transform .16s,background .16s}
+    .button:hover{background:#1f4837;transform:translateY(-1px)}
+    .button.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .button.secondary:hover{background:#f2f5ed}
+    .icon-button{width:34px;height:34px;border:1px solid var(--line);border-radius:7px;background:#fff;color:#657067;font-size:17px;display:grid;place-items:center}
+    .icon-button:hover{background:#f4f6ef;color:var(--ink)}
+    .panel{background:var(--paper);border:1px solid #e8ebe4;border-radius:9px;box-shadow:0 4px 18px #26382b08}
+    .panel-heading{padding:20px 22px 16px;border-bottom:1px solid #edf0ea;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .panel-heading h2{font:500 19px Georgia,serif;margin:0}
+    .panel-heading p{color:var(--muted);font-size:11px;margin:5px 0 0}
+    .panel-body{padding:22px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{display:grid;gap:6px}
+    .field label{font-size:10px;font-weight:700;color:#5e695e}
+    .field input,.field select{width:100%;border:1px solid var(--line);border-radius:6px;padding:10px;font-size:12px;color:var(--ink);background:#fff}
+    .modal-backdrop{position:fixed;inset:0;background:#19251eb8;display:grid;place-items:center;padding:20px;z-index:10;animation:fade .16s}
+    .modal{width:min(440px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#fff;border-radius:10px;box-shadow:var(--shadow);padding:23px;animation:rise .2s}
+    .modal-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:17px}
+    .modal h2{font:500 23px Georgia,serif;margin:0}
+    .modal-head p{font-size:11px;color:var(--muted);margin:6px 0 0}
+    .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+    .hidden{display:none!important}
+    .code-display{font-size:2rem;letter-spacing:4px;color:var(--green);text-align:center;margin:16px 0;font-family:monospace;font-weight:700}
+    .lobby-list{list-style:none;margin:16px 0;padding:0}
+    .lobby-list li{padding:10px 0;border-bottom:1px solid var(--line)}
+    .error-message{color:#b23b2b;font-size:12px;font-weight:600;margin-top:12px}
+    .info-text{color:var(--muted);font-size:13px;line-height:1.55;margin:12px 0}
+    @keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+    #game-screen{flex:1;display:flex;flex-direction:column}
+    #main{flex:1;display:flex}
+    #sv-container{width:50%;height:100%;position:relative}
+    #osm-container{width:50%;height:100%}
+    #coords{padding:12px 24px;background:#f8f8f3;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    .distance-display{color:var(--green);font-weight:700;font-size:14px}
+    .round-info{padding:12px 24px;background:#f8f8f3;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;color:var(--ink)}
+    .timer-display{color:var(--green);font-weight:700;font-size:15px}
+    .score-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(32,43,36,0.85);display:none;align-items:center;justify-content:center;z-index:9999}
+    .score-card{background:#fff;padding:32px;border-radius:10px;box-shadow:var(--shadow);min-width:380px;max-width:90%}
+    .score-card h2{font:500 24px Georgia,serif;margin:0 0 20px;color:var(--ink)}
+    .score-table{width:100%;border-collapse:collapse;margin-bottom:16px}
+    .score-table th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--line);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:0.5px}
+    .score-table td{padding:12px;border-bottom:1px solid var(--line)}
+    .score-table tr:last-child td{border-bottom:0}
+    .score-highlight{background:#e5eee6;font-weight:700}
+    .medal{font-size:18px}
+    @media(max-width:980px){#sv-container,#osm-container{width:100%;height:50%}}
+    @media(max-width:760px){.app-shell{display:block}.sidebar{height:auto;border-right:0;border-bottom:1px solid var(--line);padding:12px 18px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px}.brand-mark{width:34px;height:34px}.nav{display:flex;gap:3px}.nav button{font-size:11px;padding:9px 10px;gap:6px}.nav-symbol{display:none}.topbar{height:58px;padding:0 18px}}
   </style>
 </head>
 <body>
-  <header>
-    <div>
-      <h1>GeoGuess</h1>
-      <div id="db-status" style="font-size:0.75rem;margin-top:2px;">Checking DB...</div>
-    </div>
-  </header>
-
-  <div id="login-screen" class="screen">
-    <div class="card">
-      <h2>Join GeoGuess</h2>
-      <div id="player-form" style="margin-top:16px;">
-        <input id="session-code" placeholder="Session code">
-        <input id="player-name" placeholder="Your name">
-        <input type="text" class="honeypot" id="player-honeypot" tabindex="-1" autocomplete="off">
-        <button onclick="joinSession()">Join Session</button>
-        <div class="error" id="player-error"></div>
-      </div>
-      <div id="admin-form" style="display:none; margin-top:16px;">
-        <input id="admin-name" placeholder="Your name">
-        <input type="text" class="honeypot" id="admin-honeypot" tabindex="-1" autocomplete="off">
-        <div style="display:flex;gap:8px;">
-          <button id="btn-world" onclick="selectRegion('world')" style="padding:8px 16px;border:2px solid #4fc3f7;background:#4fc3f7;color:#000;border-radius:6px;cursor:pointer;font-size:14px;">🌍 World</button>
-          <button id="btn-europe" onclick="selectRegion('europe')" style="padding:8px 16px;border:2px solid #ccc;background:#fff;color:#333;border-radius:6px;cursor:pointer;font-size:14px;">🏰 Europe</button>
-        </div>
-        <button onclick="createSession()" style="margin-top:8px;">Create Game Session</button>
-        <div class="error" id="admin-error"></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="lobby-screen" class="screen hidden">
-    <div class="card">
-      <h2 id="lobby-title">Lobby</h2>
-      <div class="code" id="lobby-code"></div>
-      <p style="color:#aaa;font-size:0.85rem;text-align:center;">Share this code with players</p>
-      <ul class="lobby-list" id="lobby-players"></ul>
-      <div id="settings" style="display:none; margin:12px 0;">
-        <div style="display:flex;gap:12px;justify-content:center;">
-          <label style="color:#aaa;font-size:0.85rem;">Rounds: <input id="input-rounds" type="number" value="5" min="1" max="10" style="width:50px;padding:4px;background:#1a1a2e;color:#fff;border:1px solid #333;border-radius:4px;"></label>
-          <label style="color:#aaa;font-size:0.85rem;">Timer (s): <input id="input-timer" type="number" value="60" min="10" max="120" style="width:55px;padding:4px;background:#1a1a2e;color:#fff;border:1px solid #333;border-radius:4px;"></label>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">G</div>
+        <div>
+          <div class="brand-name">GeoGuess</div>
+          <small>Explore the world</small>
         </div>
       </div>
-      <button id="start-btn" onclick="startGame()" style="display:none;">Start Game</button>
-      <div class="info" id="lobby-info">Waiting for players...</div>
-    </div>
-  </div>
-
-  <div id="game-screen" class="hidden">
-    <div id="countdown-bar" style="padding:8px 20px;background:#0f3460;text-align:center;font-size:1.5rem;font-weight:bold;color:#ffab40;">
-      <span id="round-info">Round 1/5</span> &nbsp;|&nbsp; <span id="timer-display">1:00</span>
-    </div>
-    <div id="main">
-      <div id="sv-container"></div>
-      <div id="osm-container"></div>
-    </div>
-    <div id="coords">
-      <span id="distance"></span>
-    </div>
-    <div id="score-overlay" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;z-index:9999;display:none;">
-      <div style="background:#16213e;padding:30px 40px;border-radius:12px;min-width:320px;">
-        <h2 style="color:#fff;margin-bottom:16px;">Scores</h2>
-        <table id="score-table" style="width:100%;border-collapse:collapse;color:#fff;">
-          <thead><tr style="color:#ffab40;"><th style="padding:6px;text-align:left;">#</th><th style="padding:6px;text-align:left;">Player</th><th style="padding:6px;text-align:right;">Points</th></tr></thead>
-          <tbody></tbody>
-        </table>
-        <p id="score-next-round" style="color:#aaa;margin-top:16px;font-size:0.85rem;"></p>
+      <div>
+        <div class="nav-label">Navigation</div>
+        <nav class="nav" aria-label="Main navigation">
+          <button class="active" data-view="home"><span class="nav-symbol" aria-hidden="true">◷</span>Home</button>
+          <button data-view="game"><span class="nav-symbol" aria-hidden="true">▦</span>Game</button>
+        </nav>
       </div>
-    </div>
+      <div class="sidebar-note">
+        <strong>Ready to explore?</strong>Join a session or create your own to start guessing locations around the world.
+      </div>
+    </aside>
+    
+    <main class="main">
+      <header class="topbar">
+        <div class="top-context">
+          <strong id="top-view">GeoGuess</strong>
+          <span id="top-house"></span>
+        </div>
+        <div class="top-actions">
+          <span id="storage-status" class="storage-status" role="status" aria-live="polite">Checking DB...</span>
+        </div>
+      </header>
+
+      <div id="server-banner" class="server-banner hidden" role="alert"></div>
+      <section class="page" id="page">
+        <!-- Login Screen -->
+        <div id="login-screen" class="panel" style="max-width:480px;margin:40px auto;">
+          <div class="panel-heading">
+            <h2>Join GeoGuess</h2>
+          </div>
+          <div class="panel-body">
+            <div id="player-form">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="session-code">Session Code</label>
+                  <input id="session-code" placeholder="Enter session code">
+                </div>
+                <div class="field">
+                  <label for="player-name">Your Name</label>
+                  <input id="player-name" placeholder="Your name">
+                </div>
+              </div>
+              <input type="text" class="honeypot" id="player-honeypot" tabindex="-1" autocomplete="off">
+              <div style="margin-top:16px;">
+                <button onclick="joinSession()" class="button" style="width:100%;">Join Session</button>
+              </div>
+              <div class="error-message" id="player-error"></div>
+            </div>
+
+            <div id="admin-form" style="display:none;">
+              <div class="form-grid">
+                <div class="field full">
+                  <label for="admin-name">Your Name</label>
+                  <input id="admin-name" placeholder="Your name">
+                </div>
+              </div>
+              <input type="text" class="honeypot" id="admin-honeypot" tabindex="-1" autocomplete="off">
+              
+              <div style="margin:16px 0;">
+                <p class="info-text">Select region:</p>
+                <div style="display:flex;gap:12px;">
+                  <button id="btn-world" onclick="selectRegion('world')" class="button secondary" style="flex:1;padding:12px;">🌍 World</button>
+                  <button id="btn-europe" onclick="selectRegion('europe')" class="button secondary" style="flex:1;padding:12px;">🏰 Europe</button>
+                </div>
+              </div>
+
+              <div style="margin-top:16px;">
+                <button onclick="createSession()" class="button" style="width:100%;">Create Game Session</button>
+              </div>
+              <div class="error-message" id="admin-error"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lobby Screen -->
+        <div id="lobby-screen" class="panel hidden" style="max-width:480px;margin:40px auto;">
+          <div class="panel-heading">
+            <h2 id="lobby-title">Lobby</h2>
+          </div>
+          <div class="panel-body">
+            <div class="code-display" id="lobby-code"></div>
+            <p class="info-text" style="text-align:center;">Share this code with players</p>
+            <ul class="lobby-list" id="lobby-players"></ul>
+            
+            <div id="settings" style="display:none; margin:20px 0;">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="input-rounds">Rounds</label>
+                  <input id="input-rounds" type="number" value="5" min="1" max="10" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;">
+                </div>
+                <div class="field">
+                  <label for="input-timer">Timer (s)</label>
+                  <input id="input-timer" type="number" value="60" min="10" max="120" style="width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;">
+                </div>
+              </div>
+            </div>
+
+            <button id="start-btn" onclick="startGame()" class="button hidden" style="width:100%;margin-top:16px;">Start Game</button>
+            <div class="info-text" id="lobby-info">Waiting for players...</div>
+          </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="hidden">
+          <div class="round-info">
+            <span id="round-info">Round 1/5</span>
+            <span id="timer-display" class="timer-display">1:00</span>
+          </div>
+          <div id="main">
+            <div id="sv-container"></div>
+            <div id="osm-container"></div>
+          </div>
+          <div id="coords">
+            <span id="distance" class="distance-display"></span>
+          </div>
+        </div>
+
+        <!-- Score Overlay -->
+        <div id="score-overlay" class="score-overlay">
+          <div class="score-card">
+            <h2>Scores</h2>
+            <table id="score-table" class="score-table">
+              <thead>
+                <tr><th>#</th><th>Player</th><th style="text-align:right;">Points</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <p id="score-next-round" class="info-text"></p>
+            <button id="new-game-btn" class="button hidden" style="width:100%;margin-top:16px;">Create New Session</button>
+          </div>
+        </div>
+      </section>
+
+      <footer style="max-width:1240px;margin:0 auto;padding:18px clamp(22px,5vw,68px) 28px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 18px;font-size:11px;color:var(--muted);">
+        <span>GeoGuess © 2026 <a href="https://github.com/rdone2018" target="_blank" rel="noopener">rdone2018</a></span>
+        <a href="https://github.com/rdone2018/geoguess" target="_blank" rel="noopener">Source code on GitHub</a>
+        <span>Free to copy and use. Keep the mention of the original author.</span>
+        <a href="https://github.com/rdone2018/geoguess/blob/main/LICENSE.txt" target="_blank" rel="noopener">Conditions of use</a>
+      </footer>
+    </main>
   </div>
 
   <script>
@@ -113,18 +241,18 @@
     let isAdmin = false;
 
     fetch('/api/db-status').then(r => r.json()).then(data => {
-      const el = document.getElementById('db-status');
+      const el = document.getElementById('storage-status');
       if (data.connected) {
         el.textContent = 'DB: Connected';
-        el.style.color = '#69f0ae';
+        el.style.color = '#2d5745';
       } else {
         el.textContent = 'DB: Error - ' + data.error;
-        el.style.color = '#ff5252';
+        el.style.color = '#b23b2b';
       }
     }).catch(() => {
-      const el = document.getElementById('db-status');
+      const el = document.getElementById('storage-status');
       el.textContent = 'DB: Unreachable';
-      el.style.color = '#ff5252';
+      el.style.color = '#b23b2b';
     });
     let sv, map, currentPos = null, currentLabel = '', svMarker = null, clickMarker = null, polyline = null, distanceLabel = null;
     let pollInterval = null;
@@ -162,11 +290,19 @@
       const bw = document.getElementById('btn-world');
       const be = document.getElementById('btn-europe');
       if (r === 'world') {
-        bw.style.background = '#4fc3f7'; bw.style.color = '#000';
-        be.style.background = '#fff'; be.style.color = '#333'; be.style.borderColor = '#ccc';
+        bw.className = 'button';
+        bw.style.background = '#2d5745';
+        bw.style.color = '#fff';
+        be.className = 'button secondary';
+        be.style.background = '#fff';
+        be.style.color = '#202b24';
       } else {
-        be.style.background = '#4fc3f7'; be.style.color = '#000';
-        bw.style.background = '#fff'; bw.style.color = '#333'; bw.style.borderColor = '#ccc';
+        be.className = 'button';
+        be.style.background = '#2d5745';
+        be.style.color = '#fff';
+        bw.className = 'button secondary';
+        bw.style.background = '#fff';
+        bw.style.color = '#202b24';
       }
     }
 
@@ -220,7 +356,7 @@
       document.getElementById('lobby-code').textContent = sessionCode;
       if (isAdmin) {
         document.getElementById('lobby-title').textContent = 'Your Game Lobby';
-        document.getElementById('start-btn').style.display = 'block';
+        document.getElementById('start-btn').classList.remove('hidden');
         document.getElementById('settings').style.display = 'block';
         document.getElementById('lobby-info').textContent = 'Waiting for players to join...';
       } else {
@@ -282,12 +418,11 @@
       guessSubmitted = false;
       roundEnded = false;
       const timerEl = document.getElementById('timer-display');
-      const bar = document.getElementById('countdown-bar');
       function update() {
         const m = Math.floor(remainingTime / 60);
         const s = remainingTime % 60;
         timerEl.textContent = m + ':' + String(s).padStart(2, '0');
-        bar.style.color = remainingTime <= 10 ? '#ff5252' : '#ffab40';
+        timerEl.style.color = remainingTime <= 10 ? '#b23b2b' : '#2d5745';
         if (remainingTime <= 0) {
           onTimeout();
           return;
@@ -392,9 +527,9 @@
       const data = await res.json();
       const tbody = document.querySelector('#score-table tbody');
       tbody.innerHTML = data.scores.map((s, i) => {
-        const highlight = i < 3 ? 'background:rgba(255,171,64,0.2);font-weight:bold;' : '';
-        const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '';
-        return `<tr style="${highlight}"><td style="padding:4px;">${medal || i + 1}</td><td style="padding:4px;">${s.username}</td><td style="padding:4px;text-align:right;">${s.total}</td></tr>`;
+        const highlight = i < 3 ? 'class="score-highlight"' : '';
+        const medal = i === 0 ? '<span class="medal">🥇</span>' : i === 1 ? '<span class="medal">🥈</span>' : i === 2 ? '<span class="medal">🥉</span>' : i + 1;
+        return `<tr ${highlight}><td style="padding:12px;">${medal}</td><td style="padding:12px;">${s.username}</td><td style="padding:12px;text-align:right;font-weight:700;">${s.total}</td></tr>`;
       }).join('');
       document.getElementById('score-next-round').textContent = 'Game Over!';
       document.getElementById('round-info').textContent = 'Final Results';
@@ -406,14 +541,14 @@
         btn = document.createElement('button');
         btn.id = 'new-game-btn';
         btn.textContent = 'Create New Session';
-        btn.style.cssText = 'margin-top:16px;padding:8px 20px;background:#ffab40;color:#000;border:none;border-radius:6px;font-size:1rem;cursor:pointer;font-weight:bold;';
+        btn.className = 'button';
         btn.onclick = () => window.location.href = '/?admin';
-        overlay.querySelector('div').appendChild(btn);
+        overlay.querySelector('.score-card').appendChild(btn);
       }
       if (isAdmin) {
-        btn.style.display = 'inline-block';
+        btn.classList.remove('hidden');
       } else {
-        btn.style.display = 'none';
+        btn.classList.add('hidden');
       }
     }
 
@@ -422,7 +557,7 @@
       const data = await res.json();
       const tbody = document.querySelector('#score-table tbody');
       tbody.innerHTML = data.scores.map((s, i) =>
-        `<tr><td style="padding:4px;">${i + 1}</td><td style="padding:4px;">${s.username}</td><td style="padding:4px;text-align:right;">${s.total}</td></tr>`
+        `<tr><td style="padding:12px;">${i + 1}</td><td style="padding:12px;">${s.username}</td><td style="padding:12px;text-align:right;font-weight:700;">${s.total}</td></tr>`
       ).join('');
       document.getElementById('score-next-round').textContent = 'Next round in 5s...';
       const overlay = document.getElementById('score-overlay');
@@ -466,11 +601,11 @@
           svMarker.bindTooltip(currentLabel || 'Street View', { permanent: true, direction: 'top', offset: [0, -10] });
           const d = haversine(currentPos.lat, currentPos.lng, clicked.lat, clicked.lng);
           document.getElementById('distance').textContent = `Distance: ${formatDistance(d)}`;
-          polyline = L.polyline([[currentPos.lat, currentPos.lng], [clicked.lat, clicked.lng]], { color: '#ff5252', weight: 3, dashArray: '8 8' }).addTo(map);
+          polyline = L.polyline([[currentPos.lat, currentPos.lng], [clicked.lat, clicked.lng]], { color: '#e98569', weight: 3, dashArray: '8 8' }).addTo(map);
           distanceLabel = L.marker(e.latlng, {
             icon: L.divIcon({
               className: '',
-              html: `<div style="background:#1a1a2e;color:#4fc3f7;padding:4px 8px;border-radius:4px;font-size:12px;white-space:nowrap;border:1px solid #4fc3f7;">${formatDistance(d)}</div>`,
+              html: `<div style="background:#fff;color:#202b24;padding:4px 8px;border-radius:6px;font-size:12px;white-space:nowrap;border:1px solid #e1e5dc;">${formatDistance(d)}</div>`,
               iconSize: [0, 0]
             })
           }).addTo(map);
@@ -539,7 +674,7 @@
           s.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&v=weekly';
           s.onload = () => { svScriptLoaded = true; snapAndShow(); };
           s.onerror = () => {
-            document.getElementById('sv-container').innerHTML = '<p style="color:#ff5252;padding:20px;">Failed to load Street View</p>';
+            document.getElementById('sv-container').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#f5f5ef;color:#737d73;font-size:14px;">Street View unavailable</div>';
           };
           document.head.appendChild(s);
         });
