@@ -261,6 +261,7 @@ async function getUserByUsername(username) {
   const conn = await getPool().getConnection();
   const [rows] = await conn.execute('SELECT * FROM users WHERE username = ?', [username]);
   conn.release();
+  console.log('getUserByUsername:', { username, result: rows[0] });
   return rows[0] || null;
 }
 
@@ -294,6 +295,7 @@ async function getSessionByCode(code) {
 
 async function joinSession(sessionId, userId) {
   const conn = await getPool().getConnection();
+  console.log('joinSession called with:', { sessionId, userId });
   await conn.execute(
     'INSERT INTO session_players (session_id, user_id) VALUES (?, ?)',
     [sessionId, userId]
