@@ -278,8 +278,8 @@ async function createSession(adminId) {
 
 async function finishAllSessions() {
   const conn = await getPool().getConnection();
+  await conn.execute("UPDATE sessions SET status = 'finished' WHERE status != 'finished'");
   await conn.execute("DELETE FROM session_players");
-  await conn.execute("DELETE FROM sessions");
   conn.release();
 }
 
@@ -295,23 +295,6 @@ async function getSessionByCode(code) {
 
 async function joinSession(sessionId, userId) {
   const conn = await getPool().getConnection();
-  console.log('joinSession called with:', { sessionId, userId });
-  
-  // Verify session exists
-  const [sessions] = await conn.execute('SELECT id FROM sessions WHERE id = ?', [sessionId]);
-  console.log('Session exists:', sessions.length > 0);
-  
-  // Verify user exists
-  const [users] = await conn.execute('SELECT id FROM users WHERE id = ?', [userId]);
-  console.log('User exists:', users.length > 0);
-  
-  if (sessions.length === 0) {
-    throw new Error(`Session ${sessionId} not found`);
-  }
-  if (users.length === 0) {
-    throw new Error(`User ${userId} not found`);
-  }
-  
   await conn.execute(
     'INSERT INTO session_players (session_id, user_id) VALUES (?, ?)',
     [sessionId, userId]
