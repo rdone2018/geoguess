@@ -1,700 +1,910 @@
 id,city,country,street,highway_type,lat,lon
-1,Shanghai,China,浦电路,tertiary,31.226169,121.531211
-2,Beijing,China,北辰路,secondary,39.978431,116.388368
-3,Shenzhen,China,民輝街 Man Fai Street,unclassified,22.287856,114.155504
-5,Kinshasa,Democratic Republic of the Congo,Direction des amoureux,residential,-4.324303,15.298307
-7,Lagos,Nigeria,Akinsete Drive,residential,6.552614,3.36445
-8,Ho Chi Minh City,Vietnam,Đường Số 7,residential,10.856033,106.604948
-9,Chengdu,China,中环路交大路段,primary,30.708933,104.0385
-10,Lahore,Pakistan,Street 21,residential,31.476865,74.373136
-11,Mumbai,India,Saint Xavier Street,residential,19.006692,72.843383
-12,São Paulo,Brazil,Rua Itapaiúna,primary,-23.633575,-46.727478
-13,Mexico City,Mexico,Calle Teocelo,residential,19.404725,-99.1588
-15,Tianjin,China,白堤路,secondary,39.116178,117.152666
-16,Delhi,India,Sachivalaya Road,secondary,28.632206,77.252453
-17,Wuhan,China,巨龙大道,primary,30.721936,114.237925
-18,Moscow,Russia,Голубинская улица,tertiary,55.611246,37.518355
-19,Dhaka,Bangladesh,সড়ক ১১,residential,23.806712,90.419205
-20,Seoul,South Korea,월드컵로13길,residential,37.555384,126.907769
-21,Tokyo,Japan,哲学堂通り,tertiary,35.722503,139.675632
-22,Dongguan,China,新市二街,residential,22.935227,113.931661
-23,Cairo,Egypt,شارع صلاح الدين الشرقي,secondary,30.027956,31.258132
-24,Xi’an,China,迎宾大道,primary,34.362868,108.729641
-25,Johannesburg,South Africa,Carroll Avenue,residential,-26.05865,27.976998
-26,Nanjing,China,文体路,tertiary,32.020255,118.750855
-27,Hangzhou,China,太平门直街,tertiary,30.262171,120.188456
-28,Foshan,China,招村大街,residential,23.091474,113.232451
-31,Jakarta,Indonesia,Jalan Medan Merdeka Selatan,primary,-6.18043,106.830477
-32,Bengaluru,India,4th Main Road,residential,12.927024,77.540232
-33,Hanoi,Vietnam,Phố Đặng Thai Mai,tertiary,21.063669,105.82597
-34,Taipei,Taiwan,中正五街,unclassified,25.005926,121.302496
-35,Lima,Peru,Calle Manuel Irribarren,residential,-12.119859,-77.021207
-36,Bogotá,Colombia,Avenida Carrera 50,primary,4.674196,-74.067524
-38,Hong Kong,Hong Kong,怡和街 Yee Wo Street,secondary,22.279793,114.185995
-39,Baghdad,Iraq,301-7,residential,33.360311,44.385965
-40,Wuzhong,China,黄河路,tertiary,38.013632,106.138508
-41,Qingdao,China,唐山路,secondary,36.193901,120.388604
-42,Tehran,Iran,پورجعفری,tertiary,35.734185,51.352482
-43,Shenyang,China,八纬路,residential,41.791592,123.411158
-46,Suzhou,China,御窑路,secondary,31.421644,120.608761
-47,Puxi,China,东方路,secondary,31.231052,121.521137
-48,Ahmedabad,India,Narol-Sarkhej Road,primary,22.990199,72.53716
-49,Abidjan,Ivory Coast,Rue J121,residential,5.377076,-3.98984
-50,Pudong,China,罗山路,primary,31.244008,121.558286
-51,Sydney,Australia,Talara Road,residential,-34.033482,151.082977
-52,Singapore,Singapore,Republic Boulevard,primary,1.297085,103.862688
-53,Melbourne,Australia,Inverell Avenue,residential,-37.873439,145.144372
-55,Saint Petersburg,Russia,Арсенальная набережная,primary,59.953901,30.350362
-56,Alexandria,Egypt,شارع مسجد الغرباوى,residential,31.120877,29.769678
-58,Bangkok,Thailand,ซอยลาซาล 46,residential,13.654965,100.629673
-59,Hefei,China,皖水路,tertiary,31.846969,117.118757
-60,Dalian,China,亲海街,unclassified,38.835361,121.499014
-61,Kano,Nigeria,Umar Sanusi Link,residential,11.998087,8.540824
-62,Santiago,Chile,Cirujano Guzmán,residential,-33.427196,-70.618713
-63,Cape Town,South Africa,Sunrise Circle,primary,-33.92677,18.497895
-64,Peshawar,Pakistan,اسلامیہ روڈ,tertiary,34.001299,71.545928
-65,Changchun,China,黑水路,secondary,43.905883,125.336059
-66,Jeddah,Saudi Arabia,طريق صاري,primary,21.572949,39.13316
-67,Chennai,India,Avvai Shanmugam Salai,tertiary,13.04708,80.272867
-68,Kolkata,India,Lalbazar Street,secondary,22.572362,88.352127
-69,Xiamen,China,虎园路,secondary,24.456519,118.088225
-70,Surat,India,444,residential,21.196596,72.783321
-71,Yangon,Myanmar,ဇဗူသီရိ ၅ လမ်း Zabu Thiri Street 5,residential,16.79491,96.205594
-72,Bao'an,China,福桂街,residential,22.517309,114.053085
-73,Kabul,Afghanistan,سرک ۶ الف,residential,34.537577,69.167728
-75,Wuxi,China,通江大道,secondary,31.613111,120.311925
-76,Giza,Egypt,شارع النورى,residential,30.113681,31.35497
-77,Jinan,China,舜华路,secondary,36.677476,117.12363
-78,Taiyuan,China,产业路,tertiary,37.797415,112.55164
-80,Bamako,Mali,Rue 673,residential,12.596812,-8.018364
-81,Riyadh,Saudi Arabia,رأس تنورة,residential,24.69191,46.740608
-82,New Taipei City,Taiwan,中山路三段,primary,25.141411,121.385757
-83,New Territories,Hong Kong,歌賦街 Gough Street,residential,22.284193,114.152386
-84,Shijiazhuang,China,槐安西路辅路,secondary,38.023862,114.468671
-85,Chattogram,Bangladesh,ডেইলপাড়া রোড,secondary,22.250106,91.794966
-86,Addis Ababa,Ethiopia,Algeria Avenue,primary,9.045148,38.76143
-87,Kunming,China,环城北路,primary,25.056035,102.720961
-88,Zhongshan,China,港义路,tertiary,22.563357,113.481204
-89,Nanning,China,火炬一支路,residential,22.836438,108.289793
-90,Shantou,China,潮汕路,primary,23.379331,116.675154
-91,Los Angeles,United States,Monterey Road,tertiary,34.103402,-118.185654
-92,Faisalabad,Pakistan,Punj Pullian Road,secondary,31.484133,73.061222
-93,Dubai,United Arab Emirates,40d شارع,residential,25.142137,55.204904
-94,Yokohama,Japan,海岸通り,tertiary,35.448295,139.643048
-95,Fuzhou,China,祥三线,tertiary,25.904384,119.327798
-96,Ningbo,China,鄞县大道,primary,29.806813,121.63344
-97,Casablanca,Morocco,Boulevard Mohammed VI شارع محمد السادس,primary,33.569549,-7.596532
-98,Ibadan,Nigeria,Saka Abaje Street,residential,7.423757,3.912986
-99,Puyang,China,江滨东路,secondary,29.450123,119.899815
-100,Ankara,Turkey,Kuşkondu Sokak,residential,39.891962,32.85361
-101,Shiyan,China,省道447,primary,32.708889,110.684806
-102,Berlin,Germany,Lutherstraße,residential,52.397038,13.404693
-104,Rawalpindi,Pakistan,G8 Markaz Road,tertiary,33.696197,73.049058
-105,Lüliang,China,店梁线,secondary,37.605797,111.026519
-106,Durban,South Africa,Umgeni Road,secondary,-29.850561,31.019045
-107,Changzhou,China,关河西路,primary,31.791806,119.95243
-108,Busan,South Korea,마하로,tertiary,35.101698,128.981787
-109,Madrid,Spain,Avenida de Asturias,secondary,40.466654,-3.690379
-110,Pyongyang,North Korea,림흥거리,primary,39.087867,125.786578
-111,Zibo,China,凤凰大道,secondary,36.859866,118.205781
-113,Bursa,Turkey,Mucur Sokak,residential,40.212487,29.104248
-114,Changsha,China,城南东路,secondary,28.181097,112.997447
-115,Quezon City,Philippines,Quirino Avenue,secondary,14.51037,120.99488
-116,Jaipur,India,JLN Marg Flyover,primary,26.86108,75.806388
-117,Guiyang,China,北京西路,primary,26.591113,106.692468
-118,Ürümqi,China,中亚北路,secondary,43.88347,87.520817
-119,Surabaya,Indonesia,Jalan Kecilung,residential,-7.257124,112.745419
-120,Incheon,South Korea,건지로,tertiary,37.499249,126.672477
-121,Lanzhou,China,广场南路,tertiary,36.052342,103.837434
-122,Caracas,Venezuela,Calle Acueducto,residential,10.507989,-66.83602
-123,Kyiv,Ukraine,Набережно-Хрещатицька вулиця,primary,50.461715,30.525983
-124,İzmir,Turkey,172. Sokak,residential,38.389977,27.177231
-125,Huizhou,China,麦地东一路,tertiary,23.06738,114.403044
-126,Buenos Aires,Argentina,Juan D’Arienzo,residential,-34.580179,-58.5016
-127,Haikou,China,白龙北路,primary,20.035461,110.356856
-128,Taichung,Taiwan,德泰街,residential,24.068327,120.70057
-129,Kanpur,India,Airport Avenue,residential,26.417842,80.385794
-130,Toronto,Canada,Bathurst Street,secondary,43.636266,-79.399476
-131,Quito,Ecuador,Avenida Mariana de Jesús,secondary,-0.186262,-78.496029
-133,Luanda,Angola,Rua Nelson Mandela,residential,-8.892576,13.201005
-135,Linyi,China,解放东路,primary,35.067635,118.374527
-136,Baoding,China,长城南大街,primary,38.857318,115.500842
-137,Kaohsiung,Taiwan,左楠路,tertiary,22.709611,120.30243
-138,Brooklyn,United States,East 1st Street,residential,40.722623,-73.987069
-139,Guayaquil,Ecuador,1 Transversal 12G SE,residential,-2.278056,-79.873508
-140,Belo Horizonte,Brazil,Rua São Roque,residential,-19.899196,-43.9192
-141,Minhang,China,五原路,residential,31.214516,121.44045
-142,Bazhong,China,天星街,tertiary,31.861888,106.777191
-143,Salvador,Brazil,Rua Alvares Cabral,tertiary,-12.97097,-38.510855
-144,Abuja,Nigeria,Aliyu Mohammed Road,tertiary,9.071475,7.405462
-145,Gazipur,Bangladesh,সড়ক ২,residential,23.868732,90.392212
-146,Chicago,United States,West Carmen Avenue,residential,41.974394,-87.666458
-147,Wenzhou,China,会展路,primary,27.993765,120.730844
-150,Haiphong,Vietnam,Phố Vũ Trọng Khánh,tertiary,20.834763,106.700432
-151,Yunfu,China,河滨西路,secondary,22.924072,112.02168
-152,Navi Mumbai,India,Bandar Road,residential,18.990434,73.100479
-153,Mogadishu,Somalia,Wadada Hodan ريتش رود,secondary,2.073444,45.293522
-154,Kumasi,Ghana,Zongo Road,tertiary,6.699718,-1.614036
-155,Bandung,Indonesia,Jalan Seram,tertiary,-6.909521,107.61433
-156,Gujranwala,Pakistan,Parao Road,primary,32.151497,74.187726
-157,Huai'an,China,健康东路,secondary,33.60846,119.020951
-158,Medan,Indonesia,Jalan Marelan Saga,residential,3.702979,98.647567
-159,Lucknow,India,Shivaji Marg,tertiary,26.841328,80.931102
-160,Ouagadougou,Burkina Faso,Rue Gang-la-Peelga,residential,12.377125,-1.492555
-161,Nagpur,India,Chitar Oli Road,residential,21.149403,79.108714
-162,Fortaleza,Brazil,Rua Tenente Benévolo,tertiary,-3.727819,-38.509715
-163,Cali,Colombia,Carrera 38A,residential,3.423242,-76.542197
-164,Perth,Australia,Alfred Road,primary,-31.969028,115.79158
-165,Daegu,South Korea,성서공단로15길,unclassified,35.840969,128.490356
-166,Algiers,Algeria,Rue Mohamed Tebib,residential,36.773837,3.060734
-167,Nanchang,China,阳明东路,primary,28.691551,115.921521
-168,Baku,Azerbaijan,Puşkin küçəsi,secondary,40.374892,49.854337
-169,Hohhot,China,双拥街,unclassified,40.842772,111.740651
-170,Nagoya,Japan,春日井停車場線,secondary,35.242838,136.981288
-171,Rome,Italy,Via Pietro Giannone,residential,41.910691,12.45036
-172,Queens,United States,West 13th Street,residential,40.736922,-73.997964
-173,Houston,United States,Chartres Street,residential,29.720929,-95.380774
-174,Mashhad,Iran,دهخدا ۱۳,residential,36.29319,59.536839
-175,Shaoxing,China,钱陶公路,primary,30.042887,120.718527
-176,Nantong,China,红联路,tertiary,31.904177,120.745218
-177,Baoshan,China,东塘公路,tertiary,31.312272,121.564375
-178,Kowloon,Hong Kong,大網仔路 Tai Mong Tsai Road,secondary,22.386609,114.272828
-179,Yantai,China,春港路,tertiary,37.579025,121.366054
-180,Gaziantep,Turkey,3. Cadde,residential,37.078747,37.431964
-181,Lubumbashi,Democratic Republic of the Congo,Rue 1,residential,-11.64001,27.546988
-182,Manaus,Brazil,Rua São Raimundo,residential,-3.121049,-60.042047
-183,Lusaka,Zambia,Robert Mubiana Street,unclassified,-15.403411,28.327932
-184,Brasília,Brazil,Rua Rio de Janeiro,residential,-15.791482,-47.84773
-185,Zhuhai,China,双竹街,residential,22.269796,113.551425
-186,Santo Domingo,Dominican Republic,Avenida 25 De Febrero,primary,18.484841,-69.848637
-187,Lomé,Togo,Rue de l'Authenticité,residential,6.142456,1.237432
-188,Multan,Pakistan,Bagh Lang-e-Khan Road,residential,30.194858,71.462296
-189,Havana,Cuba,Zapata,secondary,23.132373,-82.380775
-190,Depok,Indonesia,Jalan Sebret 1,residential,-6.285595,106.833285
-191,Baotou,China,富强路,secondary,40.661212,109.856511
-192,Paris,France,Rue de Charenton,residential,48.85184,2.37175
-193,Coimbatore,India,Kalidas Road,residential,11.013074,76.961719
-194,Qingyang,China,庆化大道,primary,35.69696,107.627854
-195,Port Harcourt,Nigeria,Sani Abacha Road,tertiary,4.815518,6.992752
-196,Pretoria,South Africa,Florida Street,residential,-25.780422,28.307106
-197,Córdoba,Argentina,Doctor Ricardo Balbín,primary,-31.401448,-64.148221
-198,Mbuji-Mayi,Democratic Republic of the Congo,Avenue Tshilomba,residential,-6.117585,23.588744
-199,Aleppo,Syria,Arroumi Street,primary,36.19138,37.190257
-200,Kunshan,China,娄苑路,tertiary,31.397624,120.95952
-201,Al Mawşil al Jadīdah,Iraq,زقاق 6,residential,36.372772,43.14485
-202,Weifang,China,清溪街,secondary,36.679748,119.131617
-204,Al Başrah al Qadīmah,Iraq,الهندية الجديدة,residential,30.547777,47.791766
-205,La Paz,Bolivia,Avenida Sánchez Lima,secondary,-16.511016,-68.127159
-206,Lianyungang,China,浦西路,tertiary,34.603652,119.08937
-207,Medellín,Colombia,Avenida Las Vegas,primary,6.160902,-75.604815
-208,Indore,India,Old A. B. Road,primary,22.784444,75.905549
-209,Brazzaville,Republic of the Congo,Rue de Binanga,residential,-4.338646,15.301379
-210,Tashkent,Uzbekistan,Bunyodkor shoh ko'chasi,primary,41.311146,69.240673
-211,Ganzhou,China,环城路,tertiary,25.861546,114.930132
-212,Almaty,Kazakhstan,Сызғанов көшесі,residential,43.211672,76.952722
-213,Khartoum,Sudan,شارع المزدلفة,tertiary,15.642627,32.603026
-214,Hamburg,Germany,Ringelrosenweg,residential,53.600391,10.063485
-215,Sapporo,Japan,東雁来江別線,secondary,43.074127,141.486979
-216,Songjiang,China,外青松公路,primary,31.138258,121.121581
-217,Accra,Ghana,Rangoon Lane,residential,5.57306,-0.181552
-218,Curitiba,Brazil,Rua Cambé,residential,-25.51952,-49.179853
-219,Ordos,China,中环西大道,primary,39.708171,109.832977
-220,Sanaa,Yemen,خط صنعاء - مارب,primary,15.253121,44.311861
-221,Conakry,Guinea,Rue MA. 830,residential,9.567251,-13.642697
-222,Tangerang,Indonesia,Sutopo,residential,-6.174223,106.631286
-223,Tijuana,Mexico,Harvest Road,unclassified,32.573009,-116.945202
-224,Hyderabad,Pakistan,Goth Shahnawaz Junejo Road,unclassified,25.407787,68.468339
-225,Beirut,Lebanon,Arc de Lemgo,tertiary,33.924415,35.582346
-226,Jieyang,China,致远路,tertiary,23.544152,116.375087
-227,Jilin,China,汉阳街,secondary,43.904186,126.546131
-228,Jiading,China,沪太公路,primary,31.36091,121.371955
-229,Bucharest,Romania,Calea Piscului,residential,44.398303,26.110079
-230,Camayenne,Guinea,Avenue William Tubman,residential,9.511693,-13.716482
-231,Kakamega,Kenya,Canon Awori Street,primary,0.28279,34.751998
-232,Shangqiu,China,雪苑路,tertiary,34.390635,115.632721
-234,Tainan,Taiwan,新忠路,unclassified,22.979514,120.181826
-235,Datong,China,文兴路,secondary,40.065971,113.338526
-237,Omdurman,Sudan,شارع الصفا,tertiary,15.60488,32.557058
-238,Davao,Philippines,Tiara Street,residential,7.100126,125.636033
-239,Thāne,India,Prarthana Samaj Road,residential,19.101606,72.849607
-241,Diyarbakır,Turkey,Kayapınar Caddesi,secondary,37.930487,40.171445
-242,Santa Cruz de la Sierra,Bolivia,Calle Alfredo Flores,residential,-17.794224,-63.151247
-243,Vadodara,India,Dabhoi Road,primary,22.283246,73.214278
-244,Adana,Turkey,Can Özşahinoğlu Bulvarı,secondary,37.064873,35.372997
-245,Nanyang,China,安泰路,primary,32.959187,112.654624
-246,Abu Dhabi,United Arab Emirates,شارع يَو الضُّلُوع,tertiary,24.46192,54.358553
-247,Palembang,Indonesia,Lorong Burai,residential,-2.960634,104.743902
-248,Sharjah,United Arab Emirates,شارع الكويت,primary,25.372858,55.418965
-249,Bhopal,India,Lalghati Flyover,primary,23.272839,77.369141
-250,Jiangmen,China,东岸西路,tertiary,22.661438,113.177539
-251,Benin City,Nigeria,Igbama Street,residential,6.373401,5.584409
-252,Jiangyin,China,芙蓉快速路,primary,31.883149,120.233123
-253,Fuyang,China,柳林路,tertiary,32.8684,115.811593
-254,Montréal,Canada,Rue des Tournesols,residential,45.410815,-73.463735
-255,Bayan Nur,China,五一街,tertiary,40.742175,107.398877
-256,Maracaibo,Venezuela,Calle 17,residential,10.582101,-71.636161
-257,Chaozhou,China,彩虹东路,tertiary,23.655548,116.613589
-258,Minsk,Belarus,Бельчыцкая вуліца,residential,53.96945,27.595375
-259,Budapest,Hungary,Szamos utca,residential,47.506821,19.018366
-260,Qingyuan,China,旅安桥,primary,23.730346,113.030309
-261,Tai’an,China,福园路,tertiary,36.143428,117.061536
-262,Rasapūdipalem,India,Chandragupta Marg,tertiary,17.713141,83.298906
-263,Pimpri-Chinchwad,India,Chikhali - Kaspate Vasti BRTS Road Chikali Road,secondary,18.660031,73.812647
-264,Caloocan,Philippines,Roxas Boulevard Service Road,unclassified,14.56827,120.983582
-265,Warsaw,Poland,Dereniowa,unclassified,52.148051,21.041929
-266,Soweto,South Africa,Alberts Road,residential,-26.172631,27.960025
-267,Semarang,Indonesia,Jalan Nangka Barat,residential,-7.007335,110.437197
-268,Puebla,Mexico,Calle Amozoc,residential,19.057551,-98.225956
-269,Vienna,Austria,Währinger Gürtel,primary,48.231949,16.35333
-270,Barcelona,Spain,Carrer de Villarroel,tertiary,41.392768,2.146748
-271,Patna,India,Street 11 B,residential,25.629237,85.113264
-272,Mosul,Iraq,104-9,residential,36.341101,43.152881
-273,Kallakurichi,India,Kallakurichi - Tiruvannamalai Road,primary,11.805181,78.946508
-274,Kampala,Uganda,Butikiro Road,secondary,0.3073,32.565013
-275,Xining,China,中庄路,residential,36.608297,101.823152
-276,Changshu,China,西三环路,primary,31.659236,120.664283
-277,Huainan,China,花城路,residential,32.64858,116.992414
-278,Rabat,Morocco,Avenue Ibn Khaldoun شارع ابن خلدون,primary,34.007451,-6.842469
-279,Recife,Brazil,Avenida Santos Dumont,residential,-8.021605,-34.852907
-281,Ecatepec de Morelos,Mexico,Calle Tlacamichin,residential,19.502691,-99.113152
-282,Lu’an,China,环湖路,tertiary,31.713485,116.52685
-283,Valencia,Venezuela,Av. El Frío,residential,10.14383,-68.002774
-284,Ludhiana,India,street no.1,residential,30.865122,75.884437
-285,Yancheng,China,黄山路,tertiary,33.364461,120.229573
-286,Novosibirsk,Russia,улица Котовского,secondary,54.991898,82.873063
-287,Erbil,Iraq,342-47,residential,36.148921,44.026089
-288,Fukuoka,Japan,清川１９０号線,residential,33.579381,130.409881
-289,Taizhou,China,春晖路,tertiary,32.469359,119.941965
-290,Daqing,China,萨平路,secondary,46.607945,125.103957
-291,Manila,Philippines,Scout Magbanua Street,residential,14.632002,121.02359
-292,Wuhu,China,红花山路,secondary,31.304133,118.371707
-293,Santiago de Querétaro,Mexico,Calle Mirador del Cubilete,residential,20.53931,-100.403001
-294,Dazhou,China,南坝路,primary,31.203891,107.498509
-295,Yangzhou,China,安康路,tertiary,32.406035,119.459082
-296,León de los Aldama,Mexico,Privada Presa Solís,residential,21.109723,-101.674898
-297,Makkah,Saudi Arabia,417,living_street,21.409091,39.894598
-298,Philadelphia,United States,Sandpiper Place,pedestrian,39.894523,-75.088392
-299,Phnom Penh,Cambodia,វិថី ជ្រោយចង្វារ (៩),residential,11.582367,104.934389
-300,Guilin,China,芳华路,secondary,25.316774,110.309664
-301,Damascus,Syria,ساحة الدوامنة,pedestrian,33.511548,36.312545
-302,Quetta,Pakistan,Afghan Road,residential,30.174095,67.010206
-303,Zhaoqing,China,河旁路,residential,23.056904,112.502927
-304,Onitsha,Nigeria,Bright Street,secondary,6.149819,6.774308
-305,Mianyang,China,警钟街,secondary,31.46049,104.753207
-307,Isfahan,Iran,میخک,tertiary,32.705044,51.639338
-308,Wanzhou,China,南滨大道,primary,30.825382,108.416838
-309,Astana,Kazakhstan,Ілияс Жансүгіров көшесі,tertiary,51.159947,71.480915
-310,Harare,Zimbabwe,Fifth Street,tertiary,-17.813481,31.052306
-311,Monrovia,Liberia,25th Street,residential,6.284774,-10.769819
-312,Putian,China,西南线,tertiary,25.507889,119.030874
-313,Kawasaki,Japan,弘岡橋,residential,35.426199,139.599905
-314,Goiânia,Brazil,Avenida Dom Fernando Gomes dos Santos,secondary,-16.726678,-49.306444
-316,Kobe,Japan,長田線,unclassified,34.674802,135.146366
-317,Stockholm,Sweden,Fyngatan,residential,59.404791,17.938559
-318,Ciudad Juárez,Mexico,Uva Place,unclassified,31.775757,-106.444927
-319,Cần Thơ,Vietnam,Hẻm Lò Mổ,residential,10.040249,105.765268
-320,Munich,Germany,Wörthstraße,residential,48.130104,11.600985
-321,Khulna,Bangladesh,Gaikur Road,residential,22.876809,89.506816
-322,Belém,Brazil,Rua Cônego Jerônimo Pimentel,primary,-1.441461,-48.487696
-323,Yekaterinburg,Russia,улица Громова,residential,56.808535,60.570495
-325,Yinchuan,China,满城南街,secondary,38.466503,106.191942
-326,Manhattan,United States,Thompson Street,residential,40.722554,-74.004593
-327,Nashik,India,R49,residential,19.963203,73.836896
-328,Asunción,Paraguay,Coronel Jorge Butleroff,residential,-25.275874,-57.574837
-329,Yiwu,China,秀禾路,tertiary,29.313697,120.056837
-330,Zapopan,Mexico,Calle José María de Zamacona,residential,20.675692,-103.284067
-331,Makassar,Indonesia,Komplek Kumala Permai,residential,-5.17643,119.417918
-332,Adelaide,Australia,Mallen Street,residential,-34.931154,138.56913
-333,Quanzhou,China,云鹿路,secondary,24.886405,118.614799
-334,Madurai,India,புது இராமநாதபுரம் சாலை,secondary,9.909399,78.149617
-335,Jinhua,China,中山路,secondary,29.104184,119.64537
-336,Kyoto,Japan,壬生通,unclassified,34.984539,135.746127
-337,Cixi,China,潭北路,secondary,30.212896,121.192448
-338,Changde,China,武陵大道,secondary,29.064507,111.68842
-339,Kuala Lumpur,Malaysia,Lorong 22/49A,residential,3.100489,101.625709
-340,Kayseri,Turkey,Eren Yıldırım Bulvarı,tertiary,38.736806,35.397156
-341,Kaifeng,China,内顺城路,tertiary,34.783449,114.348454
-342,Anshan,China,四方台路,primary,41.079827,122.962733
-343,Karaj,Iran,بلوار چمران,primary,35.810732,51.007557
-344,Kathmandu,Nepal,Pankhaswo Marg,residential,27.718515,85.302623
-345,Daejeon,South Korea,갑천로,tertiary,36.431722,127.397436
-346,Baoji,China,学府路,tertiary,34.345147,107.20849
-347,Suqian,China,幸福北路,secondary,33.968741,118.295428
-348,Liuzhou,China,乐都大道,tertiary,24.253874,109.336608
-349,Tirunelveli,India,Tiruchendur - Palayamkottai - Ambasamudram - Tenkasi - Courtalam - Shencottai Road,primary,8.672855,77.68029
-350,Konya,Turkey,Asal Sokak,residential,37.870004,32.463704
-351,Zhangjiagang,China,乐塘线,secondary,31.81968,120.640461
-352,Agra,India,new ram nagar,residential,27.180163,77.971756
-353,South Tangerang,Indonesia,Jalan Niaga Hijau X,residential,-6.281786,106.774876
-354,Tabriz,Iran,پروین اعتصامی,secondary,38.061516,46.36672
-355,Kharkiv,Ukraine,вулиця Вартових Неба,pedestrian,50.031382,36.226964
-356,Jinjiang,China,义全街,secondary,24.899335,118.584781
-357,Faridabad,India,Vijay Singh Pathik Marg,tertiary,28.381139,77.362621
-358,Bozhou,China,药都路,secondary,33.840378,115.791469
-359,Qujing,China,宁州路,tertiary,25.534514,103.73573
-360,San Diego,United States,Toyon Lane,residential,32.647811,-117.070369
-361,Gwangju,South Korea,금봉로,tertiary,35.1519,126.802752
-362,Zhanjiang,China,广田路,residential,21.281331,110.375795
-363,Fushun,China,新华桥,secondary,41.873266,123.914996
-364,Rājkot,India,Rajkot - Morbi Highway,primary,22.342424,70.807736
-365,Luoyang,China,珙桐街,tertiary,34.591931,112.337178
-366,Guadalajara,Mexico,Calle Alberto Sustaita,residential,20.677391,-103.273512
-367,The Bronx,United States,Audubon Avenue,tertiary,40.852715,-73.929428
-368,Guankou,China,南泥湾路,primary,28.184881,113.621293
-369,Huế,Vietnam,Lý Thái Tổ,primary,16.492261,107.535943
-370,Milan,Italy,Via Moisè Loria,residential,45.459184,9.157714
-371,Najafgarh,India,Nangloi road,primary,28.669369,77.05617
-372,N'Djamena,Chad,Rue de l'Hôpital شارع المستشفى,residential,12.133044,15.07647
-373,Handan,China,滏河大街,secondary,36.611354,114.502672
-374,Bannu,Pakistan,Kohat Road,primary,32.999552,70.634503
-375,Yichang,China,橘乡大道,primary,30.689597,111.337925
-376,Antananarivo,Madagascar,Làlana Ambatolampy Antehiroka,tertiary,-18.849399,47.484809
-377,Heze,China,长江路,primary,35.222363,115.501658
-378,Abobo,Ivory Coast,Avenue Djeni Kobena,tertiary,5.365086,-4.020277
-379,Jamshedpur,India,Office Road,residential,22.807119,86.188862
-380,Douala,Cameroon,Rue 1.426,residential,4.059271,9.702905
-381,Antalya,Turkey,217. Sokak,residential,36.892019,30.687336
-382,Basrah,Iraq,شارع كوت ثويني,secondary,30.456831,47.884732
-383,Dallas,United States,Choice Street,residential,32.736216,-96.754075
-384,Saitama,Japan,観音通り,tertiary,35.898453,139.593018
+1,Shanghai,China,银宵路,residential,31.213414,121.55295
+2,Beijing,China,北苑路,primary,40.042743,116.40707
+3,Shenzhen,China,差館上街 Upper Station Street,unclassified,22.285083,114.148424
+4,Guangzhou,China,茶园中路,tertiary,23.410331,113.207676
+5,Kinshasa,Democratic Republic of the Congo,Avenue Kasa-Vubu,primary,-4.342877,15.277711
+6,Istanbul,Turkey,Soğancı Sokağı,residential,41.032623,28.984296
+7,Lagos,Nigeria,Felicia Koleosho Street,residential,6.597296,3.357862
+8,Ho Chi Minh City,Vietnam,Hẻm 226/43 Nguyễn Văn Lượng,residential,10.840455,106.672742
+9,Chengdu,China,双华桥,secondary,30.514598,104.048189
+10,Lahore,Pakistan,Sec XX Ph 3,residential,31.46769,74.36683
+11,Mumbai,India,Parel Bhowada Street,residential,19.007547,72.845846
+12,São Paulo,Brazil,Avenida Santos Dumont,secondary,-23.523682,-46.630921
+14,Karachi,Pakistan,Zafar Ahmed Khan Street,residential,24.932313,67.030097
+15,Tianjin,China,环湖东路,tertiary,39.081855,117.184099
+16,Delhi,India,Amaltash Marg,tertiary,28.598982,77.344291
+18,Moscow,Russia,Авангардная улица,secondary,55.849694,37.489996
+19,Dhaka,Bangladesh,Benaroshi Polli Road,residential,23.812004,90.369675
+20,Seoul,South Korea,부일로,tertiary,37.490955,126.729867
+21,Tokyo,Japan,砂町文化センター通り（大師通り）,unclassified,35.68067,139.831328
+22,Dongguan,China,黄阁南路,primary,22.800552,113.490746
+24,Xi’an,China,杜陵西路,primary,34.18323,109.014355
+25,Johannesburg,South Africa,Quail Place,residential,-26.082973,27.961231
+26,Nanjing,China,莫愁湖西路,tertiary,32.037316,118.751706
+27,Hangzhou,China,杨公堤,secondary,30.249627,120.126645
+28,Foshan,China,平实路,secondary,23.044528,113.199699
+29,London,United Kingdom,Wakefield Close,residential,51.341974,-0.4786
+30,New York City,United States,West 131st Street,residential,40.816108,-73.953471
+32,Bengaluru,India,32nd Cross Road,tertiary,12.927291,77.579148
+34,Taipei,Taiwan,民權路,primary,25.125813,121.461604
+35,Lima,Peru,Calle Las Dunas,residential,-12.030338,-76.963289
+36,Bogotá,Colombia,Transversal 22,residential,4.64361,-74.071945
+37,Chongqing,China,长江滨江路,primary,29.555123,106.570994
+38,Hong Kong,Hong Kong,太榮路 Tai Wing Avenue,tertiary,22.286219,114.22006
+39,Baghdad,Iraq,319-85,residential,33.398102,44.407634
+41,Qingdao,China,夏津路,residential,36.075328,120.31944
+42,Tehran,Iran,میدان شهید آرمان علی وردی,secondary,35.712799,51.309939
+45,Rio de Janeiro,Brazil,Rua Raul Pompéia,secondary,-22.982518,-43.19215
+46,Suzhou,China,海棠街,tertiary,31.306632,120.663309
+47,Puxi,China,西藏中路,secondary,31.23462,121.471201
+48,Ahmedabad,India,Chimanlal Girdharlal Road,secondary,23.010784,72.563727
+49,Abidjan,Ivory Coast,Rue Paul André Akouani,residential,5.35685,-3.953208
+50,Pudong,China,合欢路,tertiary,31.222633,121.543693
+51,Sydney,Australia,Oberon Street,residential,-33.926848,151.256194
+52,Singapore,Singapore,Holland Road,primary,1.306449,103.816967
+53,Melbourne,Australia,Narla Court,residential,-37.899732,145.158963
+55,Saint Petersburg,Russia,Вокзальное шоссе,unclassified,60.105722,30.214079
+56,Alexandria,Egypt,شارع الاندلس,residential,31.239337,29.997543
+60,Dalian,China,望海街,unclassified,38.911477,121.649206
+61,Kano,Nigeria,Bompai road,tertiary,12.009718,8.554104
+62,Santiago,Chile,Alcalde Dávalos,residential,-33.427969,-70.62756
+63,Cape Town,South Africa,Eland Way,residential,-33.946572,18.508375
+64,Peshawar,Pakistan,ورسک روڈ,primary,34.142646,71.453906
+68,Kolkata,India,Sanatan Sil Ln,residential,22.566806,88.360676
+70,Surat,India,Patidar Flyover,primary,21.150395,72.830303
+71,Yangon,Myanmar,Thakhin Mya Garden Street,tertiary,16.779574,96.134379
+72,Bao'an,China,"C段第三街 Section C, 3rd Street",residential,22.473982,114.046662
+73,Kabul,Afghanistan,د هوايي ډګر سلویښت متره سړک,primary,34.563395,69.133793
+75,Wuxi,China,江海西路,primary,31.61241,120.248488
+76,Giza,Egypt,شارع الفي شحاته,residential,30.089575,31.344619
+77,Jinan,China,六里山路,secondary,36.631627,117.002738
+78,Taiyuan,China,邮电后街,tertiary,37.848937,112.562656
+79,Zhengzhou,China,建安街,unclassified,34.750763,113.768254
+80,Bamako,Mali,Rue 345,tertiary,12.644443,-8.000041
+81,Riyadh,Saudi Arabia,البيان,residential,24.697943,46.718703
+83,New Territories,Hong Kong,加路連山道 Caroline Hill Road,tertiary,22.275451,114.18664
+87,Kunming,China,西寺巷,unclassified,25.032977,102.705821
+88,Zhongshan,China,宏景二路,tertiary,22.382143,113.337865
+89,Nanning,China,衡阳东路,secondary,22.842212,108.318649
+90,Shantou,China,天山南路,primary,23.374964,116.720984
+91,Los Angeles,United States,Victorine Street,residential,34.08642,-118.189115
+92,Faisalabad,Pakistan,ایئرپورٹ روڈ,tertiary,31.376258,72.988247
+93,Dubai,United Arab Emirates,شارع 15,residential,25.148643,55.211499
+95,Fuzhou,China,沿山支路,tertiary,25.993537,119.448676
+96,Ningbo,China,通途路 (永丰西路段),primary,29.889535,121.530234
+97,Casablanca,Morocco,Avenue Ouled Ziane شارع أولاد زيان,primary,33.589243,-7.602029
+98,Ibadan,Nigeria,Oke Foko Road,tertiary,7.376941,3.885472
+99,Puyang,China,人民东路,secondary,29.453972,119.892346
+101,Shiyan,China,宁夏路,tertiary,32.651191,110.68445
+102,Berlin,Germany,Templiner Straße,residential,52.533536,13.409574
+103,Tangshan,China,文化南路,tertiary,39.626487,118.178102
+104,Rawalpindi,Pakistan,Sawan Road,secondary,33.680345,73.018026
+105,Lüliang,China,交通路,primary,37.520334,111.159469
+106,Durban,South Africa,Kingsmead Way,residential,-29.848316,31.026595
+107,Changzhou,China,鸣凰桥,primary,31.673803,119.93051
+108,Busan,South Korea,부곡온천천로,secondary,35.23321,129.089184
+109,Madrid,Spain,Calle Núremberg,residential,40.41863,-3.617059
+111,Zibo,China,北京路,primary,36.776271,117.983256
+112,Pune,India,A Lane,residential,18.540709,73.887556
+113,Bursa,Turkey,Nilüfer - Orhaneli - Keles - Büyükorhan - Harmancık Yolu,primary,40.209212,28.992493
+115,Quezon City,Philippines,M. Roxas Avenue,tertiary,14.653892,121.070141
+117,Guiyang,China,航天路,primary,26.649334,106.761767
+118,Ürümqi,China,文化宫路,residential,43.796578,87.596302
+119,Surabaya,Indonesia,Jalan Manyar Kerta Adi X,residential,-7.285583,112.783596
+121,Lanzhou,China,武威路,secondary,36.064538,103.762615
+122,Caracas,Venezuela,Avenida Las Américas,residential,10.481332,-66.820069
+123,Kyiv,Ukraine,Синьоозерна вулиця,residential,50.502705,30.37885
+124,İzmir,Turkey,358. Sokak,residential,38.390154,27.153709
+125,Huizhou,China,长寿路,tertiary,23.086149,114.396462
+126,Buenos Aires,Argentina,Lugones,residential,-34.578649,-58.47367
+127,Haikou,China,龙华路,secondary,20.035657,110.330601
+128,Taichung,Taiwan,精誠六街,residential,24.155092,120.657055
+129,Kanpur,India,Kalpi Road,secondary,26.4616,80.294179
+130,Toronto,Canada,Lippincott Street,residential,43.660924,-79.408181
+132,Brisbane,Australia,Conon Street,residential,-27.42471,153.037712
+133,Luanda,Angola,Calcada do Pelorinho,unclassified,-8.815392,13.228768
+134,Osaka,Japan,阿弥陀橋通,unclassified,34.665324,135.497051
+135,Linyi,China,陶然路,primary,35.038914,118.337303
+136,Baoding,China,东三环,primary,38.832434,115.550622
+137,Kaohsiung,Taiwan,自立二路,residential,22.628623,120.29993
+138,Brooklyn,United States,Front Street,pedestrian,40.707003,-74.003182
+139,Guayaquil,Ecuador,3 Paseo 55C SE,residential,-2.279876,-79.880063
+140,Belo Horizonte,Brazil,Rua Dom Cabral,residential,-19.886529,-43.931951
+141,Minhang,China,南阳路,residential,31.229726,121.446112
+142,Bazhong,China,万家 - 坦溪,primary,31.77138,106.874909
+143,Salvador,Brazil,Avenida Barros Reis,primary,-12.947784,-38.47211
+144,Abuja,Nigeria,Constitution Avenue,primary,9.057242,7.487615
+145,Gazipur,Bangladesh,Tongabari,unclassified,23.90356,90.323519
+148,Bekasi,Indonesia,Jalan Gudang Peluru Utara II,residential,-6.227165,106.860906
+150,Haiphong,Vietnam,đường ven kênh,residential,20.841234,106.675838
+151,Yunfu,China,解放中路,pedestrian,22.931765,112.038722
+152,Navi Mumbai,India,Gaon Devi Road,tertiary,19.154576,72.934044
+153,Mogadishu,Somalia,Via Afgooye شارع أفجوي,secondary,2.041725,45.299863
+155,Bandung,Indonesia,Jalan Karang Tineung Indah 2,living_street,-6.884851,107.592735
+158,Medan,Indonesia,Jalan Adi Karya,residential,3.469242,98.712164
+160,Ouagadougou,Burkina Faso,Rue 17.236,residential,12.324993,-1.547255
+161,Nagpur,India,Road Bridge,secondary,21.137117,79.103019
+162,Fortaleza,Brazil,Rua Silva Jardim,residential,-3.740521,-38.533254
+164,Perth,Australia,Oxford Street,primary,-31.932816,115.841239
+165,Daegu,South Korea,양지로,secondary,35.85164,128.578023
+167,Nanchang,China,解放西路辅路,tertiary,28.658665,115.911669
+168,Baku,Azerbaijan,Mehdi Mehdizadə küçəsi,secondary,40.380056,49.861067
+170,Nagoya,Japan,弥生線,tertiary,35.246576,136.987213
+171,Rome,Italy,Piazza Walter Rossi,secondary,41.935116,12.443404
+172,Queens,United States,East 29th Street,residential,40.740614,-73.975712
+173,Houston,United States,Benning Drive,residential,29.656928,-95.460091
+175,Shaoxing,China,嵊山路,tertiary,29.97748,120.617277
+176,Nantong,China,永康路,residential,32.04938,120.817179
+177,Baoshan,China,淞沪路,primary,31.303824,121.510519
+180,Gaziantep,Turkey,Mustafa Taşar Caddesi,secondary,37.087022,37.328432
+181,Lubumbashi,Democratic Republic of the Congo,Avenue 3ieme Espace,residential,-11.708082,27.449651
+182,Manaus,Brazil,Rua do Congresso,residential,-3.128537,-60.023664
+183,Lusaka,Zambia,Broads Road,residential,-15.411102,28.291
+185,Zhuhai,China,佛山街 Rua de Fat San,residential,22.157797,113.552312
+186,Santo Domingo,Dominican Republic,Avenida Venezuela,primary,18.48531,-69.870185
+187,Lomé,Togo,Rue 4,residential,6.126056,1.210922
+188,Multan,Pakistan,Ameerabad Road,tertiary,30.210691,71.454273
+189,Havana,Cuba,Calle 1ra,tertiary,23.138092,-82.405582
+190,Depok,Indonesia,Jalan Lebak Bulus Indah,residential,-6.306997,106.777064
+192,Paris,France,Rue Primatice,residential,48.833029,2.355535
+193,Coimbatore,India,ayyasamy street,residential,10.990965,76.957179
+195,Port Harcourt,Nigeria,Aeroplane Drive,tertiary,4.791568,7.039318
+197,Córdoba,Argentina,Avenida Emilio Caraffa,primary,-31.39044,-64.204591
+198,Mbuji-Mayi,Democratic Republic of the Congo,Avenue Odia David,tertiary,-6.113242,23.616788
+200,Kunshan,China,博士路,secondary,31.406247,120.895908
+201,Al Mawşil al Jadīdah,Iraq,105-4,residential,36.362886,43.142357
+202,Weifang,China,西城街,tertiary,36.596524,119.121042
+203,Zunyi,China,沙盐路,residential,27.689855,106.925767
+204,Al Başrah al Qadīmah,Iraq,شارع الميثاق,tertiary,30.54888,47.810426
+205,La Paz,Bolivia,Calle C,residential,-16.486231,-68.189555
+206,Lianyungang,China,盐河巷,residential,34.59893,119.166826
+209,Brazzaville,Republic of the Congo,Avenue des Ecuries,tertiary,-4.337067,15.246643
+210,Tashkent,Uzbekistan,Gavxar ko'chasi,primary,41.254359,69.195918
+212,Almaty,Kazakhstan,Тайманов көшесі,unclassified,43.211619,76.961943
+214,Hamburg,Germany,Hohe Straße,primary,53.450655,9.970027
+215,Sapporo,Japan,西宮の沢新発寒通,tertiary,43.103742,141.26035
+216,Songjiang,China,涞寅路,tertiary,31.141731,121.296351
+217,Accra,Ghana,Akasanoma Road,secondary,5.566823,-0.212199
+218,Curitiba,Brazil,Rua Sílvio Gusso,residential,-25.501682,-49.287261
+219,Ordos,China,中央生态大道,secondary,39.547184,109.874784
+220,Sanaa,Yemen,شارع المطار,primary,15.410991,44.214358
+221,Conakry,Guinea,Rue MA. 266,residential,9.538896,-13.667329
+222,Tangerang,Indonesia,Jalan Zamrud VI,residential,-6.177549,106.732907
+223,Tijuana,Mexico,Canal Street,residential,32.587287,-117.094319
+225,Beirut,Lebanon,شارع عدنان الحكيم,tertiary,33.866392,35.492701
+226,Jieyang,China,榕华大道,primary,23.537983,116.358982
+227,Jilin,China,越山路,primary,43.847633,126.527502
+228,Jiading,China,沈徐路,residential,31.323275,121.259968
+229,Bucharest,Romania,Strada Praga,residential,44.456193,26.091346
+230,Camayenne,Guinea,Rue RO. 209,residential,9.600962,-13.650434
+231,Kakamega,Kenya,Comrades Way,residential,0.288045,34.760227
+232,Shangqiu,China,长江路,primary,34.41353,115.729743
+234,Tainan,Taiwan,中華路,primary,23.019932,120.22407
+235,Datong,China,和阳街,secondary,40.092158,113.30153
+236,Kaduna,Nigeria,Wukari Road,residential,10.514802,7.43889
+237,Omdurman,Sudan,شارع الشهيد عبد العظيم,secondary,15.623592,32.479198
+239,Thāne,India,V Mandir Chowk Road,residential,19.253592,72.860489
+240,Iztapalapa,Mexico,Avenida Medellín,primary,19.402414,-99.162264
+241,Diyarbakır,Turkey,262. Sokak,residential,37.945018,40.174274
+242,Santa Cruz de la Sierra,Bolivia,Avenida Ovidio Barbery Justiniano,tertiary,-17.753885,-63.187504
+243,Vadodara,India,Atal Flyover,primary,22.314232,73.165173
+244,Adana,Turkey,84038. Sokak,residential,37.035873,35.271826
+245,Nanyang,China,麒麟路,secondary,33.008331,112.489922
+246,Abu Dhabi,United Arab Emirates,شارع خُور قِرقِشان,unclassified,24.454827,54.334283
+247,Palembang,Indonesia,Jalan Mitra Haji,residential,-2.922139,104.70583
+248,Sharjah,United Arab Emirates,12d شارع,residential,25.245665,55.304339
+249,Bhopal,India,Main Narela Road (Nizamuddin),tertiary,23.261993,77.466283
+250,Jiangmen,China,东华二路,secondary,22.600889,113.087021
+251,Benin City,Nigeria,Stadium Road,tertiary,6.332987,5.610601
+252,Jiangyin,China,澄张路,tertiary,31.929698,120.327266
+253,Fuyang,China,颍淮大道,primary,32.881096,115.803628
+254,Montréal,Canada,Rue Lenoir,residential,45.475996,-73.591147
+255,Bayan Nur,China,长春东街,tertiary,40.762152,107.413045
+256,Maracaibo,Venezuela,Calle 72,residential,10.668448,-71.621551
+257,Chaozhou,China,甲第巷,residential,23.662914,116.643277
+258,Minsk,Belarus,вуліца Клумава,residential,53.891493,27.612034
+259,Budapest,Hungary,Bogáncsvirág utca,residential,47.484351,19.188107
+261,Tai’an,China,岱岳东路,tertiary,36.193112,117.03703
+262,Rasapūdipalem,India,Dimond Park Road,secondary,17.726624,83.303745
+263,Pimpri-Chinchwad,India,Sopan Baug Road,residential,18.513536,73.903152
+264,Caloocan,Philippines,Carlos P. Garcia Avenue,primary,14.558947,121.06493
+265,Warsaw,Poland,Rondo Ryszarda Kaczorowskiego,secondary,52.216344,20.988077
+266,Soweto,South Africa,Kretzschmar Street,residential,-26.18438,27.973146
+267,Semarang,Indonesia,Jalan Tanjung,secondary,-6.976108,110.416123
+268,Puebla,Mexico,Avenida 33 Poniente,residential,19.039137,-98.219982
+269,Vienna,Austria,Schloßberggasse,tertiary,48.193854,16.261666
+270,Barcelona,Spain,Carrer dels Joncs,residential,41.35749,2.118947
+271,Patna,India,Kargil Chowk,primary,25.618622,85.14828
+272,Mosul,Iraq,زقاق 66,residential,36.3705,43.136802
+273,Kallakurichi,India,Tiruvannamalai - Thiyagadurgam Road,primary,11.823376,79.066477
+275,Xining,China,黄河路,secondary,36.624181,101.770023
+276,Changshu,China,锡太线,primary,31.557691,120.854023
+277,Huainan,China,惠利路,secondary,32.636727,116.981855
+278,Rabat,Morocco,Rue Ait Er'kha,residential,33.963735,-6.834847
+279,Recife,Brazil,Rua Padre Bernardino Pessoa,residential,-8.114722,-34.893304
+280,Phoenix,United States,South Pewaukee Street,residential,33.345167,-111.989208
+281,Ecatepec de Morelos,Mexico,Calle Ramiriqui,residential,19.50718,-99.124451
+282,Lu’an,China,龙河路,secondary,31.743381,116.503324
+283,Valencia,Venezuela,Calle Río Apure,residential,10.202826,-68.034678
+285,Yancheng,China,良友路,tertiary,33.307531,120.115531
+286,Novosibirsk,Russia,Большая улица,secondary,55.008966,82.863685
+287,Erbil,Iraq,شەقامی هەژار,secondary,36.174617,44.009925
+288,Fukuoka,Japan,内山三条線,secondary,33.524831,130.538747
+289,Taizhou,China,永兴路,tertiary,32.451923,119.944431
+291,Manila,Philippines,General J. Cailles Street,residential,14.541333,121.013347
+292,Wuhu,China,银湖北路,primary,31.417114,118.369293
+293,Santiago de Querétaro,Mexico,16 de Septiembre,tertiary,20.592982,-100.393703
+294,Dazhou,China,永祥街,residential,31.213181,107.462519
+295,Yangzhou,China,徐凝门路,tertiary,32.384486,119.444549
+296,León de los Aldama,Mexico,Avenida Paseo del Moral,tertiary,21.15196,-101.689215
+297,Makkah,Saudi Arabia,شارع عبدالله بن عباس,primary,21.386099,39.796199
+298,Philadelphia,United States,Walnut Avenue,residential,39.865159,-75.080671
+299,Phnom Penh,Cambodia,ផ្លូវ ១៥៧,residential,11.554474,104.914601
+300,Guilin,China,环城西二路,primary,25.287562,110.279123
+301,Damascus,Syria,جادة العفيف,secondary,33.524758,36.283137
+302,Quetta,Pakistan,Gymkhana Road,tertiary,30.198114,67.008648
+303,Zhaoqing,China,298乡道,tertiary,22.995227,112.526281
+304,Onitsha,Nigeria,Oranye Street,residential,6.155487,6.783791
+305,Mianyang,China,财元路,residential,31.487119,104.695895
+306,Auckland,New Zealand,Vincent Street,tertiary,-36.854186,174.759378
+307,Isfahan,Iran,میدان بسیج,primary,32.625136,51.686386
+308,Wanzhou,China,南滨大道,primary,30.781113,108.413619
+310,Harare,Zimbabwe,Leopold Takawira Avenue,secondary,-17.813869,31.041541
+311,Monrovia,Liberia,Barclay Avenue,residential,6.294421,-10.773711
+312,Putian,China,田庄街,tertiary,25.430076,119.027269
+313,Kawasaki,Japan,環八通り,primary,35.605299,139.646791
+314,Goiânia,Brazil,Avenida Anápolis,primary,-16.658372,-49.196488
+315,San Antonio,United States,Gus Garcia,residential,29.417656,-98.511102
+316,Kobe,Japan,魚崎工区２７号線,residential,34.712355,135.271906
+317,Stockholm,Sweden,Hökens Gata,residential,59.318179,18.073674
+318,Ciudad Juárez,Mexico,Downum Road,residential,31.7808,-106.369212
+319,Cần Thơ,Vietnam,Hẻm 14 Lý Tự Trọng,residential,10.034766,105.780446
+320,Munich,Germany,Leienfelsstraße,residential,48.15421,11.425759
+321,Khulna,Bangladesh,Tank Rd,residential,22.806914,89.573972
+322,Belém,Brazil,Travessa Bom Jardim,residential,-1.465559,-48.49679
+323,Yekaterinburg,Russia,улица Бебеля,secondary,56.847459,60.560123
+325,Yinchuan,China,解放东路,secondary,38.462094,106.29157
+326,Manhattan,United States,East 64th Street,residential,40.765566,-73.966395
+327,Nashik,India,Canal Link Road,tertiary,20.001022,73.760902
+328,Asunción,Paraguay,Vista Alegre,residential,-25.300963,-57.626865
+331,Makassar,Indonesia,Jalan Toddopuli VII,unclassified,-5.163383,119.455031
+332,Adelaide,Australia,Taylor Terrace,residential,-34.922083,138.670082
+333,Quanzhou,China,坪山路,secondary,24.900786,118.614589
+334,Madurai,India,College Street,residential,9.921227,78.152313
+335,Jinhua,China,李渔路,secondary,29.085353,119.655459
+336,Kyoto,Japan,壬生川通,tertiary,34.988511,135.746067
+338,Changde,China,高山街,tertiary,29.031137,111.694005
+339,Kuala Lumpur,Malaysia,Lorong SS 1/24B,residential,3.101805,101.61973
+340,Kayseri,Turkey,Rüzgarlı Caddesi,tertiary,38.691322,35.549122
+341,Kaifeng,China,陇海五路,unclassified,34.756951,114.227482
+342,Anshan,China,千山西路,primary,41.150055,122.915943
+343,Karaj,Iran,دوازدهم فاز ۱,residential,35.854932,50.979334
+345,Daejeon,South Korea,우암로326번길,residential,36.347948,127.452794
+346,Baoji,China,金陵东路,primary,34.41068,107.158511
+347,Suqian,China,广宁街,residential,33.954306,118.291857
+348,Liuzhou,China,大同巷,residential,24.304378,109.398893
+349,Tirunelveli,India,STC college New Bus stand link,tertiary,8.70025,77.72924
+350,Konya,Turkey,Anneler Sokağı,residential,37.864095,32.480107
+351,Zhangjiagang,China,南二环路,primary,31.842864,120.559662
+352,Agra,India,Gwalior Road,secondary,27.176273,78.015967
+353,South Tangerang,Indonesia,Jalan Sungai Sambas III,residential,-6.247011,106.795539
+354,Tabriz,Iran,جامی,residential,38.06328,46.365365
+355,Kharkiv,Ukraine,Путилівський провулок,residential,50.022906,36.226658
+356,Jinjiang,China,和平中路,primary,24.817504,118.585786
+357,Faridabad,India,Ashray Bhavan Road,tertiary,28.385951,77.352324
+358,Bozhou,China,颜张路,primary,33.910046,115.876666
+359,Qujing,China,潇湘路,secondary,25.489068,103.800907
+360,San Diego,United States,San Onofre Terrace,residential,32.697354,-117.080763
+361,Gwangju,South Korea,풍금로23번길,residential,35.121358,126.864074
+362,Zhanjiang,China,海建路,residential,21.276315,110.363931
+363,Fushun,China,长城街,secondary,41.879201,123.95407
+364,Rājkot,India,Jamnagar -Rajkot highway Flyover,primary,22.333178,70.763375
+365,Luoyang,China,周山大道,primary,34.64878,112.374465
+367,The Bronx,United States,Riverview Terrace,residential,40.757793,-73.959466
+368,Guankou,China,北正南路,secondary,28.143953,113.626425
+369,Huế,Vietnam,Đường Nguyễn Khoa Vy,residential,16.480787,107.598213
+370,Milan,Italy,Viale Regina Margherita,secondary,45.45847,9.20531
+371,Najafgarh,India,Dwarka Flyover,primary,28.586454,77.087908
+373,Handan,China,邯磁路,primary,36.575603,114.462485
+374,Bannu,Pakistan,Kohat Road,primary,32.997776,70.62944
+375,Yichang,China,集锦路,tertiary,30.771839,111.309947
+376,Antananarivo,Madagascar,Làlana Mahafaka,residential,-18.906009,47.51988
+377,Heze,China,长江路,primary,35.225038,115.465017
+378,Abobo,Ivory Coast,Rue Kalilou Kaba,residential,5.343034,-3.963552
+380,Douala,Cameroon,Rue 4.084,residential,4.072164,9.668001
+381,Antalya,Turkey,Turgut Reis Caddesi,tertiary,36.889035,30.68919
+382,Basrah,Iraq,شارع الكباسي,primary,30.618333,47.7882
+383,Dallas,United States,Stoneport Drive,residential,32.715121,-96.715703
 385,Gorakhpur,India,Bhuthan-Hasnaga Road,tertiary,29.525921,75.59314
-386,Niamey,Niger,Rue KL - 35,residential,13.522554,2.126151
-387,Liupanshui,China,汪水路,primary,26.607189,104.852195
-388,Taguig,Philippines,Fernando Street,residential,14.563119,121.000178
-389,Maoming,China,茂高快线,primary,21.744862,110.91777
-390,Calgary,Canada,Viceroy Drive NW,residential,51.09852,-114.157854
-391,Tripoli,Libya,شارع هايتي,tertiary,32.889682,13.182652
-392,Madinah,Saudi Arabia,طريق سلطانة,primary,24.487878,39.582066
-393,Yaoundé,Cameroon,Rue 6.098,residential,3.902221,11.495746
-394,Batam,Indonesia,Jalan S.Parman,primary,1.065716,104.031691
-395,Qinzhou,China,粤桂北路,secondary,21.951736,108.645773
-396,Luohe,China,井岗山路,tertiary,33.589007,113.990522
-397,Xiangyang,China,沿江大道,secondary,32.029708,112.132844
-398,Yangjiang,China,漠江路,primary,21.86468,111.946084
-399,Yixing,China,南仓村路,tertiary,31.360446,119.814227
-400,Pimpri,India,Sus Road,secondary,18.552819,73.749089
-401,Da Nang,Vietnam,Đường Khúc Hạo,tertiary,16.089919,108.235632
-402,Amman,Jordan,شارع نوح الرومي,residential,31.956556,35.858911
-403,Budta,Philippines,Midsayap-Dulawan Road,primary,7.084408,124.498609
-404,Belgrade,Serbia,Личка,residential,44.811076,20.455737
-405,Biên Hòa,Vietnam,Đường số 4,residential,10.894329,106.765137
-406,Qingpu,China,外青松公路,secondary,31.124051,121.127098
-407,Montevideo,Uruguay,Carlos Lallemand,residential,-34.888987,-56.124395
-408,Xuchang,China,前进路,primary,34.020722,113.859812
-409,Kalyān,India,Pipeline Rd,primary,19.1874,73.182622
-410,Zigong,China,燊海井路,primary,29.392103,104.814232
-411,Nizhniy Novgorod,Russia,улица 40 лет Октября,primary,56.261604,43.973661
-412,Jepara,Indonesia,Jalan Raya Tahunan - Batealit,tertiary,-6.62966,110.735161
-413,Maputo,Mozambique,Av. Elias Lucas Kumato,residential,-25.960192,32.597116
-414,Xuzhou,China,苏堤路,primary,34.240995,117.178516
-415,Dammam,Saudi Arabia,28th Street,primary,26.447101,50.080505
-416,Ra’s Bayrūt,Lebanon,شارع صبرا,residential,33.867333,35.498783
-417,Neijiang,China,南环路,secondary,29.575726,105.054405
-418,Shiraz,Iran,حسینی,tertiary,29.602118,52.546814
-419,Heshan,China,关濑路,tertiary,28.623727,112.331199
-420,Dombivali,India,Gandhi Nagar Internal Road,residential,19.203802,73.093044
-421,Kananga,Democratic Republic of the Congo,Boulevard Lumumba,secondary,-5.900794,22.408673
-422,Kazan,Russia,Киевская улица,residential,55.773737,49.165968
-423,Jining,China,任城大道,primary,35.440526,116.635537
-424,Barquisimeto,Venezuela,calle L6,residential,10.060078,-69.279699
-425,Shubrā al Khaymah,Egypt,شارع الماظه,residential,30.084384,31.344543
-426,Putuo,China,北翟支路,tertiary,31.210292,121.29746
-427,Port-au-Prince,Haiti,Rue Berthold,residential,18.530383,-72.407429
-428,Suwon,South Korea,금곡로,tertiary,37.279659,126.967337
-429,Xinyang,China,滨河南路,secondary,32.088002,114.138738
-430,Liaocheng,China,北外环路,primary,36.507335,116.025967
-431,Jinzhong,China,新建北路,secondary,37.746695,112.729184
-432,Callao,Peru,Jirón Belisario Flores,tertiary,-12.083035,-77.045986
-433,Meerut,India,gali 72,residential,28.99874,77.710932
-434,Virār,India,Chikhaldongari Road,tertiary,19.465315,72.805966
+386,Niamey,Niger,Rue RF - 218,residential,13.535312,2.144658
+387,Liupanshui,China,麒麟高架桥,secondary,26.589501,104.860705
+388,Taguig,Philippines,Santo Sepulcro Street,residential,14.579455,120.996639
+390,Calgary,Canada,Varna Place NW,residential,51.082495,-114.161324
+391,Tripoli,Libya,شارع الضمان,residential,32.797613,13.274472
+392,Madinah,Saudi Arabia,شارع أبي ذر الغفاري,primary,24.488499,39.615887
+393,Yaoundé,Cameroon,Rue 5.274,residential,3.897773,11.554082
+395,Qinzhou,China,四马路,residential,21.946612,108.617271
+396,Luohe,China,翠华山路,secondary,33.575111,113.958916
+397,Xiangyang,China,大庆东路,primary,32.064594,112.163747
+398,Yangjiang,China,苑西二路,residential,21.863137,111.999168
+399,Yixing,China,教育西路,tertiary,31.354668,119.808249
+401,Da Nang,Vietnam,Đường Lê Văn Quý,residential,16.070049,108.23791
+402,Amman,Jordan,شارع المشارق,residential,31.959121,35.86072
+403,Budta,Philippines,Pigcawayan-Patot Road,secondary,7.285756,124.427004
+404,Belgrade,Serbia,Руварчева,residential,44.815025,20.476198
+405,Biên Hòa,Vietnam,Hẻm 84,residential,10.875659,106.740695
+406,Qingpu,China,崧泽大道,secondary,31.176629,121.115827
+407,Montevideo,Uruguay,Perseverano,residential,-34.858189,-56.084962
+408,Xuchang,China,建安大道,primary,34.036799,113.843611
+409,Kalyān,India,Nandivii Road,tertiary,19.198788,73.085619
+410,Zigong,China,兴川南街,tertiary,29.318505,104.78348
+411,Nizhniy Novgorod,Russia,Комсомольское шоссе,primary,56.312999,43.899068
+412,Jepara,Indonesia,Jalan Ratu Kaliyamatan,primary,-6.601273,110.664933
+414,Xuzhou,China,兴镇南路,secondary,34.268254,117.358608
+415,Dammam,Saudi Arabia,Street 10,residential,26.44036,50.112296
+416,Ra’s Bayrūt,Lebanon,مستديرة عباس الموسوي,secondary,33.85722,35.49386
+417,Neijiang,China,星桥街,tertiary,29.598735,105.057524
+418,Shiraz,Iran,۵ آوینی,residential,29.629451,52.510599
+419,Heshan,China,古城路,tertiary,28.596335,112.343925
+420,Dombivali,India,New Kalyan Road,tertiary,19.220421,73.117523
+421,Kananga,Democratic Republic of the Congo,Avenue Gouverneur Wauters,residential,-5.897772,22.410986
+422,Kazan,Russia,улица Нурсултана Назарбаева,secondary,55.769352,49.13103
+423,Jining,China,鸿广路,secondary,35.402207,116.681913
+424,Barquisimeto,Venezuela,Vereda 4,residential,10.08476,-69.343409
+425,Shubrā al Khaymah,Egypt,شارع سيزوستريس,residential,30.089523,31.324975
+426,Putuo,China,铜仁路,residential,31.22799,121.445477
+427,Port-au-Prince,Haiti,Route de Pyron,unclassified,18.492498,-72.333987
+428,Suwon,South Korea,동탄 원천로 915번길,residential,37.256438,127.043739
+430,Liaocheng,China,光岳路,primary,36.505085,116.022413
+431,Jinzhong,China,文津街,secondary,37.753252,112.712088
+433,Meerut,India,Baghpat Road,primary,28.970247,77.656766
+434,Virār,India,Tungareshwar Road,tertiary,19.408424,72.872351
 435,Nowrangapur,India,Khutulaguda Lodijodi Road,unclassified,19.136686,82.590943
-436,Karbala,Iraq,شارع الاسكان,primary,32.588618,44.020005
-437,Changzhi,China,威远门北路,primary,36.221491,113.105664
-438,Tianshui,China,藉水北路,primary,34.574282,105.673091
-439,Sadr City,Iraq,301-6,residential,33.359579,44.389792
-440,Yangpu,China,南阳路,residential,31.229726,121.446112
-441,Mombasa,Kenya,Baringo Street,residential,-4.043546,39.661407
-442,Mandalay,Myanmar,65th Street,residential,21.889567,96.105021
-443,Srinagar,India,Nishat Brein Link Road,tertiary,34.118947,74.88133
-444,Barranquilla,Colombia,Calle 63C,residential,10.972639,-74.805267
-445,Chelyabinsk,Russia,Копейское шоссе,primary,55.121219,61.520064
-446,Mérida,Mexico,Prolongación Paseo Montejo,secondary,20.994905,-89.616306
-447,Hiroshima,Japan,松原京橋線,tertiary,34.396245,132.471367
-448,Santiago de los Caballeros,Dominican Republic,Calle 4C,residential,19.441845,-70.697103
-449,Shymkent,Kazakhstan,улица Пайзахметова,residential,42.341037,69.526905
-450,Weinan,China,乐天大街,secondary,34.505736,109.519822
-451,Ghāziābād,India,Green hotel road,residential,28.636432,77.403895
-452,Matola,Mozambique,Rua das Palmeiras,residential,-26.010179,32.411947
-453,Dhanbad,India,Housing Colony Road,residential,23.807082,86.436952
-454,Arequipa,Peru,Avenida Francisco Bolognesi,tertiary,-16.392214,-71.539641
-455,Hong Kong Island,Hong Kong,士美菲路 Smithfield,secondary,22.278168,114.131157
-456,Fes,Morocco,Rue 1 زنقة,tertiary,34.019595,-5.024911
-457,Gustavo Adolfo Madero,Mexico,Calle Manuel Buenrostro,residential,19.483918,-99.095785
-460,Jiaxing,China,建国北路,tertiary,30.775185,120.747604
-461,Aurangabad,India,Bhimnagar Road,tertiary,19.894541,75.299261
-462,Zhongwei,China,中央西大道,primary,37.500366,105.10322
-463,Omsk,Russia,Вокзальная улица,tertiary,54.939854,73.396095
-464,Pikine,Senegal,Rue HB-193,residential,14.728668,-17.437051
-465,Guarulhos,Brazil,Rua Tapajós,residential,-23.464426,-46.525618
-466,Pekanbaru,Indonesia,Jalan Palas Mekar,secondary,0.57239,101.412446
-467,Panjin,China,双台子河大桥,primary,41.17247,122.046034
-468,Bandar Lampung,Indonesia,Jalan Manggis,residential,-5.407774,105.256818
-469,Prague,Czechia,Podolské nábřeží,tertiary,50.059331,14.419533
-470,Varanasi,India,Dharmapala Road,tertiary,25.379425,83.024945
-471,Jiujiang,China,疏港大道,primary,29.745359,116.093835
-472,Samara,Russia,улица Декабристов,residential,53.202033,50.147991
-473,Aba,Nigeria,Aba - Owerri Road,primary,5.133583,7.351008
-474,Amritsar,India,M.M.M. Road,secondary,31.638462,74.875779
-475,Birmingham,United Kingdom,Country Park View,residential,52.545686,-1.802162
-476,Copenhagen,Denmark,Christian Richardts Vej,residential,55.682321,12.535467
-477,Sofia,Bulgaria,Киевска,residential,42.669329,23.258978
-478,Anyang,China,文明大道,primary,36.091099,114.284891
-479,Yerevan,Armenia,Երվանդ Քոչարի փողոց,residential,40.163034,44.416775
-480,Luohu District,China,"M段第四街 Section M, 4th Street",residential,22.482453,114.043564
-481,Vijayawada,India,Undavalli Road,secondary,16.454008,80.569877
-482,Fengxiang,China,海棠路,residential,30.824811,121.536363
-483,Bijie,China,天河路,secondary,27.313436,105.283369
-484,Monterrey,Mexico,Cerro de las Mitras,residential,25.673883,-100.346407
-485,Kigali,Rwanda,KK 575 Street,residential,-1.98039,30.077624
-486,Rostov-on-Don,Russia,проспект Соколова,secondary,47.235456,39.716146
-487,Zhuzhou,China,栗合路,tertiary,27.796412,113.08555
-488,Malingao,Philippines,Roosevelt Avenue,residential,7.19063,124.529216
-489,Touba,Senegal,vers Mbacké,primary,14.861535,-15.876611
-490,Ufa,Russia,улица им. города Галле,primary,54.74991,55.985099
-491,Ranchi,India,Zila School road,residential,23.370274,85.322909
-492,Shangrao,China,中山路,tertiary,28.445721,117.967701
-493,Lilongwe,Malawi,Nvera Road,residential,-13.952192,33.76223
-494,Huaibei,China,紫昱路,secondary,34.048515,116.824768
-495,Maiduguri,Nigeria,B-5,unclassified,11.782188,13.049499
-496,Xuhui,China,宛平南路,secondary,31.194824,121.442027
-497,Meishan,China,岷黑快速通道,secondary,30.08398,103.953888
-498,Mwanza,Tanzania,Bondeni St,residential,-2.528142,32.887209
-499,Ulsan,South Korea,돋질로355번길,residential,35.545864,129.343905
-500,Sendai,Japan,宝堰前沼線,tertiary,38.310442,140.919307
-501,Krasnoyarsk,Russia,4-я Продольная улица,residential,56.032139,92.856324
-502,Guigang,China,江南大道,primary,23.072372,109.624359
-503,Oslo,Norway,Finns vei,residential,59.923918,10.788229
-504,Jabalpur,India,Sangam Colony Main Road,residential,23.179902,79.920637
-506,Aden,Yemen,شارع المتحف,tertiary,12.77966,45.037918
-507,Bogor,Indonesia,Jalan Farmasi,residential,-6.578505,106.782156
-508,Ciudad Nezahualcoyotl,Mexico,Calle 67 Norte,residential,19.410913,-99.082569
-509,Hengyang,China,家福路,tertiary,26.912529,112.57954
-510,Prayagraj,India,Indalpur Road,tertiary,25.396016,81.85677
-511,Trujillo,Peru,Calle Santo Toribio de Mogrovejo,residential,-8.118588,-79.035764
-512,Visakhapatnam,India,Vishakapatnam - Srungavarapukota - Araku Road Flyover,primary,17.743425,83.233415
-513,Goyang-si,South Korea,은평로13길,residential,37.603291,126.924545
-514,Yulin,China,苗园路,secondary,22.60285,110.149224
-515,Jodhpur,India,Railway Flyover,primary,26.293428,73.046857
-516,Gwalior,India,Maharani LaxhmiBai Marg,secondary,26.202535,78.15904
-517,Jingzhou,China,首辅路,tertiary,30.343223,112.232918
-518,Gqeberha,South Africa,Lovemore Crescent,residential,-33.940042,25.581979
-519,Tbilisi,Georgia,იოანე შავთელის ქუჩა,pedestrian,41.696158,44.806466
-520,Voronezh,Russia,улица Ворошилова,primary,51.649983,39.164018
-521,Xinxiang,China,南环路,primary,35.268502,113.847497
-522,Yichun,China,府前路,tertiary,27.816887,114.408056
-523,Sokoto,Nigeria,Hospital Road,tertiary,13.032714,5.235578
-524,Jos,Nigeria,old buruku park road,tertiary,9.931783,8.883892
-525,Tangier,Morocco,Rue Hassan El Ouzani,residential,35.776108,-5.812678
-526,Teni,India,Theni Bypass Road,secondary,10.041907,77.496989
-527,Xianyang,China,周成路,tertiary,34.405258,108.738612
-528,Mexicali,Mexico,Imperial Avenue,unclassified,32.666398,-115.498659
-529,Pointe-Noire,Republic of the Congo,Avenue Raymond Paillet,secondary,-4.762225,11.866985
-530,Maceió,Brazil,Rua Edgar de Góes Monteiro,residential,-9.671618,-35.749927
-531,Campinas,Brazil,Avenida Wagner Samara,secondary,-22.848447,-47.063051
-532,Sanya,China,学院路,secondary,18.319646,109.543613
-533,Rangpur,Bangladesh,Mayamoyi Road,residential,25.745103,89.26349
-534,Kirkuk,Iraq,شارع ابو خطاب,secondary,35.426501,44.419028
-535,Ashgabat,Turkmenistan,"Köşi 6-njy (Maýakowskiý, 2057) geçelgesi",tertiary,37.963099,58.337007
-536,Shaoguan,China,浈江大道中,primary,24.761498,113.581056
-537,Howrah,India,Kavi Barathi Road,residential,22.515355,88.35422
-538,Raipur,India,GE Road,primary,21.246245,81.605508
-539,Changwon,South Korea,창이대로,primary,35.235531,128.691376
-540,Longyan,China,思源路,residential,25.033559,117.015042
-541,Köln,Germany,Deutzer Brücke,secondary,50.935983,6.962071
-542,Dublin,Ireland,Drumalee Park,residential,53.355715,-6.290744
-543,Tiruchirappalli,India,Kallar Street,unclassified,10.82242,78.698716
-544,Yongzhou,China,珊瑚路,secondary,26.459029,111.592749
-545,Brussels,Belgium,Chaussée de Mons - Bergense Steenweg,primary,50.828522,4.303648
-546,Zamboanga,Philippines,2nd Street,residential,6.929735,122.08288
-548,Huzhou,China,菜花泾路,tertiary,30.852522,120.101449
-549,Volgograd,Russia,Трёхгорная улица,residential,48.731273,44.494523
-550,Khartoum North,Sudan,شارع الطيار عز الدين,residential,15.599692,32.525732
-551,Edmonton,Canada,73 Street NW,residential,53.515158,-113.439866
-552,Odesa,Ukraine,вулиця Андреєвського,residential,46.499837,30.714881
-553,Wuwei,China,西关北路,tertiary,37.930922,102.619636
-554,Jacksonville,United States,Branch Lane,residential,30.284877,-81.6163
-555,Fort Worth,United States,McGee Drive,residential,32.758292,-97.401831
-556,Hanzhong,China,虎桥西街,living_street,33.081135,107.005028
-557,Hezhou,China,西湾大道,primary,24.47392,111.479985
-558,Pest,Hungary,Róbert Károly körút,primary,47.522661,19.082569
-559,Kota,India,Rawatbhata Road,secondary,25.167028,75.841691
-560,Zhu Cheng City,China,兴华东路,tertiary,35.989141,119.433837
-561,Shivaji Nagar,India,Amrale Road,residential,18.512192,73.856405
-562,Dongying,China,锦霞路,residential,37.526116,118.525516
-563,Luzhou,China,南光路,secondary,28.893961,105.427731
-564,San Jose,United States,Mintwood Court,residential,37.3162,-121.988562
-565,Sholapur,India,Kumathe- Aherwadi Road,primary,17.60078,75.893987
-566,Marrakesh,Morocco,Rue Ibrahim El Mazini,residential,31.622497,-8.003913
-567,Guatemala City,Guatemala,3a Calle,residential,14.644208,-90.502769
-568,Meizhou,China,福兴路,secondary,24.290619,116.149058
-569,Yueyang,China,联港路,primary,29.409761,113.17491
-570,Laiwu,China,园区一路,residential,36.149405,117.702805
-571,Benxi,China,滨河北路,secondary,41.271033,123.687439
-572,Esenyurt,Turkey,Merdivenli Sokağı,residential,40.989618,28.773664
-573,Perm,Russia,1-я Гиринская улица,living_street,57.956995,56.172936
-574,Zaria,Nigeria,BATC Road,tertiary,11.118449,7.732357
-575,Kennedy,Colombia,Avenida Calle 24,secondary,4.66153,-74.115892
-576,Chiba,Japan,おゆみの道,pedestrian,35.555171,140.174352
-577,Pingdingshan,China,矿工路,primary,33.744194,113.309078
-578,Ciudad Guayana,Venezuela,Carrera Puerto Cabello,residential,8.309044,-62.710455
-579,Sargodha,Pakistan,City Road,secondary,32.086325,72.661201
-580,Austin,United States,Woodcutters Way,residential,30.326247,-97.786332
-582,Bengbu,China,长青北路,residential,32.934656,117.311873
-583,Salé,Morocco,Rue Oulmes زنقة اولماس,residential,34.013464,-6.821274
-584,Jerusalem,Israel,פתח תקוה,tertiary,31.79383,35.204407
-585,Chandigarh,India,Udyog Path,secondary,30.74163,76.772784
-586,Dnipro,Ukraine,вулиця 128-ї Бригади Тероборони,primary,48.47357,35.009451
-587,Cebu City,Philippines,Governor M. Cuenco Avenue,secondary,10.344713,123.912549
-588,Sanhe,China,贤人西大街,tertiary,39.993541,117.063024
-589,Tiruppur,India,Tiruppur - Kangayam Road,primary,11.09035,77.419559
-590,Guwahati,India,Janapath Rd,residential,26.169247,91.777828
-591,Xiangtan,China,宝丰街,residential,27.861037,112.881062
-592,Linfen,China,尧贤街,secondary,36.085945,111.550005
-593,Victoria,Hong Kong,中港道 Chung Kong Road,unclassified,22.289031,114.149008
-594,Zhenjiang,China,桓王亭路,tertiary,32.193816,119.505528
-595,Enugu,Nigeria,NPF Link 1,residential,6.461571,7.501369
-596,Rosario,Argentina,Reverendo Rogelio Barufaldi,residential,-32.874204,-60.693505
-597,Sulţānah,Saudi Arabia,Umar Bin Al Khattab Road طريق الخليفة عمر بن الخطاب,secondary,24.439447,39.564885
-598,Huludao,China,海滨路,primary,40.722266,120.841926
-599,Hubballi,India,Gokul Road / Airport Road,secondary,15.355064,75.089747
-600,Padang,Indonesia,Jalan Pondok Kopi 3,residential,-0.897246,100.374503
-601,Kitakyushu,Japan,中津街道,unclassified,33.842507,130.918362
-603,Setagaya,Japan,環八通り,primary,35.587213,139.679026
-604,Kingston,Jamaica,Crescent Road,residential,17.9696,-76.762552
-605,Jing’an,China,甜爱路,residential,31.268327,121.479179
-606,Rui’an,China,望江东路,tertiary,27.797928,120.572299
-607,Chihuahua,Mexico,Avenida Francisco Villa,secondary,28.66777,-106.136478
-608,Nay Pyi Taw,Myanmar,No 9 Street,residential,19.742777,96.206214
-609,Eskişehir,Turkey,Ord. Prof. F.Kerim Gökay Sokak,residential,39.78016,30.52271
-610,Mysuru,India,7th Main Road,tertiary,12.349021,76.616331
-611,Salem,India,PWD Bungalow Roundabout,residential,11.674929,78.156887
-612,São Luís,Brazil,Rua Vinte e Sete,residential,-2.547481,-44.29297
-613,Seongnam-si,South Korea,테헤란로69길,tertiary,37.506403,127.052609
-614,Cartagena,Colombia,Carrera 94,tertiary,10.402645,-75.463253
-615,Antipolo,Philippines,Maroon Street,residential,14.643988,121.114322
-618,Charlotte,United States,Browns Avenue,residential,35.257393,-80.89941
-619,Laibin,China,梧州-迁江公路,primary,23.672286,109.250325
-620,Warri,Nigeria,Honorable Road,residential,5.590457,5.707762
-621,Naples,Italy,Cupa Lettieri,secondary,40.860495,14.34541
-622,Xiaogan,China,北京南路,primary,30.90953,113.931131
-623,Campo Grande,Brazil,Rua Rotterdan,residential,-20.504701,-54.582928
-624,Ziyang,China,娇子大道,primary,30.13138,104.600634
-625,Bobo-Dioulasso,Burkina Faso,Rue Zelelou Sanou,unclassified,11.179814,-4.291727
-626,Bahawalpur,Pakistan,جیل روڈ,secondary,29.406047,71.691049
-627,Quzhou,China,忠烈庙前,residential,28.963507,118.869247
-628,Blantyre,Malawi,Victoria Road,primary,-15.800501,35.004186
-629,Donetsk,Ukraine,Футбольна вулиця,residential,47.972083,37.797909
-630,Abū Ghurayb,Iraq,673-19,residential,33.359558,44.26989
-631,Qom,Iran,بلوار شهید حاج قاسم سلیمانی,primary,34.634128,50.863364
-632,Bishkek,Kyrgyzstan,Кожевенная улица,tertiary,42.936814,74.614436
-633,Zaozhuang,China,东海路,tertiary,34.836482,117.525776
-634,Krasnodar,Russia,Нефтяная улица,residential,45.061068,38.973077
-635,Natal,Brazil,Rua dos Paiatis,secondary,-5.801401,-35.228556
-636,Pingxiang,China,建设东路,primary,27.643887,113.827717
-637,Malang,Indonesia,Jalan Garbis,residential,-7.978456,112.614883
-638,Cancún,Mexico,Calle 82,residential,21.187506,-86.847611
-639,Indianapolis,United States,North White River Parkway East Drive,residential,39.805288,-86.195278
-640,Gurugram,India,E-8,residential,28.464977,77.101123
-641,Bhubaneswar,India,Lewis Road,primary,20.217303,85.850999
-642,Zhoushan,China,文气路,unclassified,30.000293,122.181134
-643,Qiqihar,China,民航路,primary,47.3106,123.989892
-644,Mulenvos,Angola,Rua Álvaro Canelas,unclassified,-8.841524,13.259685
-645,Sulaymaniyah,Iraq,212-35,residential,35.566667,45.457585
-646,Marseille,France,Rue de la Grande Armée,secondary,43.300488,5.383975
-647,Puning,China,中学路,unclassified,23.270181,116.1566
-648,Bhiwandi,India,Kalyan-Shil Road,primary,19.22954,73.121595
-649,Soshanguve,South Africa,Sehlorana Street,residential,-25.506317,28.044612
-650,Teresina,Brazil,Rua Treze de Maio,residential,-5.080632,-42.819012
-651,Ankang,China,江北大道,secondary,32.704474,108.954479
-652,Jalandhar,India,Flyover,primary,31.347658,75.560433
-653,Rotterdam,The Netherlands,Vinkenstraat,residential,51.916825,4.59026
-654,Langfang,China,晋元道,tertiary,39.559674,116.816111
-655,Viana,Angola,Rua da Sapú,unclassified,-8.925994,13.304751
-656,Jiaozuo,China,北环路,residential,35.248789,113.159967
-657,Samarinda,Indonesia,Blok D,residential,-0.499643,117.156996
-658,Rohini,India,National Market School Road,residential,28.677308,77.091822
-659,Wanxian,China,万川大道,primary,30.778928,108.45574
-660,Guang’an,China,宏志大道,secondary,30.437131,106.642168
-661,Johor Bahru,Malaysia,Yishun Avenue 2,primary,1.4404,103.831719
-662,Arifwala,Pakistan,Trakhni Road,secondary,30.315258,73.003192
-663,Pasig City,Philippines,San Mateo Street,residential,14.566682,121.031428
-664,Cheongju-si,South Korea,남사로140번길,residential,36.630431,127.490413
-665,Kanayannur,India,Kannanthodath Road,tertiary,10.012432,76.303889
-666,Tegucigalpa,Honduras,Avenida República Dominicana,tertiary,14.099393,-87.184758
-667,Bucheon-si,South Korea,남동대로,secondary,37.440909,126.706448
-668,Thanh Hóa,Vietnam,Ngõ 1 Trần Thị Nam,residential,19.817368,105.785637
-670,Al Ain City,United Arab Emirates,طريق نِعمة,primary,24.133715,55.710284
-671,Libreville,Gabon,Impasse Jean René Issembè,residential,0.395346,9.445554
-672,Saratov,Russia,Ипподромная улица,tertiary,51.587015,45.985707
-673,Ulan Bator,Mongolia,Уул 6,residential,47.963821,106.830724
-674,Weihai,China,沈阳北路,tertiary,37.524234,122.04852
+436,Karbala,Iraq,شارع آل عمران,secondary,32.628255,43.965325
+437,Changzhi,China,清华北路,secondary,36.239664,112.99788
+438,Tianshui,China,羲皇大道西路,primary,34.568515,105.696635
+439,Sadr City,Iraq,315-51,residential,33.398826,44.400787
+440,Yangpu,China,华山路,secondary,31.224968,121.440284
+441,Mombasa,Kenya,Southern Bypass,secondary,-4.042459,39.605493
+442,Mandalay,Myanmar,Palae Lane,residential,21.958871,96.108956
+444,Barranquilla,Colombia,Avenida Murillo,primary,10.895835,-74.803323
+445,Chelyabinsk,Russia,улица Марченко,tertiary,55.172644,61.463997
+446,Mérida,Mexico,Calle 31,residential,20.983596,-89.634342
+447,Hiroshima,Japan,駅前通り,tertiary,34.39172,132.471362
+448,Santiago de los Caballeros,Dominican Republic,Calle Alicia Rosa,residential,19.406002,-70.649761
+449,Shymkent,Kazakhstan,улица Фестивальная,residential,42.32825,69.58196
+450,Weinan,China,崇业路,primary,34.497251,109.419672
+451,Ghāziābād,India,Yadu Public School Road,tertiary,28.591717,77.389487
+452,Matola,Mozambique,Rua 5.037,residential,-25.934528,32.540846
+453,Dhanbad,India,Sabji Patti road,secondary,23.746972,86.410419
+454,Arequipa,Peru,Alameda Sur,residential,-16.463911,-71.499852
+455,Hong Kong Island,Hong Kong,舊山頂道 Old Peak Road,residential,22.27152,114.150444
+456,Fes,Morocco,Avenue Kairaouan Al Qods,residential,34.019873,-4.971519
+457,Gustavo Adolfo Madero,Mexico,Calle San Luis Potosí,primary,19.414849,-99.15582
+458,Nouakchott,Mauritania,Rue Be Ould Ne شارع بي أولد ني,residential,18.090701,-16.003725
+459,Kisangani,Democratic Republic of the Congo,Troisième Transversale,residential,0.519656,25.222674
+460,Jiaxing,China,双溪路,secondary,30.731482,120.786308
+461,Aurangabad,India,Datta Mandir Road,residential,19.893625,75.362457
+462,Zhongwei,China,蔡桥街,tertiary,37.50475,105.195121
+463,Omsk,Russia,улица Избышева,residential,54.94438,73.405094
+464,Pikine,Senegal,Rue FA-46,residential,14.69418,-17.449731
+465,Guarulhos,Brazil,Rua Serra de Botucatu,residential,-23.539397,-46.544659
+466,Pekanbaru,Indonesia,Jalan Tanjung Jati,residential,0.539686,101.456166
+467,Panjin,China,林丰路,secondary,41.17112,122.092401
+468,Bandar Lampung,Indonesia,Jalan Pulau Madura,residential,-5.38523,105.271293
+469,Prague,Czechia,V Jámě,residential,50.08012,14.424923
+470,Varanasi,India,Swami Vivekanand Road,tertiary,25.303195,82.996363
+471,Jiujiang,China,八里湖大道,primary,29.677326,115.965133
+472,Samara,Russia,Верхне-Карьерная улица,residential,53.178753,50.163412
+473,Aba,Nigeria,Umuoba road,primary,5.138312,7.425108
+474,Amritsar,India,M.M.M. Road,secondary,31.638534,74.875679
+475,Birmingham,United Kingdom,West View Road,residential,52.567951,-1.806222
+476,Copenhagen,Denmark,Kongens Nytorv,primary,55.680803,12.585112
+477,Sofia,Bulgaria,5039-та,residential,42.667784,23.389915
+478,Anyang,China,桑园路,tertiary,36.064609,114.41272
+479,Yerevan,Armenia,Սարի Թաղի 25-րդ փողոց,residential,40.15756,44.528052
+480,Luohu District,China,"C段第九街 Secton C, 9th Street",residential,22.472813,114.048888
+481,Vijayawada,India,devinagar 7th line connection,residential,16.533209,80.6473
+482,Fengxiang,China,八字桥路,tertiary,30.936768,121.450252
+483,Bijie,China,麻园路,residential,27.279081,105.274015
+484,Monterrey,Mexico,Privada Rodríguez Sur,residential,25.675324,-100.334381
+485,Kigali,Rwanda,KG 1 Avenue,tertiary,-1.960257,30.109112
+486,Rostov-on-Don,Russia,переулок Семашко,residential,47.217577,39.714839
+487,Zhuzhou,China,嵩山路,secondary,27.840453,113.127109
+488,Malingao,Philippines,Midsayap-Dulawan Road,primary,7.155796,124.505843
+489,Touba,Senegal,Rur residentielle,residential,14.848074,-15.85485
+490,Ufa,Russia,улица Калинина,tertiary,54.817849,56.084733
+491,Ranchi,India,GOAL CHAKKAR,secondary,23.311138,85.294702
+492,Shangrao,China,广场路,residential,28.454429,117.901834
+493,Lilongwe,Malawi,Likuni,residential,-13.962123,33.753007
+494,Huaibei,China,濉刘路,primary,33.91037,116.740771
+495,Maiduguri,Nigeria,Galtimari Primary School IDP Camp,residential,11.805021,13.173948
+496,Xuhui,China,长宁支路,residential,31.226407,121.419375
+497,Meishan,China,工业环路,secondary,30.102407,103.752441
+498,Mwanza,Tanzania,Lutalo,residential,-2.523851,32.890146
+499,Ulsan,South Korea,수암로,residential,35.527313,129.326439
+500,Sendai,Japan,龍宝寺裏丁線,unclassified,38.276124,140.844924
+501,Krasnoyarsk,Russia,Урожайная улица,residential,55.986458,92.982492
+502,Guigang,China,金港大道,primary,23.107587,109.585317
+503,Oslo,Norway,Rathkes gate,residential,59.92239,10.766658
+504,Jabalpur,India,damoh road,unclassified,23.210883,79.901391
+505,Ilorin,Nigeria,"Fate Road, Oko Erin, Nigeria",tertiary,8.497831,4.584807
+506,Aden,Yemen,الخط البحري,tertiary,12.807608,45.025813
+507,Bogor,Indonesia,Jalan Tentara Pelajar,secondary,-6.576132,106.787925
+508,Ciudad Nezahualcoyotl,Mexico,Calle Damasco,tertiary,19.440572,-99.098813
+509,Hengyang,China,长丰大桥,primary,26.92656,112.568082
+510,Prayagraj,India,Malviya Road,tertiary,25.444642,81.859702
+511,Trujillo,Peru,Carlos Camino,residential,-8.111436,-79.015159
+512,Visakhapatnam,India,I.H.Colony Road,tertiary,17.683207,83.241693
+513,Goyang-si,South Korea,불광로3길,residential,37.613547,126.931467
+514,Yulin,China,光明路,unclassified,22.602137,110.141647
+515,Jodhpur,India,Olympic Road,tertiary,26.282,73.017899
+516,Gwalior,India,Gandhi road Flyover,secondary,26.213179,78.181958
+517,Jingzhou,China,太岳路 Taiyue lu,tertiary,30.342697,112.237605
+518,Gqeberha,South Africa,Snowden Avenue,residential,-33.96265,25.596967
+519,Tbilisi,Georgia,საინგილოს ქუჩა,residential,41.700046,44.817037
+520,Voronezh,Russia,улица Дзержинского,residential,51.660858,39.204753
+521,Xinxiang,China,解放大道,secondary,35.268943,113.858015
+522,Yichun,China,宜春大道,primary,27.821291,114.377782
+523,Sokoto,Nigeria,Kankiwa Road,residential,13.062384,5.21508
+524,Jos,Nigeria,Prof Izam Close,residential,9.900881,8.905955
+525,Tangier,Morocco,Rue Abou Moussa Achaari,residential,35.7618,-5.79636
+526,Teni,India,Theni - Venkatachalapuram - Chinnamanur Road,primary,10.001096,77.488711
+527,Xianyang,China,同德路,tertiary,34.311932,108.706102
+528,Mexicali,Mexico,Avenida Olga,residential,32.628169,-115.450681
+530,Maceió,Brazil,Rua Professor Benedito Cunegundes,residential,-9.65935,-35.713954
+531,Campinas,Brazil,Rua Padre Vieira,tertiary,-22.905134,-47.054025
+532,Sanya,China,三亚湾路,secondary,18.253399,109.495602
+533,Rangpur,Bangladesh,Station Road,residential,25.729004,89.258976
+534,Kirkuk,Iraq,19,residential,35.455824,44.417484
+535,Ashgabat,Turkmenistan,Atamyrat Nyýazow şaýoly,primary,37.97872,58.396683
+536,Shaoguan,China,浈江南路,tertiary,24.807679,113.599691
+537,Howrah,India,Alipore Road,secondary,22.521032,88.33201
+538,Raipur,India,Railway Flyover,primary,21.2564,81.589961
+539,Changwon,South Korea,상남로192번길,living_street,35.227607,128.690263
+540,Longyan,China,人民西路,secondary,25.095778,117.015826
+541,Köln,Germany,Brüsseler Straße,residential,50.939082,6.934679
+542,Dublin,Ireland,Saint Fintan's Road,residential,53.366033,-6.287166
+543,Tiruchirappalli,India,Salai Road,residential,10.828038,78.683709
+544,Yongzhou,China,潇湘大道,primary,26.460488,111.568963
+545,Brussels,Belgium,Avenue Arnaud Fraiteur - Arnaud Fraiteurlaan,tertiary,50.816843,4.392946
+546,Zamboanga,Philippines,Camino Nuevo-B,residential,6.912139,122.076271
+547,Ottawa,Canada,Rue John-Gibeault,residential,45.38531,-75.801079
+548,Huzhou,China,二环南路,secondary,30.845698,120.092832
+549,Volgograd,Russia,Карская улица,residential,48.720941,44.50091
+550,Khartoum North,Sudan,شارع الشريف امين محمد الحسن,residential,15.586428,32.576279
+551,Edmonton,Canada,62 Avenue NW,tertiary,53.49774,-113.545371
+552,Odesa,Ukraine,Колонтаївська вулиця,secondary,46.476542,30.707564
+553,Wuwei,China,学府路,secondary,37.933984,102.606979
+554,Jacksonville,United States,Palmetto Inlet West,residential,30.384192,-81.606123
+555,Fort Worth,United States,Forest River Circle,residential,32.779987,-97.227414
+556,Hanzhong,China,江古路,tertiary,33.032761,107.029051
+558,Pest,Hungary,Almássy utca,pedestrian,47.500329,19.072113
+559,Kota,India,Nanta Road,secondary,25.193876,75.825981
+560,Zhu Cheng City,China,人民东路,secondary,35.994879,119.415642
+561,Shivaji Nagar,India,Ghorpadi Road,secondary,18.524109,73.891163
+562,Dongying,China,北二路,primary,37.470146,118.594751
+563,Luzhou,China,大慈路,residential,28.892936,105.445611
+564,San Jose,United States,Stone Creek Drive,residential,37.410236,-121.854005
+565,Sholapur,India,Hotgi Road,secondary,17.646425,75.914176
+566,Marrakesh,Morocco,Rue Al Ijas,residential,31.633111,-8.060271
+567,Guatemala City,Guatemala,31 Avenida,residential,14.619681,-90.501812
+568,Meizhou,China,梅香路,tertiary,24.300858,116.134379
+569,Yueyang,China,南辅道,secondary,29.374184,113.100821
+570,Laiwu,China,胜利南路,secondary,36.203235,117.65746
+571,Benxi,China,溪湖大桥,secondary,41.315464,123.763386
+572,Esenyurt,Turkey,Rıfat Ilgaz Caddesi,residential,41.029138,28.767028
+573,Perm,Russia,Лихвинская улица,secondary,57.982942,56.303098
+574,Zaria,Nigeria,Substation Road,residential,11.125334,7.713477
+575,Kennedy,Colombia,Calle 33,residential,4.621358,-74.07098
+576,Chiba,Japan,房総往還（旧千葉街道）,unclassified,35.640639,140.074746
+577,Pingdingshan,China,新华路,primary,33.756587,113.319494
+578,Ciudad Guayana,Venezuela,Calle La Cerca,residential,8.319816,-62.709919
+579,Sargodha,Pakistan,Kot Fareed Road,tertiary,32.091908,72.674325
+580,Austin,United States,Highgrove Terrace,residential,30.281387,-97.768148
+581,Managua,Nicaragua,29a Avenida S.O.,residential,12.151717,-86.299076
+582,Bengbu,China,黄山大道,primary,32.911626,117.280911
+583,Salé,Morocco,Rue Kobros زنقة قبرص,residential,34.024946,-6.842118
+584,Jerusalem,Israel,הרב הרצוג,tertiary,31.770152,35.211562
+585,Chandigarh,India,Himalaya Marg,secondary,30.748773,76.804294
+586,Dnipro,Ukraine,вулиця Архітектора Олега Петрова,residential,48.44922,35.060144
+587,Cebu City,Philippines,Junquera Street,tertiary,10.303888,123.898194
+588,Sanhe,China,东环路,primary,39.994352,117.082353
+589,Tiruppur,India,College Cross Road 1,residential,11.109919,77.337459
+590,Guwahati,India,patarkuchi road,tertiary,26.105824,91.803668
+591,Xiangtan,China,河东大道,tertiary,27.853638,112.975834
+592,Linfen,China,鼓楼西大街,secondary,36.084601,111.500177
+593,Victoria,Hong Kong,般咸道 Bonham Road,secondary,22.284013,114.136727
+594,Zhenjiang,China,电力路,secondary,32.214243,119.438905
+595,Enugu,Nigeria,Ben Eneokwe Street,residential,6.485722,7.501663
+596,Rosario,Argentina,Rawson,residential,-32.922625,-60.66937
+597,Sulţānah,Saudi Arabia,3,residential,24.425297,39.602466
+598,Huludao,China,龙程街,primary,40.724346,120.863167
+600,Padang,Indonesia,"Jl. Markisa Raya , Belimbing , Kuranji , Padang , 25157",unclassified,-0.898218,100.421297
+601,Kitakyushu,Japan,297号鱒淵八幡東自転車道線,residential,33.811949,130.814156
+602,Taiz,Yemen,طريق وادي القاضي,primary,13.586447,44.00615
+603,Setagaya,Japan,花見橋通り,tertiary,35.691553,139.677024
+604,Kingston,Jamaica,Brighton Avenue,residential,18.017876,-76.823854
+605,Jing’an,China,东长治路,secondary,31.253314,121.496749
+606,Rui’an,China,飞鳌大道,primary,27.709346,120.58273
+607,Chihuahua,Mexico,Ponciano Arriaga,residential,28.664155,-106.109384
+608,Nay Pyi Taw,Myanmar,Bo Than Tin Street,tertiary,19.74589,96.210367
+609,Eskişehir,Turkey,Muttalipli Sokak,residential,39.788646,30.529078
+610,Mysuru,India,1st Main Road,residential,12.319881,76.631492
+611,Salem,India,Niresh,residential,11.684923,78.140012
+612,São Luís,Brazil,Rua do Maçarico,tertiary,-2.492431,-44.298328
+613,Seongnam-si,South Korea,삼성로63길,residential,37.49943,127.057902
+614,Cartagena,Colombia,Calle de San Agustín Chiquita,residential,10.425232,-75.549144
+615,Antipolo,Philippines,Dahlia Street,tertiary,14.661922,121.109121
+616,Columbus,United States,South Virginialee Road,residential,39.966891,-82.918536
+617,Sialkot,Pakistan,Street No. 5,unclassified,32.504103,74.541428
+618,Charlotte,United States,Cavendish Court,residential,35.16173,-80.805037
+619,Laibin,China,天然桥路,primary,23.698749,109.245576
+620,Warri,Nigeria,Pastor Victor Great Street,residential,5.559062,5.752497
+622,Xiaogan,China,航天大道,tertiary,30.941667,113.971349
+623,Campo Grande,Brazil,Rua Pau Brasil,residential,-20.475351,-54.595086
+624,Ziyang,China,希望大道,secondary,30.112755,104.685351
+625,Bobo-Dioulasso,Burkina Faso,Avenue du Gouverneur Binger,tertiary,11.169613,-4.298004
+626,Bahawalpur,Pakistan,دبی محل روڈ,tertiary,29.383205,71.664364
+627,Quzhou,China,在建,primary,28.915947,118.938557
+628,Blantyre,Malawi,Nkolokoti Road,secondary,-15.804534,35.065941
+629,Donetsk,Ukraine,Сєченова вулиця,residential,47.990294,37.859086
+630,Abū Ghurayb,Iraq,665-54,residential,33.349608,44.272203
+631,Qom,Iran,بلوار عابدی,secondary,34.673263,50.878882
+632,Bishkek,Kyrgyzstan,Иманалиев көчөсү,tertiary,42.805204,74.600987
+633,Zaozhuang,China,愚公路,tertiary,34.877032,117.594671
+634,Krasnodar,Russia,Анапский проезд,residential,45.069372,38.9284
+635,Natal,Brazil,Rua Gonçalves Ledo,tertiary,-5.788067,-35.208666
+636,Pingxiang,China,昭萍东路,secondary,27.629986,113.850265
+637,Malang,Indonesia,Blok C2-C3,residential,-7.972054,112.581752
+638,Cancún,Mexico,Avenida Tules,primary,21.188554,-86.873897
+639,Indianapolis,United States,Eastfield Court,residential,39.696341,-86.145083
+640,Gurugram,India,P1,residential,28.487368,77.087647
+641,Bhubaneswar,India,Kalpana Road,tertiary,20.254379,85.848415
+642,Zhoushan,China,新城大桥,secondary,29.98313,122.179995
+643,Qiqihar,China,兴顺路,tertiary,47.327712,123.954856
+644,Mulenvos,Angola,Rua de Santa Luzia,residential,-8.817888,13.278248
+645,Sulaymaniyah,Iraq,شەقامی دلێران ١٧,secondary,35.55007,45.453202
+646,Marseille,France,Rue d'Eylau,residential,43.286431,5.389456
+647,Puning,China,北环大道,primary,23.313648,116.166904
+648,Bhiwandi,India,Agra Road,secondary,19.234165,73.121017
+649,Soshanguve,South Africa,Ubuntu Crescent,residential,-25.456768,28.084218
+650,Teresina,Brazil,Avenida Walfrido Salmito,tertiary,-5.146091,-42.785185
+651,Ankang,China,沪安线,secondary,32.689082,109.062626
+652,Jalandhar,India,Flyover,primary,31.344906,75.562219
+653,Rotterdam,The Netherlands,Nabucco,residential,51.949514,4.589242
+655,Viana,Angola,Rua B,residential,-8.940189,13.38172
+656,Jiaozuo,China,怡光路,secondary,35.243408,113.164665
+657,Samarinda,Indonesia,Gang Selamat,residential,-0.519351,117.123262
+658,Rohini,India,Rohtak Road,primary,28.674111,77.138122
+659,Wanxian,China,龙四路,secondary,30.86254,108.356531
+660,Guang’an,China,北辰大道,tertiary,30.488608,106.644108
+661,Johor Bahru,Malaysia,Verde Grove,residential,1.391709,103.750154
+662,Arifwala,Pakistan,100 wali canal road,tertiary,30.353526,73.092032
+663,Pasig City,Philippines,Aquilina Street,tertiary,14.641421,121.102011
+664,Cheongju-si,South Korea,복대로,tertiary,36.623738,127.443566
+665,Kanayannur,India,IS Press Road,unclassified,9.986643,76.279286
+666,Tegucigalpa,Honduras,Calzada Kim,residential,14.090377,-87.185363
+667,Bucheon-si,South Korea,곰달래로11길,residential,37.533013,126.835035
+668,Thanh Hóa,Vietnam,Từ Đạo Hạnh,residential,19.816202,105.769053
+669,Turin,Italy,Via Santa Croce,residential,45.066049,7.68801
+670,Al Ain City,United Arab Emirates,شارع سعيد بن شخبوط الأول,secondary,24.204273,55.713527
+671,Libreville,Gabon,Rue Germain Mba,tertiary,0.421034,9.450073
+672,Saratov,Russia,2-й Станционный проезд,secondary,51.520316,45.989473
+673,Ulan Bator,Mongolia,Хайрхан-6,residential,47.924038,106.847761
+674,Weihai,China,火炬路,secondary,37.52389,122.068755
 675,Takeo,Cambodia,Street 31,residential,10.982073,104.774769
-676,Nova Iguaçu,Brazil,Rua Generosa,residential,-22.821053,-43.405729
-677,Cochabamba,Bolivia,Calle Alfredo Domínguez,residential,-17.39119,-66.18979
-678,Ahvaz,Iran,پهلوان شرقی,secondary,31.337039,48.684283
-679,Vientiane,Laos,ໂສກປ່າຫຼວງ ຮ່ອມ 8,residential,17.945734,102.626346
-680,Zhabei,China,飞虹路,residential,31.262577,121.495923
-681,Xinyu,China,沿江路,secondary,27.83081,114.938578
-682,Pietermaritzburg,South Africa,Town Bush Road,tertiary,-29.582692,30.369286
-683,Yibin,China,恒源路,tertiary,28.804433,104.705842
-684,Naucalpan de Juárez,Mexico,Calle de la Rivera,residential,19.523628,-99.253145
-686,Bouaké,Ivory Coast,Avenue Jacques Aka,tertiary,7.674366,-5.025772
-688,San Francisco,United States,9th Avenue,residential,37.747471,-122.465965
-690,Valencia,Spain,Carrer de la Barcelonina,pedestrian,39.471289,-0.376091
-691,Jinshan,China,康和路,tertiary,30.798464,121.293881
-692,Chenzhou,China,骆仙西路,primary,25.783322,112.96897
-693,Duque de Caxias,Brazil,Rua Jerônimo Coelho,residential,-22.841676,-43.354375
-694,João Pessoa,Brazil,Rua João Ramalho Leite,residential,-7.133732,-34.851313
-695,Bukavu,Democratic Republic of the Congo,Avenue de la Poste,primary,-2.500113,28.852335
-696,Kraków,Poland,Orląt Lwowskich,residential,50.072422,19.961464
-697,Barcelona,Venezuela,Avenida Principal de Mesones,residential,10.111537,-64.673984
-698,Bangui,Central African Republic,Avenue de France,secondary,4.392146,18.532469
-699,Hermosillo,Mexico,Gral Antonio Villareal,residential,29.094632,-110.940552
-700,Bhayandar,India,Roshan Nagar,residential,19.23208,72.852504
-701,Culiacán,Mexico,Calle Ébano,residential,24.747993,-107.431056
-702,Petaling Jaya,Malaysia,Jalan Pinggiran USJ 2/3,residential,3.05185,101.561808
-703,Anqing,China,砂塘路,secondary,30.578123,117.060914
-704,Oran,Algeria,Rue Sahraoui Lahcene,residential,35.679421,-0.66815
-705,Freetown,Sierra Leone,Emmanuel Street,residential,8.484395,-13.213612
-706,San Pedro Sula,Honduras,2a Avenida SE,residential,15.470247,-87.971114
-707,Narela,India,Sannoth Main Road,tertiary,28.816978,77.068839
-708,Xingtai,China,公园西街,tertiary,37.08599,114.462713
-709,Niigata,Japan,上大川前通,tertiary,37.928019,139.049148
-710,Muscat,Oman,سكة 2326,residential,23.595099,58.45567
-711,Zarqa,Jordan,شارع الأمير الحسن,residential,32.068044,36.092531
-712,Çankaya,Turkey,Refik Belendir Sokak,residential,39.890602,32.849349
-713,Küçükçekmece,Turkey,1389. Sokak,residential,41.036945,28.821105
-714,Hamamatsu,Japan,浜松環状線,primary,34.771629,137.790481
-715,Kolwezi,Democratic Republic of the Congo,Avenue du Théâtre,residential,-10.719525,25.457552
-716,Vinh,Vietnam,Ngõ 35 Đường Tuệ Tĩnh,residential,18.68848,105.693397
-717,Thiruvananthapuram,India,NCC Road,residential,8.539536,76.956898
-718,Zhaotong,China,绥江路,tertiary,27.371127,103.753115
-719,Panzhihua,China,人民街,tertiary,26.576763,101.706718
-720,Chuzhou,China,清流路,primary,32.307319,118.336276
-721,Seattle,United States,West Ruffner Street,residential,47.652964,-122.414219
-722,Port Said,Egypt,شارع مكه المكرمه,residential,31.252505,32.318018
-723,Cúcuta,Colombia,Calle 16,residential,7.92485,-72.524041
-724,Homs,Syria,محمد يحيى جمران,residential,34.709763,36.712666
-725,Xuancheng,China,水阳江北大道,primary,30.964694,118.734191
-726,Ibb,Yemen,طريق إب - الضالع,primary,13.929128,44.225621
-727,Tasikmalaya,Indonesia,Jalan Ciburuy Pasantren,residential,-7.272037,108.168283
-728,Nampula,Mozambique,N104,tertiary,-15.119606,39.24969
-729,Shangyu,China,舜耕大道东段,secondary,30.007365,120.899713
-730,Bujumbura,Burundi,Avenue Kagomogomo,residential,-3.35019,29.384388
-731,Tyumen,Russia,Алебашевская улица,primary,57.156614,65.564671
-732,Erzurum,Turkey,DDY Lojmanları Sk.,tertiary,39.913452,41.267822
-733,Anshun,China,西水路,secondary,26.254982,105.924439
-734,Dodoma,Tanzania,KKKT Road,residential,-6.158564,35.731483
-735,Rajshahi,Bangladesh,Central Mosque Road,living_street,24.368428,88.626956
-736,Dera Ismail Khan,Pakistan,کینال روڈ,tertiary,31.801458,70.827206
-737,Sorocaba,Brazil,Rua Artur Tarsitani,residential,-23.492901,-47.427693
+676,Nova Iguaçu,Brazil,Rua Professor Jacobino Freire,residential,-22.811255,-43.384587
+677,Cochabamba,Bolivia,Avenida Papa Paulo III,secondary,-17.385562,-66.141219
+678,Ahvaz,Iran,باهنر,residential,31.328993,48.629787
+679,Vientiane,Laos,ຂ່ອມ 5,residential,17.959504,102.634662
+680,Zhabei,China,世纪大道,residential,31.221883,121.538699
+681,Xinyu,China,康泰路,tertiary,27.801623,114.945028
+682,Pietermaritzburg,South Africa,Prince Alfred Street,residential,-29.61197,30.376611
+683,Yibin,China,白沙路,primary,28.779086,104.665685
+684,Naucalpan de Juárez,Mexico,Calzada Transmisiones Militares,secondary,19.456943,-99.21951
+685,Kampung Baru Subang,Malaysia,Jalan Tiang Seri U8/73H,residential,3.120709,101.526402
+686,Bouaké,Ivory Coast,Rue 30,residential,7.676268,-5.016406
+687,Taicang,China,宝钱公路,primary,31.407734,121.178448
+688,San Francisco,United States,Jerrold Avenue,residential,37.728727,-122.371659
+689,Sakai,Japan,出先町通,tertiary,34.652485,135.44711
+690,Valencia,Spain,Carrer del Baró de Petrés,pedestrian,39.475993,-0.372852
+691,Jinshan,China,石水路,unclassified,30.810025,121.279333
+692,Chenzhou,China,建设里路,residential,25.8087,113.026487
+693,Duque de Caxias,Brazil,Rua Francisco Dias,residential,-22.851266,-43.371453
+694,João Pessoa,Brazil,Avenida Bancário Francisco Mendes,tertiary,-7.110415,-34.845403
+695,Bukavu,Democratic Republic of the Congo,Corniche Kahawa Canalisee,living_street,-2.508302,28.852148
+696,Kraków,Poland,Aleja Kasztanowa,residential,50.066275,19.858836
+697,Barcelona,Venezuela,Calle 6,residential,10.198483,-64.691578
+698,Bangui,Central African Republic,Avenue Barthélémy Boganda,primary,4.367355,18.551873
+699,Hermosillo,Mexico,Monterrey,residential,29.078754,-110.951061
+700,Bhayandar,India,Bhaskar Patil Marg,tertiary,19.349947,72.794766
+701,Culiacán,Mexico,Calle Berlín,residential,24.751952,-107.432438
+702,Petaling Jaya,Malaysia,Jalan Sastera U2/1,tertiary,3.096177,101.556021
+703,Anqing,China,北正街,tertiary,30.517369,117.034575
+704,Oran,Algeria,Rue Caporal Chef Meftah Kada,residential,35.682379,-0.652037
+705,Freetown,Sierra Leone,Second Street,residential,8.484432,-13.22679
+706,San Pedro Sula,Honduras,5a Calle,living_street,15.466872,-88.025025
+707,Narela,India,Harewali Ganda Nala Bridge,tertiary,28.82956,77.020656
+708,Xingtai,China,车站南路,tertiary,37.035564,114.486072
+709,Niigata,Japan,本町通り,secondary,37.923903,139.047469
+710,Muscat,Oman,سكة 4457,residential,23.593816,58.375437
+711,Zarqa,Jordan,طريق بيرين,primary,32.084778,36.004241
+712,Çankaya,Turkey,Vedat Dalokay Caddesi,tertiary,39.904451,32.880963
+713,Küçükçekmece,Turkey,Barış Caddesi,residential,40.990146,28.677246
+714,Hamamatsu,Japan,浜松環状線,primary,34.728274,137.786387
+715,Kolwezi,Democratic Republic of the Congo,Rond-Point de l'Aéroport,tertiary,-10.762403,25.512692
+716,Vinh,Vietnam,Phan Bội Châu,secondary,18.687028,105.670654
+717,Thiruvananthapuram,India,"Kattu road, Poojappura",residential,8.493881,76.976644
+718,Zhaotong,China,环城北路,primary,27.34606,103.715352
+719,Panzhihua,China,金福休闲广场,pedestrian,26.539123,101.713953
+720,Chuzhou,China,丰乐大道,primary,32.260078,118.304218
+721,Seattle,United States,35th Avenue South,residential,47.535979,-122.288552
+722,Port Said,Egypt,شارع الحديد و النادى,residential,31.253345,32.285977
+723,Cúcuta,Colombia,Calle 20,tertiary,7.886028,-72.483494
+724,Homs,Syria,شارع حضارة (1),residential,34.714686,36.713365
+725,Xuancheng,China,滨湖路,secondary,30.921408,118.740368
+726,Ibb,Yemen,طريق شبان السرايم القديم,unclassified,13.899594,44.167249
+727,Tasikmalaya,Indonesia,Jalan Ahmad Yani,tertiary,-7.320574,108.229885
+728,Nampula,Mozambique,Avenida Eduardo Mondlane,secondary,-15.123194,39.276199
+729,Shangyu,China,观山路,tertiary,30.053592,120.840822
+730,Bujumbura,Burundi,13e Avenue,residential,-3.343355,29.372494
+731,Tyumen,Russia,улица Щорса,tertiary,57.155205,65.580023
+732,Erzurum,Turkey,Valide Sokak,residential,39.912922,41.188555
+733,Anshun,China,中华西路,secondary,26.251656,105.939875
+734,Dodoma,Tanzania,Mganga Road,unclassified,-6.164514,35.760562
+735,Rajshahi,Bangladesh,স্টেশন রোড,primary,24.374892,88.61307
+736,Dera Ismail Khan,Pakistan,Kulachi Road,tertiary,31.843017,70.875818
+737,Sorocaba,Brazil,Rua Major Barros França,residential,-23.494576,-47.418171
+738,Wuzhou,China,大南路,pedestrian,23.474179,111.312018
+740,Qinhuangdao,China,育才街,unclassified,39.957375,119.577522
+741,Benghazi,Libya,شارع الاهلي,residential,32.081037,20.119885
+742,Alīgarh,India,Aligarh Bypass,primary,27.904662,78.047879
+743,Shaoyang,China,邵阳大道,primary,27.21321,111.423513
+744,Malatya,Turkey,Güney Kuşak Yolu,secondary,38.335714,38.303045
+745,Winnipeg,Canada,James Avenue,secondary,49.900309,-97.138674
+746,Ōta,Japan,環状2号線,primary,35.521419,139.637607
+747,Andijon,Uzbekistan,Oqqush koʻchasi,residential,40.794595,72.343298
+749,Buraydah,Saudi Arabia,طريق الملك خالد,secondary,26.315866,43.982992
+750,São Bernardo do Campo,Brazil,Rua MMDC,tertiary,-23.674702,-46.591532
+751,Hegang,China,五马路,residential,47.345934,130.286983
+752,Morelia,Mexico,Calle Alfa,residential,19.681727,-101.185118
+753,Riga,Latvia,Zāģeru iela,living_street,57.003047,24.124047
+754,Amsterdam,The Netherlands,Fuutstraat,residential,52.432283,4.918451
+755,Cagayan de Oro,Philippines,Masterson Avenue,primary,8.465939,124.629636
+756,Ma’anshan,China,红东路,tertiary,31.69497,118.542442
+757,Shah Alam,Malaysia,Persiaran Raja Muda,primary,3.06702,101.507977
+758,Bağcılar,Turkey,1479. Sokak,residential,41.099339,28.914362
+759,Shizuishan,China,裕民南路,tertiary,39.008101,106.35282
+760,Kumamoto,Japan,託麻北部線,secondary,32.846354,130.764932
+762,Serang,Indonesia,Jalan Dawala,residential,-6.147622,106.18795
+763,Torreón,Mexico,Calle Oren Mattox,residential,25.545918,-103.432134
+764,Deyang,China,松花江南路,tertiary,31.102126,104.387546
+765,Abeokuta,Nigeria,Opako,residential,7.105972,3.31002
+766,Al Ḩudaydah,Yemen,شارع الشهداء,secondary,14.811357,42.981005
+767,Yangquan,China,东大街,primary,37.791219,113.636121
+768,Akure,Nigeria,Oba Adesida Road,primary,7.270356,5.187589
+769,Denver,United States,North Broadway,tertiary,39.785734,-104.987573
+770,Osasco,Brazil,Rua Lomas Valentinas,residential,-23.528849,-46.722549
+771,Kikolo,Angola,Rua N,residential,-8.852911,13.278374
+772,Maianga,Angola,Rua Amarela,unclassified,-8.822332,13.270578
+773,São José dos Campos,Brazil,Rua Hondo,residential,-23.241189,-45.894591
+774,Álvaro Obregón,Mexico,Avenida Álvaro Obregón,secondary,19.416958,-99.16615
+775,Aihara,Japan,若葉台モミジ通り,tertiary,35.597039,139.288519
+776,Evaton,South Africa,Chesnut Street,residential,-26.500685,27.837751
+777,Valenzuela,Philippines,Masola Street,residential,14.64134,121.007877
+778,Muzaffarābād,Pakistan,Shokat Nawaz Mir Road شوکت نواز میر روڈ,residential,34.325001,73.527935
+779,Okayama,Japan,洲崎米倉線,secondary,34.622336,133.946021
+780,San Luis Potosí,Mexico,Calle Pedro Montoya,residential,22.159053,-100.985679
+781,Aguascalientes,Mexico,Colima,pedestrian,21.88373,-102.311989
+782,General Santos,Philippines,Mabuhay Road,secondary,6.176289,125.145848
+783,Zhumadian,China,天中山大道,primary,32.953442,114.006808
+784,Morādābād,India,Moradabad-Kaladhungi Road,primary,28.836132,78.820267
+785,Sagamihara,Japan,川弟橋,primary,35.506871,139.25395
+786,Mississauga,Canada,Acala Crescent,residential,43.591628,-79.619821
+787,Lviv,Ukraine,Садова вулиця,residential,49.903265,24.019931
+788,Namangan,Uzbekistan,Kosonsoy koʻchasi,tertiary,41.011105,71.64481
+789,Zaporizhzhya,Ukraine,Іванова вулиця,secondary,47.831257,35.197802
+790,Zanzibar,Tanzania,Mkangeni,tertiary,-6.139621,39.253947
+791,Saltillo,Mexico,Calle Francisco Márquez,residential,25.449688,-100.979503
+792,Latakia,Syria,Hassan Bin Thabet street,tertiary,35.507626,35.78455
+793,Subang Jaya,Malaysia,Jalan Lawan Pedang 13/27,unclassified,3.091025,101.544238
+794,Warangal,India,Kakatiya University Bypass Road,secondary,18.02033,79.557215
+795,Paranaque City,Philippines,Cedar Street,residential,14.416296,120.957457
+796,Tolyatti,Russia,улица Свердлова,secondary,53.525171,49.323281
+797,Santo Domingo Oeste,Dominican Republic,Calle Poncio Sabater,residential,18.478751,-69.942586
+798,Santo Domingo Este,Dominican Republic,Calle Los Pinos,residential,18.48085,-69.874504
+799,Dhārāvi,India,D Vachanalaya Marg,residential,19.020394,72.841912
+800,Battagram,Pakistan,Shehtoot Road,tertiary,34.675261,73.000053
+801,Suez,Egypt,شارع 31,residential,29.984092,32.533977
+802,Ribeirão Preto,Brazil,Rua Padre Euclides,residential,-21.167249,-47.807005
+803,Agadir,Morocco,Avenue Boujdour,residential,30.39673,-9.557229
+804,Edogawe,Japan,蔵前橋通り,primary,35.730852,139.873654
+805,Sarajevo,Bosnia and Herzegovina,Envera Šehovića,residential,43.853326,18.381732
+806,Balikpapan,Indonesia,Jalan Binaraga,unclassified,-1.246504,116.847067
+807,Adachi,Japan,新荒川堤防線,secondary,35.733345,139.82424
+808,Changning,China,香山路,residential,31.217752,121.46147
+809,Bauchi,Nigeria,Wayan Makafi Street,unclassified,10.299327,9.84131
+810,Shizuoka,Japan,久能街道,tertiary,34.951511,138.435375
+811,Tunis,Tunisia,شارع محمد الخامس,primary,36.800646,10.186035
+812,Zhangjiakou,China,清水河北路,primary,40.834926,114.889343
+813,Washington,United States,43rd Street Northwest,residential,38.929403,-77.083677
+814,Nashville,United States,Hidden Terrace Court,residential,36.206909,-86.721189
+815,Fuxin,China,尹家窑桥,primary,41.999862,121.611113
+816,Ta’if,Saudi Arabia,الشهيد صالح بن عوضه الزهراني,residential,21.295324,40.438049
+817,Huangshi,China,杭州西路,primary,30.201694,115.027898
+818,Liaoyang,China,新运大街,primary,41.259965,123.187562
+819,Hlaingthaya,Myanmar,Aye Yeik Mon 3rd Street,residential,16.83608,96.116258
+820,Beira,Mozambique,Rua Dom Jaime Pedro Gonçalves,secondary,-19.822244,34.886775
+821,Hongkou,China,玉田支路,residential,31.283197,121.488232
+822,Zaragoza,Spain,Calle Barón de la Linde,residential,41.634326,-0.882205
+823,Sevilla,Spain,Calle Inocentes,living_street,37.397496,-5.98863
+824,Baise,China,东笋路,unclassified,23.884688,106.580283
+825,Pontianak,Indonesia,Gang Keladan 1,residential,-0.031214,109.371414
+826,Situbondo,Indonesia,Jalan Jawa,tertiary,-7.707045,114.012007
+827,Agege,Nigeria,Eyiaro Street,residential,6.573157,3.399318
+828,Binzhou,China,黄河四路,secondary,37.376517,117.954818
+829,Oklahoma City,United States,North Massachusetts Avenue,residential,35.473108,-97.488755
+830,Yuncheng,China,机场大道辅路,residential,35.05008,111.008203
+831,Dezhou,China,三八东路辅路,tertiary,37.448684,116.339748
+832,Dushanbe,Tajikistan,кӯчаи Есенин,tertiary,38.547786,68.78698
+833,Cotonou,Benin,Avenue du Renouveau,secondary,6.388497,2.389283
+834,El Paso,United States,Flamingo Drive,residential,31.792432,-106.502132
+835,Guadalupe,Mexico,Caracas,residential,25.648455,-100.285965
+836,Wrocław,Poland,Leona Petrażyckiego,residential,51.078049,16.966893
+838,Guntur,India,Vikas Nagar 7th Ln,residential,16.322886,80.420546
+839,Katsina,Nigeria,Yahaya Madaki Way,primary,12.978131,7.611985
+840,Sanmenxia,China,大岭北路,secondary,34.794526,111.191708
+841,E’zhou,China,体育路,tertiary,30.454968,114.871331
+842,Madīnat an Naşr,Egypt,شارع محمود طارق,residential,30.079062,31.340732
+843,Camama,Angola,Rua 65,residential,-8.910905,13.223323
+844,Tabuk,Saudi Arabia,طريق الملك عبد العزيز,primary,28.394947,36.546681
+845,Kitwe,Zambia,Jambo Drive,secondary,-12.807478,28.225806
+846,Bulawayo,Zimbabwe,C Road,residential,-20.134147,28.537539
+847,Mudanjiang,China,北安路,secondary,44.59608,129.613575
+848,Aracaju,Brazil,Avenida João Alves da Ailva,tertiary,-10.929669,-37.063506
+849,Athens,Greece,Κρήνης,residential,37.943294,23.713263
+850,Zagreb,Croatia,Ulica Matije Valjavca,residential,45.806564,15.956258
+851,Leshan,China,春华路中段,secondary,29.608595,103.727998
+852,Santo André,Brazil,Rua Dráusio,tertiary,-23.663011,-46.592569
+853,Vancouver,Canada,Waterloo Street,residential,49.261124,-123.17998
+854,Rizhao,China,绿舟路,tertiary,35.409459,119.550414
+855,Helsinki,Finland,Lauttasaarentie,secondary,60.161674,24.894082
+856,Cheonan,South Korea,성남로,tertiary,36.736817,127.241296
+857,Acapulco de Juárez,Mexico,Callejón Lázaro Cárdenas,residential,16.868623,-99.913746
+858,Banjarmasin,Indonesia,Jalan Belitung Laut,primary,-3.309735,114.587504
+859,Puducherry,India,Marine Street,residential,11.93635,79.835134
+860,Suining,China,滨江北路,secondary,30.554248,105.560154
+861,Brampton,Canada,McMurchy Avenue North,residential,43.683088,-79.768147
+862,Golfe,Angola,Rua da Guiné,residential,-8.814356,13.243902
+863,Soacha,Colombia,Carrera 18Q,tertiary,4.590577,-74.226287
+864,Boston,United States,Amory Street,residential,42.371276,-71.100881
+865,Tlalnepantla,Mexico,Avenida Jardín,tertiary,19.479131,-99.157743
+866,Jājmau,India,Kidwainagar Avenue,primary,26.437037,80.337338
+867,Portland,United States,Northwest Lovejoy Street,residential,45.530294,-122.766375
+868,Calumbo,Angola,Rua do centro de capitacao de agua do Kikuxe,tertiary,-9.152082,13.410405
+869,Tlaquepaque,Mexico,Calle Presa Falcón,residential,20.667708,-103.278702
+870,Frankfurt am Main,Germany,Elisabethenstraße,secondary,50.106184,8.687182
+871,Macau,Macao,九洲大道东,primary,22.247326,113.586604
+872,Palermo,Italy,Via dell'Orsa Minore,residential,38.091813,13.365739
+873,Izhevsk,Russia,Автозаводской проезд,residential,56.877654,53.279475
+874,Colombo,Sri Lanka,Vivekananda Hill,tertiary,6.944103,79.858851
+875,Maturín,Venezuela,Calle Boyacá,residential,9.747705,-63.176488
+876,Amravati,India,Amravati Paratwada Road,primary,20.923568,77.753648
+877,Detroit,United States,Mitchell Street,residential,42.370254,-83.038885
+878,Osogbo,Nigeria,Osogbo - Ilesa Road,primary,7.777462,4.552416
+879,Honchō,Japan,かもめ大通り,tertiary,35.668137,139.98819
+880,Bikaner,India,Purani shiv bari road,residential,28.004611,73.344746
+881,Jaboatão dos Guararapes,Brazil,Rua Francisco Alves,residential,-8.077531,-35.000881
+882,Hoji ya Henda,Angola,Rua do Pisca,residential,-8.84729,13.25599
+883,Las Vegas,United States,Cy Cliffview Circle,residential,36.138442,-115.078963
+884,New South Memphis,United States,East Raines Road,secondary,35.035055,-90.040333
+885,Hwaseong-si,South Korea,주석로,secondary,37.197818,126.8788
+886,Gold Coast,Australia,Winchester Street,residential,-27.982768,153.414292
+887,Łódź,Poland,Aleja Włókniarzy,primary,51.81573,19.433364
+888,Jeonju,South Korea,오두정2길,living_street,35.808089,127.118304
+889,Chongming,China,北港齐西路,secondary,31.600062,121.737137
+890,Al Aḩmadī,Kuwait,الطريق 200,secondary,29.086369,48.073792
+891,Cuenca,Ecuador,Avenida España,secondary,-2.894527,-78.99499
+892,Chisinau,Moldova,Strada Banatului,residential,46.984777,28.851051
+893,Likasi,Democratic Republic of the Congo,Avenue Lusambo,residential,-10.965115,26.727535
+894,Jambi City,Indonesia,Lorong Diamond,residential,-1.613958,103.593334
+895,Hebi,China,嵩山路,tertiary,35.733834,114.296561
+896,Comilla,Bangladesh,বিমানবন্দর সড়ক,secondary,23.442422,91.19236
+897,Tshikapa,Democratic Republic of the Congo,Av. Wele,residential,-6.42801,20.764594
+898,Chunian,Pakistan,Chunian-Habibabad Road,primary,30.972752,73.921759
+899,Kochi,India,Banthaka parambu road,residential,9.964681,76.252894
+900,Memphis,United States,Amity Avenue,residential,35.178402,-89.989598
+901,Jingmen,China,象山三路,residential,31.047858,112.202889
+902,Barnaul,Russia,Павловский тракт,primary,53.34267,83.695539
+903,Dandong,China,官电街,residential,40.132734,124.392687
+904,Piura,Peru,Calle Cajamarca,residential,-5.190386,-80.6273
+905,Bhilai,India,Central Avenue,primary,21.199367,81.365322
+906,Ndola,Zambia,Kabushi Road,secondary,-13.001896,28.595665
+907,Contagem,Brazil,Rua Professor Manoel Casassanta,residential,-19.875325,-43.983172
+908,Ulyanovsk,Russia,1-й переулок Баумана,residential,54.339605,48.370148
+909,Djibouti,Djibouti,Rue Aden شارع عدن,residential,11.558198,43.109103
+910,Glasgow,United Kingdom,Blairatholl Avenue,residential,55.875833,-4.314857
+911,Panshan,China,环城西路北段,primary,41.187803,121.979311
+913,Irkutsk,Russia,Улан-Баторская улица,tertiary,52.250203,104.266981
+914,Ansan-si,South Korea,실록2길,residential,37.306449,126.865405
+916,Kermanshah,Iran,۹,residential,34.366869,47.109201
+917,Feira de Santana,Brazil,Rua Doutor Sabino Silva,residential,-12.252036,-38.95212
+918,Jiaozhou,China,广州南路,secondary,36.276994,120.003391
+919,Düsseldorf,Germany,Stockumer Höfe,tertiary,51.266855,6.734698
+921,Villa Nueva,Guatemala,10a Avenida,residential,14.578866,-90.532547
+922,Khabarovsk,Russia,Карельский переулок,residential,48.405229,135.118274
+923,Cuiabá,Brazil,Rua Pedro Celestino,residential,-15.597194,-56.095597
+924,Arusha,Tanzania,Mfumbi Street,residential,-3.381469,36.671752
+925,Las Piñas,Philippines,Canton Street,residential,14.458598,121.00714
+926,Chizhou,China,Y089,unclassified,30.629973,117.412575
+927,Coyoacán,Mexico,Calle Oriente 65 A,residential,19.406633,-99.13117
+928,Stuttgart,Germany,Rotebühlstaffel,residential,48.768626,9.150832
+929,Ya'an,China,伏龙巷,residential,29.985974,103.007411
+930,Cuttack,India,Bajrakabati Road,secondary,20.466258,85.886936
+931,Borivli,India,Bajaj Marg,tertiary,19.204501,72.851342
+932,Chiclayo,Peru,Calle Elias Aguirre,residential,-6.772237,-79.835541
+933,Yaroslavl,Russia,проспект Толбухина,secondary,57.610585,39.859859
+935,Kawaguchi,Japan,仲町平和通り,unclassified,35.860907,139.653699
+936,Bukit Rahman Putra,Malaysia,Jalan Villa Putra 4,residential,3.225965,101.568212
+937,Jhang Sadr,Pakistan,Chiniot Jhang Road,secondary,31.29835,72.36532
+938,Ha'il,Saudi Arabia,شارع الأمير عبدالعزيز بن سعد بن عبدالعزيز,tertiary,27.586346,41.733991
+939,Bhavnagar,India,Ghogha Road,primary,21.756612,72.159837
+941,Vladivostok,Russia,Аксаковская улица,secondary,43.119215,131.899487
+942,Jinzhou,China,凌川大桥,secondary,41.103157,121.115077
+943,Tuxtla,Mexico,Calle Tercera Oriente Norte,residential,16.758527,-93.112625
+944,Kryvyy Rih,Ukraine,вулиця Балка Червона,residential,47.893381,33.403689
+945,Sanming,China,工业南路,secondary,26.231304,117.585857
+946,Islamabad,Pakistan,Street 56,residential,33.686337,73.044162
+947,Sāngli,India,Front Parking Road,residential,16.845734,74.601903
+948,Jamnagar,India,Bedi Road,secondary,22.48919,70.051386
+949,Lubango,Angola,Rua que dá acesso ao bairro do Calumbiro,residential,-14.908899,13.480648
+950,Pokhara,Nepal,"Street No 13, Himali Marga",residential,28.214199,84.014019
+951,Shuangyashan,China,民安大街,secondary,46.665339,131.136919
+952,Borama,Somalia,Amoud University Rd,tertiary,9.941271,43.197902
+953,Pallabi,Bangladesh,বনানী সুপার মার্কেট সড়ক,residential,23.793365,90.405857
+954,Luancheng,China,装备路,tertiary,37.931796,114.564478
+957,Huambo,Angola,Avenida da Independência,primary,-12.766595,15.744033
+958,Samarkand,Uzbekistan,Mirzo Ulug'bek ko'chasi,primary,39.65593,66.957212
+959,Mengzi,China,启园路,tertiary,23.375289,103.337894
+960,Kagoshima,Japan,木之下慈眼寺団地線,tertiary,31.505559,130.49801
+961,Mukalla,Yemen,الشارع الخامس,residential,14.535407,49.123645
+962,Rasht,Iran,فرجاد,residential,37.272102,49.566808
+963,Mar del Plata,Argentina,Córdoba,residential,-38.022962,-57.565904
+964,Essen,Germany,Wegenerstraße,pedestrian,51.432419,7.003362
+965,Al Maḩallah al Kubrá,Egypt,شارع غنيم مصطفى,residential,30.991399,31.165367
+966,Málaga,Spain,Calle Fernández Shaw,tertiary,36.728192,-4.372561
+967,Shekhupura,Pakistan,شَيخُوپُورہ حافظ آباد روڈ,primary,31.766747,73.951923
+968,Yingkou,China,学府路,tertiary,40.667882,122.238959
+969,Zhangzhou,China,南昌路,secondary,24.513305,117.653221
+970,Reynosa,Mexico,Calle Circunvalación Ocho,residential,26.064686,-98.327198
+971,Thuận An,Vietnam,Võ Thị Đầy,tertiary,10.917048,106.664336
+972,Dortmund,Germany,Baroper Straße,secondary,51.479304,7.407323
+973,Suginami,Japan,旧水戸街道,tertiary,36.174782,140.259698
+974,Baltimore,United States,East Wabash Avenue,unclassified,39.336539,-76.671781
+975,Itabashi,Japan,神楽坂通り,unclassified,35.701023,139.741177
+976,New Kingston,Jamaica,Fairbourne Drive,residential,17.96964,-76.757644
+977,Pelentong,Malaysia,Jalan Molek 2/8,residential,1.523187,103.790693
+978,Cimahi,Indonesia,Jalan Daeng Muhammad Ardiwinata,secondary,-6.824699,107.57501
+979,Londrina,Brazil,Rua Gomes Carneiro,tertiary,-23.321997,-51.163944
+981,Genoa,Italy,Via Evandro Ferri,secondary,44.437351,8.887439
+982,Hachiōji,Japan,平山通り,secondary,35.638246,139.388504
+983,Malacca,Malaysia,Jalan Kenanga 1/3,residential,2.207776,102.229031
+984,Nha Trang,Vietnam,Nguyễn Biểu,residential,12.280713,109.196194
+985,Kerman,Iran,آبنوس ۱۳,residential,30.29311,57.045624
+986,Orūmīyeh,Iran,بلوار مفتح,tertiary,37.553841,45.062302
+987,Bahçelievler,Turkey,1439. Sokak,residential,41.041951,28.8154
+988,Tanta,Egypt,شارع الإمام مسلم,residential,30.801001,31.005241
+989,Jammu,India,Residency Road,tertiary,32.729594,74.866059
+990,Iskandar Puteri,Malaysia,Lebuh Medini Utama,secondary,1.407604,103.629495
+991,Calamba,Philippines,Saint Lucy Street,residential,14.192745,121.164159
+992,Tlalpan,Mexico,Calle Muná,residential,19.282528,-99.222977
+993,Herāt,Afghanistan,میدان معانی هروی,secondary,34.290147,62.19212
+994,Gujrat,Pakistan,Kareem Street,residential,32.58997,74.063243
+995,Tomsk,Russia,улица Бела Куна,secondary,56.520658,85.048329
+996,Umraniye,Turkey,Bedesten Sokağı,residential,41.014544,29.146807
+997,Shihezi,China,东七路,secondary,44.285797,86.098868
+998,South Boston,United States,Whittier Street,residential,42.387125,-71.126486
+999,Nakuru,Kenya,Kenyatta Avenue,secondary,-0.285022,36.069316
+1000,Hamilton,Canada,Cloverdale Avenue,residential,43.225832,-79.8113
