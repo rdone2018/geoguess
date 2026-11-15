@@ -8,16 +8,17 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-async function randomCoords(sessionId) {
-  const street = await db.getRandomStreet(sessionId);
+async function randomCoords(region) {
+  const street = await db.getRandomStreet(region);
   if (!street) {
-    return { lat: 0, lng: 0, label: '', streetId: null };
+    return { lat: 0, lng: 0, label: '', streetId: null, panoId: null };
   }
   return {
     lat: street.lat,
     lng: street.lon,
     label: street.city,
-    streetId: street.id
+    streetId: street.id,
+    panoId: street.pano_id || null
   };
 }
 
@@ -49,7 +50,7 @@ app.post('/api/admin/create', async (req, res) => {
 
 app.post('/api/admin/session', async (req, res) => {
   try {
-    const { username } = req.body;
+    const { username, region } = req.body;
     const admin = await db.getUserByUsername(username);
     if (!admin || admin.role !== 'admin') {
       return res.status(403).json({ error: 'Not an admin' });
@@ -57,7 +58,9 @@ app.post('/api/admin/session', async (req, res) => {
     await db.finishAllSessions();
     const session = await db.createSession(admin.id);
     await db.joinSession(session.id, admin.id);
-    res.json({ code: session.code, status: 'lobby' });
+    const r = region === 'europe' ? 'europe' : 'world';
+    await db.getPool().execute('UPDATE sessions SET region = ? WHERE id = ?', [r, session.id]);
+    res.json({ code: session.code, status: 'lobby', region: r });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -102,7 +105,7 @@ app.post('/api/session/:code/start', async (req, res) => {
     const r = Math.min(Math.max(parseInt(rounds) || 5, 1), 10);
     const t = Math.min(Math.max(parseInt(timer) || 60, 10), 120);
     await db.updateSessionSettings(session.id, r, t);
-    const coords = await randomCoords(session.id);
+    const coords = await randomCoords(session.region);
     console.log('START randomCoords result:', JSON.stringify(coords));
     const { lat, lng, label, streetId } = coords;
     const locationId = await db.insertLocation(lat, lng, label, streetId, session.id);
@@ -129,7 +132,7 @@ app.post('/api/session/:code/next-round', async (req, res) => {
       return;
     }
     if (result.done) return res.json({ done: true });
-    const coords2 = await randomCoords(session.id);
+    const coords2 = await randomCoords(session.region);
     console.log('NEXT-ROUND randomCoords result:', JSON.stringify(coords2));
     const { lat, lng, label, streetId } = coords2;
     const locationId = await db.insertLocation(lat, lng, label, streetId, session.id);
@@ -242,6 +245,11 @@ async function start() {
     await db.importRandomStreets();
   } catch (err) {
     console.warn('Random streets import failed:', err.message);
+  }
+  try {
+    await db.importEuropeRandomStreets();
+  } catch (err) {
+    console.warn('Europe random streets import failed:', err.message);
   }
 
   app.listen(PORT, () => {

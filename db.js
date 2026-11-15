@@ -125,8 +125,24 @@ async function initSchema() {
       lon DOUBLE NOT NULL
     )
   `);
+  await conn.execute(`
+    CREATE TABLE IF NOT EXISTS europe_random_streets (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      city VARCHAR(100) NOT NULL,
+      country VARCHAR(100) NOT NULL,
+      street VARCHAR(200) NOT NULL,
+      highway_type VARCHAR(50) DEFAULT NULL,
+      lat DOUBLE NOT NULL,
+      lon DOUBLE NOT NULL,
+      pano_id VARCHAR(50) DEFAULT NULL,
+      pano_lat DOUBLE DEFAULT NULL,
+      pano_lon DOUBLE DEFAULT NULL,
+      pano_date VARCHAR(10) DEFAULT NULL
+    )
+  `);
   await conn.execute('ALTER TABLE location ADD COLUMN IF NOT EXISTS street_id INT DEFAULT NULL');
   await conn.execute('ALTER TABLE location ADD COLUMN IF NOT EXISTS session_id INT DEFAULT NULL');
+  await conn.execute("ALTER TABLE sessions ADD COLUMN IF NOT EXISTS region VARCHAR(20) DEFAULT 'world'");
   conn.release();
 }
 
@@ -168,9 +184,56 @@ async function importRandomStreets() {
   console.log('Imported', imported, 'random streets');
 }
 
-async function getRandomStreet(sessionId) {
+async function importEuropeRandomStreets() {
   const conn = await getPool().getConnection();
-  const [rows] = await conn.execute('SELECT * FROM world_random_streets ORDER BY RAND() LIMIT 1');
+  await conn.execute(`
+    CREATE TABLE IF NOT EXISTS europe_random_streets (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      city VARCHAR(100) NOT NULL,
+      country VARCHAR(100) NOT NULL,
+      street VARCHAR(200) NOT NULL,
+      highway_type VARCHAR(50) DEFAULT NULL,
+      lat DOUBLE NOT NULL,
+      lon DOUBLE NOT NULL,
+      pano_id VARCHAR(50) DEFAULT NULL,
+      pano_lat DOUBLE DEFAULT NULL,
+      pano_lon DOUBLE DEFAULT NULL,
+      pano_date VARCHAR(10) DEFAULT NULL
+    )
+  `);
+  const [count] = await conn.execute('SELECT COUNT(*) AS c FROM europe_random_streets');
+  if (count[0].c > 0) { conn.release(); console.log('europe_random_streets already populated:', count[0].c); return; }
+  const csvPath = path.join(__dirname, 'europe_random_streets.csv');
+  const content = fs.readFileSync(csvPath, 'utf-8');
+  const lines = content.trim().split('\n').slice(1);
+  let imported = 0;
+  for (const line of lines) {
+    const parts = line.split(',');
+    if (parts.length < 7) continue;
+    const city = parts[1].trim();
+    const country = parts[2].trim();
+    const street = parts[3].trim();
+    const highwayType = parts[4].trim();
+    const lat = parseFloat(parts[5]);
+    const lon = parseFloat(parts[6]);
+    const panoId = parts.length > 7 ? parts[7].trim() : null;
+    const panoLat = parts.length > 8 ? parseFloat(parts[8]) : null;
+    const panoLon = parts.length > 9 ? parseFloat(parts[9]) : null;
+    const panoDate = parts.length > 10 ? parts[10].trim() : null;
+    await conn.execute(
+      'INSERT INTO europe_random_streets (city, country, street, highway_type, lat, lon, pano_id, pano_lat, pano_lon, pano_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [city, country, street, highwayType, lat, lon, panoId, panoLat, panoLon, panoDate]
+    );
+    imported++;
+  }
+  conn.release();
+  console.log('Imported', imported, 'europe random streets');
+}
+
+async function getRandomStreet(region) {
+  const conn = await getPool().getConnection();
+  const table = region === 'europe' ? 'europe_random_streets' : 'world_random_streets';
+  const [rows] = await conn.execute(`SELECT * FROM ${table} ORDER BY RAND() LIMIT 1`);
   conn.release();
   return rows[0] || null;
 }
@@ -360,7 +423,7 @@ async function getPendingPlayers(sessionId, round) {
 }
 
 module.exports = {
-  getPool, initSchema, importRandomStreets, getRandomStreet,
+  getPool, initSchema, importRandomStreets, importEuropeRandomStreets, getRandomStreet,
   createUser, getUserByUsername,
   createSession, getSessionByCode, joinSession, getSessionPlayers, startSession, finishAllSessions,
   updateSessionSettings, nextRound,
