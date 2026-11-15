@@ -53,11 +53,11 @@
       </div>
       <div id="admin-form" style="display:none; margin-top:16px;">
         <input id="admin-name" placeholder="Your name">
-        <select id="admin-region">
-          <option value="world">World</option>
-          <option value="europe">Europe</option>
-        </select>
-        <button onclick="createSession()">Create Game Session</button>
+        <div style="display:flex;gap:8px;">
+          <button id="btn-world" onclick="selectRegion('world')" style="padding:8px 16px;border:2px solid #4fc3f7;background:#4fc3f7;color:#000;border-radius:6px;cursor:pointer;font-size:14px;">🌍 World</button>
+          <button id="btn-europe" onclick="selectRegion('europe')" style="padding:8px 16px;border:2px solid #ccc;background:#fff;color:#333;border-radius:6px;cursor:pointer;font-size:14px;">🏰 Europe</button>
+        </div>
+        <button onclick="createSession()" style="margin-top:8px;">Create Game Session</button>
         <div class="error" id="admin-error"></div>
       </div>
     </div>
@@ -131,15 +131,28 @@
       document.getElementById('admin-form').style.display = 'block';
     }
 
+    let selectedRegion = 'world';
+    function selectRegion(r) {
+      selectedRegion = r;
+      const bw = document.getElementById('btn-world');
+      const be = document.getElementById('btn-europe');
+      if (r === 'world') {
+        bw.style.background = '#4fc3f7'; bw.style.color = '#000';
+        be.style.background = '#fff'; be.style.color = '#333'; be.style.borderColor = '#ccc';
+      } else {
+        be.style.background = '#4fc3f7'; be.style.color = '#000';
+        bw.style.background = '#fff'; bw.style.color = '#333'; bw.style.borderColor = '#ccc';
+      }
+    }
+
     async function createSession() {
       const username = document.getElementById('admin-name').value.trim();
-      const region = document.getElementById('admin-region').value;
       if (!username) return;
       myName = username;
       isAdmin = true;
       try {
         await fetch('/api/admin/create', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username}) });
-        const res = await fetch('/api/admin/session', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username, region}) });
+        const res = await fetch('/api/admin/session', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username, region: selectedRegion}) });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
         sessionCode = data.code;
