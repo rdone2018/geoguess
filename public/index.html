@@ -90,15 +90,16 @@
     </div>
     <div id="main">
       <div id="sv-container">
-        <div id="score-overlay" class="hidden" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:999;display:none;">
-          <div style="background:#16213e;padding:24px 32px;border-radius:12px;min-width:280px;max-width:90%;">
-            <h2 style="color:#fff;margin-bottom:16px;font-size:1.3rem;">Scores</h2>
-            <table id="score-table" style="width:100%;border-collapse:collapse;color:#fff;">
-              <thead><tr style="color:#ffab40;"><th style="padding:6px;text-align:left;">#</th><th style="padding:6px;text-align:left;">Player</th><th style="padding:6px;text-align:right;">Points</th></tr></thead>
-              <tbody></tbody>
-            </table>
-            <p id="score-next-round" style="color:#aaa;margin-top:16px;font-size:0.85rem;"></p>
+        <div id="score-overlay" class="hidden" style="position:absolute;top:20px;right:20px;width:320px;max-height:80%;background:rgba(22,33,62,0.95);border-radius:12px;padding:20px;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.5);display:none;overflow-y:auto;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <h2 style="color:#fff;margin:0;font-size:1.2rem;">Scores</h2>
+            <button id="score-close-btn" style="background:none;border:none;color:#aaa;font-size:1.5rem;cursor:pointer;padding:0;width:24px;height:24px;line-height:1;">&times;</button>
           </div>
+          <table id="score-table" style="width:100%;border-collapse:collapse;color:#fff;">
+            <thead><tr style="color:#ffab40;"><th style="padding:6px;text-align:left;font-size:0.85rem;">#</th><th style="padding:6px;text-align:left;font-size:0.85rem;">Player</th><th style="padding:6px;text-align:right;font-size:0.85rem;">Points</th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <p id="score-next-round" style="color:#aaa;margin-top:16px;font-size:0.85rem;text-align:center;"></p>
         </div>
       </div>
       <div id="osm-container"></div>
@@ -398,22 +399,33 @@
         const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '';
         return `<tr style="${highlight}"><td style="padding:4px;">${medal || i + 1}</td><td style="padding:4px;">${s.username}</td><td style="padding:4px;text-align:right;">${s.total}</td></tr>`;
       }).join('');
-      document.getElementById('score-next-round').textContent = 'Game Over!';
+      document.getElementById('score-next-round').textContent = isAdmin ? 'Create new game to play again' : 'Game Over!';
       document.getElementById('round-info').textContent = 'Final Results';
       const overlay = document.getElementById('score-overlay');
       overlay.classList.remove('hidden');
-      overlay.style.display = 'flex';
+      overlay.style.display = 'block';
+      
+      // Add close button handler
+      const closeBtn = document.getElementById('score-close-btn');
+      if (closeBtn) {
+        closeBtn.onclick = () => {
+          overlay.classList.add('hidden');
+          overlay.style.display = 'none';
+        };
+      }
+      
       let btn = document.getElementById('new-game-btn');
       if (!btn) {
         btn = document.createElement('button');
         btn.id = 'new-game-btn';
         btn.textContent = 'Create New Session';
-        btn.style.cssText = 'margin-top:16px;padding:8px 20px;background:#ffab40;color:#000;border:none;border-radius:6px;font-size:1rem;cursor:pointer;font-weight:bold;';
+        btn.style.cssText = 'margin-top:16px;padding:8px 20px;background:#ffab40;color:#000;border:none;border-radius:6px;font-size:1rem;cursor:pointer;font-weight:bold;width:100%;';
         btn.onclick = () => window.location.href = '/?admin';
         overlay.querySelector('div').appendChild(btn);
       }
       if (isAdmin) {
-        btn.style.display = 'inline-block';
+        btn.style.display = 'block';
+        closeBtn.style.display = 'none'; // Hide close button for admin on final scores
       } else {
         btn.style.display = 'none';
       }
@@ -429,8 +441,20 @@
       document.getElementById('score-next-round').textContent = 'Next round in 5s...';
       const overlay = document.getElementById('score-overlay');
       overlay.classList.remove('hidden');
-      overlay.style.display = 'flex';
+      overlay.style.display = 'block';
+      
+      // Add close button handler
+      const closeBtn = document.getElementById('score-close-btn');
+      if (closeBtn) {
+        closeBtn.onclick = () => {
+          overlay.classList.add('hidden');
+          overlay.style.display = 'none';
+        };
+      }
+      
       await new Promise(r => setTimeout(r, 5000));
+      overlay.classList.add('hidden');
+      overlay.style.display = 'none';
     }
 
     function startGameView(loc, rounds, timer, round) {
