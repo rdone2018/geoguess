@@ -279,7 +279,6 @@ async function createSession(adminId) {
 async function finishAllSessions() {
   const conn = await getPool().getConnection();
   await conn.execute("UPDATE sessions SET status = 'finished' WHERE status != 'finished'");
-  await conn.execute("DELETE FROM session_players");
   conn.release();
 }
 

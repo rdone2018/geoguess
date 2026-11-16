@@ -121,12 +121,20 @@ app.post('/api/admin/session', async (req, res) => {
     if (!admin || admin.role !== 'admin') {
       return res.status(403).json({ error: 'Request failed' });
     }
+    
+    // Verify admin exists in database before proceeding
+    const adminCheck = await db.getUserByUsername(username);
+    if (!adminCheck) {
+      return res.status(400).json({ error: 'Admin user not found' });
+    }
+    
     await db.finishAllSessions();
     console.log('Finished all sessions');
-    const session = await db.createSession(admin.id);
+    
+    const adminId = parseInt(admin.id, 10);
+    console.log('Creating session with adminId:', adminId, 'Type:', typeof adminId);
+    const session = await db.createSession(adminId);
     console.log('Created session:', session);
-    const adminId = parseInt(admin.id);
-    console.log('Joining with adminId:', adminId);
     
     // Check if session exists right before join
     const sessionCheck = await db.getSessionById(session.id);
