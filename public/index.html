@@ -90,14 +90,20 @@
     </div>
     <div id="main">
       <div id="sv-container">
-        <div id="score-overlay" class="hidden" style="position:absolute;top:20px;right:20px;width:180px;background:rgba(22,33,62,0.5);border-radius:12px;padding:14px;z-index:1000;box-shadow:0 4px 16px rgba(0,0,0,0.3);display:none;">
-          <h2 style="color:#fff;margin:0;font-size:1rem;text-align:center;word-wrap:break-word;">Scores</h2>
-          <div style="height:1px;background:rgba(255,255,255,0.3);margin:10px 0;"></div>
+        <div id="score-overlay" class="hidden" style="position:absolute;top:20px;right:20px;width:200px;background:rgba(22,33,62,0.5);border-radius:12px;padding:14px;z-index:1000;box-shadow:0 4px 16px rgba(0,0,0,0.3);display:none;">
+          <h2 style="color:#fff;margin:0 0 12px;font-size:1.1rem;text-align:center;word-wrap:break-word;">Score</h2>
           <table id="score-table" style="width:100%;border-collapse:collapse;color:#fff;">
+            <thead>
+              <tr style="color:#ffab40;border-bottom:2px solid rgba(255,255,255,0.3);">
+                <th style="padding:6px 4px;text-align:left;font-size:0.75rem;font-weight:bold;">#</th>
+                <th style="padding:6px 4px;text-align:left;font-size:0.75rem;font-weight:bold;">Player</th>
+                <th style="padding:6px 4px;text-align:right;font-size:0.75rem;font-weight:bold;">Pts</th>
+              </tr>
+            </thead>
             <tbody></tbody>
           </table>
-          <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.2);">
-            <p id="score-next-round" style="color:#666;margin:0;font-size:0.7rem;text-align:center;word-wrap:break-word;"></p>
+          <div id="score-footer" style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.2);">
+            <p id="score-next-round" style="color:#666;margin:0 0 8px;font-size:0.7rem;text-align:center;word-wrap:break-word;"></p>
           </div>
         </div>
       </div>
@@ -396,7 +402,7 @@
       tbody.innerHTML = data.scores.map((s, i) => {
         const highlight = i < 3 ? 'background:rgba(255,171,64,0.15);' : '';
         const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '';
-        return `<tr style="${highlight}"><td style="padding:3px 0;font-size:0.75rem;color:#fff;"><span style="color:#ffab40;">${i + 1}.</span> ${medal} ${s.username}</td><td style="padding:3px 0;font-size:0.75rem;text-align:right;color:#fff;font-weight:bold;">${s.total}</td></tr>`;
+        return `<tr style="${highlight}"><td style="padding:5px 4px;font-size:0.75rem;color:#fff;">${i + 1}</td><td style="padding:5px 4px;font-size:0.75rem;color:#fff;word-wrap:break-word;">${medal} ${s.username}</td><td style="padding:5px 4px;font-size:0.75rem;text-align:right;color:#fff;font-weight:bold;">${s.total}</td></tr>`;
       }).join('');
       document.getElementById('score-next-round').textContent = isAdmin ? 'Create new game to play again' : 'Game Over!';
       document.getElementById('round-info').textContent = 'Final Results';
@@ -409,9 +415,9 @@
         btn = document.createElement('button');
         btn.id = 'new-game-btn';
         btn.textContent = 'Create New Session';
-        btn.style.cssText = 'margin-top:10px;padding:6px 12px;background:#ffab40;color:#000;border:none;border-radius:6px;font-size:0.75rem;cursor:pointer;font-weight:bold;width:100%;word-wrap:break-word;';
+        btn.style.cssText = 'margin-top:8px;padding:6px 12px;background:#ffab40;color:#000;border:none;border-radius:6px;font-size:0.75rem;cursor:pointer;font-weight:bold;width:100%;word-wrap:break-word;';
         btn.onclick = () => window.location.href = '/?admin';
-        overlay.querySelector('div').appendChild(btn);
+        document.getElementById('score-footer').appendChild(btn);
       }
       if (isAdmin) {
         btn.style.display = 'block';
@@ -425,7 +431,7 @@
       const data = await res.json();
       const tbody = document.querySelector('#score-table tbody');
       tbody.innerHTML = data.scores.map((s, i) =>
-        `<tr><td style="padding:3px 0;font-size:0.75rem;color:#fff;"><span style="color:#ffab40;">${i + 1}.</span> ${s.username}</td><td style="padding:3px 0;font-size:0.75rem;text-align:right;color:#fff;">${s.total}</td></tr>`
+        `<tr><td style="padding:5px 4px;font-size:0.75rem;color:#fff;">${i + 1}</td><td style="padding:5px 4px;font-size:0.75rem;color:#fff;word-wrap:break-word;">${s.username}</td><td style="padding:5px 4px;font-size:0.75rem;text-align:right;color:#fff;">${s.total}</td></tr>`
       ).join('');
       document.getElementById('score-next-round').textContent = 'Next round in 5s...';
       const overlay = document.getElementById('score-overlay');
