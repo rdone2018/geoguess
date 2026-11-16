@@ -147,6 +147,14 @@
       document.getElementById('admin-form').style.display = 'block';
     }
 
+    // Check for session code in URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlCode = urlParams.get('code');
+    if (urlCode) {
+      document.getElementById('session-code').value = urlCode;
+      document.getElementById('player-name').focus();
+    }
+
     let selectedRegion = 'europe';
     let lastSubmitTime = 0;
     const MIN_SUBMIT_INTERVAL = 2000;
