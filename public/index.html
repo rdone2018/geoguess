@@ -90,13 +90,13 @@
     </div>
     <div id="main">
       <div id="sv-container">
-        <div id="score-overlay" class="hidden" style="position:absolute;top:20px;right:20px;width:160px;max-height:80%;background:rgba(22,33,62,0.5);border-radius:12px;padding:12px;z-index:1000;box-shadow:0 4px 16px rgba(0,0,0,0.3);display:none;overflow-y:auto;">
-          <h2 style="color:#fff;margin:0 0 12px;font-size:1rem;text-align:center;">Scores</h2>
+        <div id="score-overlay" class="hidden" style="position:absolute;top:20px;right:20px;width:180px;background:rgba(22,33,62,0.5);border-radius:12px;padding:14px;z-index:1000;box-shadow:0 4px 16px rgba(0,0,0,0.3);display:none;">
+          <h2 style="color:#fff;margin:0 0 12px;font-size:1rem;text-align:center;word-wrap:break-word;">Scores</h2>
           <table id="score-table" style="width:100%;border-collapse:collapse;color:#fff;">
-            <thead><tr style="color:#ffab40;"><th style="padding:4px;text-align:left;font-size:0.75rem;">#</th><th style="padding:4px;text-align:left;font-size:0.75rem;">Player</th><th style="padding:4px;text-align:right;font-size:0.75rem;">Pts</th></tr></thead>
+            <thead><tr style="color:#ffab40;"><th style="padding:4px;text-align:left;font-size:0.75rem;">#</th><th style="padding:4px;text-align:left;font-size:0.75rem;word-wrap:break-word;">Player</th><th style="padding:4px;text-align:right;font-size:0.75rem;">Pts</th></tr></thead>
             <tbody></tbody>
           </table>
-          <p id="score-next-round" style="color:#ddd;margin-top:12px;font-size:0.75rem;text-align:center;"></p>
+          <p id="score-next-round" style="color:#ddd;margin-top:12px;font-size:0.75rem;text-align:center;word-wrap:break-word;"></p>
         </div>
       </div>
       <div id="osm-container"></div>
@@ -394,7 +394,7 @@
       tbody.innerHTML = data.scores.map((s, i) => {
         const highlight = i < 3 ? 'background:rgba(255,171,64,0.2);font-weight:bold;' : '';
         const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '';
-        return `<tr style="${highlight}"><td style="padding:4px;font-size:0.8rem;">${medal || i + 1}</td><td style="padding:4px;font-size:0.8rem;">${s.username}</td><td style="padding:4px;text-align:right;font-size:0.8rem;">${s.total}</td></tr>`;
+        return `<tr style="${highlight}"><td style="padding:4px;font-size:0.8rem;">${medal || i + 1}</td><td style="padding:4px;font-size:0.8rem;word-wrap:break-word;">${s.username}</td><td style="padding:4px;text-align:right;font-size:0.8rem;">${s.total}</td></tr>`;
       }).join('');
       document.getElementById('score-next-round').textContent = isAdmin ? 'Create new game to play again' : 'Game Over!';
       document.getElementById('round-info').textContent = 'Final Results';
@@ -407,7 +407,7 @@
         btn = document.createElement('button');
         btn.id = 'new-game-btn';
         btn.textContent = 'Create New Session';
-        btn.style.cssText = 'margin-top:12px;padding:6px 12px;background:#ffab40;color:#000;border:none;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:bold;width:100%;';
+        btn.style.cssText = 'margin-top:12px;padding:6px 12px;background:#ffab40;color:#000;border:none;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:bold;width:100%;word-wrap:break-word;';
         btn.onclick = () => window.location.href = '/?admin';
         overlay.querySelector('div').appendChild(btn);
       }
@@ -423,7 +423,7 @@
       const data = await res.json();
       const tbody = document.querySelector('#score-table tbody');
       tbody.innerHTML = data.scores.map((s, i) =>
-        `<tr><td style="padding:4px;font-size:0.8rem;">${i + 1}</td><td style="padding:4px;font-size:0.8rem;">${s.username}</td><td style="padding:4px;text-align:right;font-size:0.8rem;">${s.total}</td></tr>`
+        `<tr><td style="padding:4px;font-size:0.8rem;">${i + 1}</td><td style="padding:4px;font-size:0.8rem;word-wrap:break-word;">${s.username}</td><td style="padding:4px;text-align:right;font-size:0.8rem;">${s.total}</td></tr>`
       ).join('');
       document.getElementById('score-next-round').textContent = 'Next round in 5s...';
       const overlay = document.getElementById('score-overlay');
