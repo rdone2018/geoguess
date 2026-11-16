@@ -73,6 +73,14 @@
       <h2 id="lobby-title">Lobby</h2>
       <div class="code" id="lobby-code"></div>
       <p style="color:#aaa;font-size:0.85rem;text-align:center;">Share this code with players</p>
+      <div id="share-url-section" style="margin:16px 0;display:none;">
+        <p style="color:#aaa;font-size:0.8rem;text-align:center;margin-bottom:8px;">Or share this link:</p>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input id="share-url" type="text" readonly style="flex:1;padding:8px;background:#1a1a2e;color:#4fc3f7;border:1px solid #0f3460;border-radius:4px;font-size:0.85rem;text-align:center;cursor:pointer;" onclick="copyShareUrl()">
+          <button id="copy-url-btn" onclick="copyShareUrl()" style="padding:8px 16px;background:#0f3460;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:0.85rem;white-space:nowrap;">Copy</button>
+        </div>
+        <p id="copy-feedback" style="color:#69f0ae;font-size:0.75rem;text-align:center;margin-top:6px;display:none;">Copied to clipboard!</p>
+      </div>
       <ul class="lobby-list" id="lobby-players"></ul>
       <div id="settings" style="display:none; margin:12px 0;">
         <div style="display:flex;gap:12px;justify-content:center;">
@@ -228,11 +236,32 @@
         document.getElementById('start-btn').style.display = 'block';
         document.getElementById('settings').style.display = 'block';
         document.getElementById('lobby-info').textContent = 'Waiting for players to join...';
+        // Show share URL section for admin
+        const shareUrl = window.location.origin + '?code=' + sessionCode;
+        document.getElementById('share-url').value = shareUrl;
+        document.getElementById('share-url-section').style.display = 'block';
       } else {
         document.getElementById('lobby-title').textContent = 'Waiting Room';
         document.getElementById('lobby-info').textContent = 'Waiting for admin to start the game...';
       }
       pollLobby();
+    }
+
+    function copyShareUrl() {
+      const urlInput = document.getElementById('share-url');
+      urlInput.select();
+      urlInput.setSelectionRange(0, 99999); // For mobile devices
+      navigator.clipboard.writeText(urlInput.value).then(() => {
+        const feedback = document.getElementById('copy-feedback');
+        feedback.style.display = 'block';
+        setTimeout(() => { feedback.style.display = 'none'; }, 2000);
+      }).catch(err => {
+        // Fallback for older browsers
+        document.execCommand('copy');
+        const feedback = document.getElementById('copy-feedback');
+        feedback.style.display = 'block';
+        setTimeout(() => { feedback.style.display = 'none'; }, 2000);
+      });
     }
 
     async function pollLobby() {
