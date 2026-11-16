@@ -303,7 +303,7 @@
     function onTimeout() {
       if (guessSubmitted || roundEnded) return;
       guessSubmitted = true;
-      document.getElementById('distance').textContent = 'Time up! | Points: 0 | Waiting for others...';
+      document.getElementById('distance').textContent = 'Time up! Waiting for others...';
       if (myName) {
         fetch(`/api/session/${sessionCode}/guess`, {
           method: 'POST',
@@ -484,9 +484,6 @@
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({ username: myName, lat: clicked.lat, lng: clicked.lng, remaining_time: remainingTime })
           }).then(r => r.json()).then(data => {
-            if (data.points !== undefined) {
-              document.getElementById('distance').textContent += ` | Points: ${data.points}`;
-            }
             if (data.all_done) {
               endRound();
             }
