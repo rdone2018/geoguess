@@ -33,6 +33,7 @@
     #distance { color: #4fc3f7; font-weight: bold; }
     .role-btns { display: flex; gap: 12px; }
     .role-btns button { flex: 1; padding: 14px; font-size: 1rem; }
+    #score-overlay { display: flex !important; }
   </style>
 </head>
 <body>
@@ -88,21 +89,22 @@
       <span id="round-info">Round 1/5</span> &nbsp;|&nbsp; <span id="timer-display">1:00</span>
     </div>
     <div id="main">
-      <div id="sv-container"></div>
+      <div id="sv-container">
+        <div id="score-overlay" class="hidden" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:999;display:none;">
+          <div style="background:#16213e;padding:24px 32px;border-radius:12px;min-width:280px;max-width:90%;">
+            <h2 style="color:#fff;margin-bottom:16px;font-size:1.3rem;">Scores</h2>
+            <table id="score-table" style="width:100%;border-collapse:collapse;color:#fff;">
+              <thead><tr style="color:#ffab40;"><th style="padding:6px;text-align:left;">#</th><th style="padding:6px;text-align:left;">Player</th><th style="padding:6px;text-align:right;">Points</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <p id="score-next-round" style="color:#aaa;margin-top:16px;font-size:0.85rem;"></p>
+          </div>
+        </div>
+      </div>
       <div id="osm-container"></div>
     </div>
     <div id="coords">
       <span id="distance"></span>
-    </div>
-    <div id="score-overlay" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;z-index:9999;display:none;">
-      <div style="background:#16213e;padding:30px 40px;border-radius:12px;min-width:320px;">
-        <h2 style="color:#fff;margin-bottom:16px;">Scores</h2>
-        <table id="score-table" style="width:100%;border-collapse:collapse;color:#fff;">
-          <thead><tr style="color:#ffab40;"><th style="padding:6px;text-align:left;">#</th><th style="padding:6px;text-align:left;">Player</th><th style="padding:6px;text-align:right;">Points</th></tr></thead>
-          <tbody></tbody>
-        </table>
-        <p id="score-next-round" style="color:#aaa;margin-top:16px;font-size:0.85rem;"></p>
-      </div>
     </div>
   </div>
 
