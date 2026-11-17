@@ -75,9 +75,9 @@
       <p style="color:#aaa;font-size:0.85rem;text-align:center;">Share this code with players</p>
       <div id="share-url-section" style="margin:16px 0;display:none;">
         <p style="color:#aaa;font-size:0.8rem;text-align:center;margin-bottom:8px;">Or share this link:</p>
-        <div style="display:flex;gap:8px;align-items:center;">
-          <input id="share-url" type="text" readonly style="flex:1;padding:8px;background:#1a1a2e;color:#4fc3f7;border:1px solid #0f3460;border-radius:4px;font-size:0.8rem;text-align:center;" title="Click to copy">
-          <button id="copy-url-btn" onclick="copyShareUrl()" style="padding:8px 16px;background:#0f3460;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:0.85rem;white-space:nowrap;">Copy</button>
+        <div style="display:flex;gap:8px;align-items:center;justify-content:center;">
+          <input id="share-url" type="text" readonly style="display:none;" value="">
+          <button id="copy-url-btn" onclick="copyShareUrl()" style="padding:8px 20px;background:#0f3460;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:0.85rem;white-space:nowrap;">Copy URL</button>
         </div>
         <p id="copy-feedback" style="color:#69f0ae;font-size:0.75rem;text-align:center;margin-top:6px;display:none;">Copied to clipboard!</p>
       </div>
